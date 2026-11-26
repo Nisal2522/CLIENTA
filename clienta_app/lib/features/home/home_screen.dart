@@ -233,8 +233,6 @@ class _Header extends StatelessWidget {
                         Text(greeting, style: context.tt.bodyMedium?.copyWith(color: pal.textMuted)),
                         const SizedBox(height: 2),
                         Text('Hello, ${user.firstName} 👋', style: context.tt.headlineMedium),
-                        const SizedBox(height: 4),
-                        Text('Let’s explore what’s happening at Control Union', style: context.tt.bodySmall),
                       ],
                     ),
                   ),
