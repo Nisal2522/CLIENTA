@@ -174,11 +174,12 @@ void main() {
       expect(find.text('Category'.toUpperCase()), findsNothing);
       await tapText('This month');
       await tapText('Show results');
-      _step = 'events back';
-      await tester.tap(find.byIcon(Icons.arrow_back_ios_new_rounded).hitTestable().first, warnIfMissed: false);
+      // Events is a tab without a back button: return Home with the nav bar.
+      _step = 'events to home';
+      await tester.tap(find.byIcon(Icons.home_outlined).last, warnIfMissed: false);
       await settle();
-      expect(find.text('Explore and register for PCU events worldwide'), findsNothing, reason: 'Back should leave Events');
-      expect(find.text('Home'), findsOneWidget, reason: 'Back should land on Home');
+      expect(find.text('Explore and register for PCU events worldwide'), findsNothing, reason: 'Home tab should leave Events');
+      expect(find.text('Home'), findsOneWidget, reason: 'Should land on Home');
 
       await tester.tap(find.byIcon(Icons.chat_bubble_outline_rounded).last, warnIfMissed: false);
       await settle();
