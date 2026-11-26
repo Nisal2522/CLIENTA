@@ -28,12 +28,20 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
     'Thanks for sharing!',
   ];
 
-  List<ChatMessage> get _messages => Store.instance.liveChats.putIfAbsent(widget.eventId, () => []);
+  List<ChatMessage> get _messages =>
+      Store.instance.liveChats.putIfAbsent(widget.eventId, () => []);
 
   void _send(String text, {MessageType type = MessageType.text, String? file}) {
     Store.instance.sendMessage(
       _messages,
-      ChatMessage(id: 'lc${DateTime.now().microsecondsSinceEpoch}', senderId: 'me', time: DateTime.now(), text: text, type: type, attachmentName: file),
+      ChatMessage(
+        id: 'lc${DateTime.now().microsecondsSinceEpoch}',
+        senderId: 'me',
+        time: DateTime.now(),
+        text: text,
+        type: type,
+        attachmentName: file,
+      ),
     );
     _simulateReply();
   }
@@ -48,7 +56,15 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
     await Future.delayed(const Duration(milliseconds: 1700));
     if (!mounted) return;
     setState(() => _typing = null);
-    Store.instance.sendMessage(_messages, ChatMessage(id: 'lr${DateTime.now().microsecondsSinceEpoch}', senderId: p.id, time: DateTime.now(), text: _replies[_rnd.nextInt(_replies.length)]));
+    Store.instance.sendMessage(
+      _messages,
+      ChatMessage(
+        id: 'lr${DateTime.now().microsecondsSinceEpoch}',
+        senderId: p.id,
+        time: DateTime.now(),
+        text: _replies[_rnd.nextInt(_replies.length)],
+      ),
+    );
   }
 
   @override
@@ -59,7 +75,11 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
         builder: (context) {
           final e = Store.instance.event(widget.eventId);
           final pal = context.pal;
-          final items = buildMessageList(context, _messages, showSender: true).reversed.toList();
+          final items = buildMessageList(
+            context,
+            _messages,
+            showSender: true,
+          ).reversed.toList();
           return Column(
             children: [
               SizedBox(
@@ -70,7 +90,16 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
                     EventImage(event: e),
                     DecoratedBox(
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Colors.black26, pal.bg.withValues(alpha: 0.2), pal.bg], stops: const [0, 0.6, 1]),
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.black26,
+                            pal.bg.withValues(alpha: 0.2),
+                            pal.bg,
+                          ],
+                          stops: const [0, 0.6, 1],
+                        ),
                       ),
                     ),
                     Positioned(
@@ -91,18 +120,29 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
                               children: [
                                 const LiveBadge(),
                                 const SizedBox(height: 6),
-                                Text('Live Chat', style: context.tt.headlineSmall?.copyWith(color: pal.dark ? Colors.white : pal.text)),
+                                Text(
+                                  'Live Chat',
+                                  style: context.tt.headlineSmall?.copyWith(
+                                    color: pal.dark ? Colors.white : pal.text,
+                                  ),
+                                ),
                                 Text(e.title, style: context.tt.bodySmall),
                               ],
                             ),
                           ),
                           GlassCard(
                             radius: 16,
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 8,
+                            ),
                             child: Row(
                               children: [
                                 const PulseDot(color: AppColors.green, size: 7),
-                                Text('${86 + _messages.length} online', style: context.tt.labelMedium),
+                                Text(
+                                  '${86 + _messages.length} online',
+                                  style: context.tt.labelMedium,
+                                ),
                               ],
                             ),
                           ),
@@ -118,7 +158,8 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
                   physics: const BouncingScrollPhysics(),
                   padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
                   children: [
-                    if (_typing != null) TypingBubble(name: _typing!.name, url: _typing!.photoUrl),
+                    if (_typing != null)
+                      TypingBubble(name: _typing!.name, url: _typing!.photoUrl),
                     ...items,
                   ],
                 ),
@@ -126,7 +167,8 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
               ChatInputBar(
                 hint: 'Message everyone…',
                 onSend: _send,
-                onAttach: (f) => _send('', type: MessageType.attachment, file: f),
+                onAttach: (f) =>
+                    _send('', type: MessageType.attachment, file: f),
               ),
             ],
           );

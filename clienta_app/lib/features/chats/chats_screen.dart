@@ -11,6 +11,7 @@ import '../shell/main_shell.dart';
 import 'conversation_screen.dart';
 import 'meetings_screen.dart';
 import 'new_message_screen.dart';
+import 'rsvp_dialog.dart';
 
 /// Chat list. Used as a bottom-nav tab and (with [standalone]) from an event.
 class ChatsScreen extends StatefulWidget {
@@ -86,7 +87,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
                     scrollDirection: Axis.horizontal,
                     itemCount: meetings.length,
                     separatorBuilder: (_, _) => const SizedBox(width: 10),
-                    itemBuilder: (_, i) => FadeSlideIn(index: i, offset: const Offset(0.2, 0), child: _MeetingChip(thread: meetings[i].$1, invite: meetings[i].$2.meeting!)),
+                    itemBuilder: (_, i) => FadeSlideIn(index: i, offset: const Offset(0.2, 0), child: _MeetingChip(thread: meetings[i].$1, message: meetings[i].$2)),
                   ),
                 ),
               ),
@@ -298,21 +299,24 @@ extension on _ThreadTile {
 }
 
 class _MeetingChip extends StatelessWidget {
-  const _MeetingChip({required this.thread, required this.invite});
+  const _MeetingChip({required this.thread, required this.message});
   final ChatThread thread;
-  final MeetingInvite invite;
+  final ChatMessage message;
 
   @override
   Widget build(BuildContext context) {
-    final m = invite;
+    final m = message.meeting!;
+    // An invite someone sent you that you haven't answered yet needs an RSVP.
+    final needsRsvp = message.senderId != 'me' && m.status == MeetingStatus.pending;
     final (label, color) = switch (m.status) {
+      MeetingStatus.pending when needsRsvp => ('RSVP', AppColors.blue),
       MeetingStatus.pending => ('Pending', AppColors.orange),
       MeetingStatus.accepted => ('Confirmed', AppColors.green),
       MeetingStatus.declined => ('Declined', AppColors.red),
     };
     return AppCard(
       padding: const EdgeInsets.all(12),
-      onTap: () => push(context, ConversationScreen(threadId: thread.id)),
+      onTap: () => needsRsvp ? showRsvpDialog(context, m, fromId: message.senderId) : push(context, ConversationScreen(threadId: thread.id)),
       child: SizedBox(
         width: 210,
         child: Row(

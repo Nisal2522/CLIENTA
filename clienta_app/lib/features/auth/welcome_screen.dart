@@ -185,6 +185,15 @@ class WelcomeScreen extends StatelessWidget {
                             Text('   ·   v2.0.08', style: TextStyle(color: pal.textFaint, fontSize: 11.5)),
                           ],
                         ),
+                        const SizedBox(height: 12),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Powered by', style: TextStyle(color: pal.textFaint, fontSize: 11, fontWeight: FontWeight.w600)),
+                            const SizedBox(width: 8),
+                            Image.asset('assets/images/control_union_logo.png', height: 20, fit: BoxFit.contain),
+                          ],
+                        ),
                       ],
                     ),
                   ),

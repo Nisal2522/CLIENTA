@@ -9,6 +9,7 @@ import '../events/section_scaffold.dart';
 import '../services/contacts_screen.dart';
 import 'chats_screen.dart';
 import 'conversation_screen.dart';
+import 'rsvp_dialog.dart';
 import 'schedule_meeting_sheet.dart';
 
 /// All meeting invitations (sent and received) with their status.
@@ -240,7 +241,7 @@ class _MeetingCardState extends State<_MeetingCard> {
                     // Status + calendar.
                     Row(
                       children: [
-                        Expanded(child: _StatusArea(meeting: m, mine: mine)),
+                        Expanded(child: _StatusArea(meeting: m, mine: mine, fromId: widget.message.senderId)),
                         const SizedBox(width: 10),
                         CircleIconBtn(
                           icon: Icons.calendar_month_rounded,
@@ -339,22 +340,22 @@ class _MeetingCardState extends State<_MeetingCard> {
 }
 
 class _StatusArea extends StatelessWidget {
-  const _StatusArea({required this.meeting, required this.mine});
+  const _StatusArea({required this.meeting, required this.mine, this.fromId});
   final MeetingInvite meeting;
   final bool mine;
+  final String? fromId;
 
   @override
   Widget build(BuildContext context) {
     final m = meeting;
-    final store = Store.instance;
     final Widget child = switch (m.status) {
-      MeetingStatus.pending when !mine => Row(
-          key: const ValueKey('actions'),
-          children: [
-            Expanded(child: _Pill(label: 'Accept', icon: Icons.check_rounded, color: AppColors.green, filled: true, onTap: () => store.setMeetingStatus(m, MeetingStatus.accepted))),
-            const SizedBox(width: 8),
-            Expanded(child: _Pill(label: 'Reject', icon: Icons.close_rounded, color: AppColors.red, onTap: () => store.setMeetingStatus(m, MeetingStatus.declined))),
-          ],
+      MeetingStatus.pending when !mine => _Pill(
+          key: const ValueKey('rsvp'),
+          label: 'RSVP',
+          icon: Icons.event_available_rounded,
+          color: AppColors.blue,
+          filled: true,
+          onTap: () => showRsvpDialog(context, m, fromId: fromId),
         ),
       MeetingStatus.pending => const _Pill(key: ValueKey('wait'), label: 'Awaiting response', icon: Icons.hourglass_top_rounded, color: AppColors.orange),
       MeetingStatus.accepted => const _Pill(key: ValueKey('ok'), label: 'Accepted', icon: Icons.check_circle_rounded, color: AppColors.green),

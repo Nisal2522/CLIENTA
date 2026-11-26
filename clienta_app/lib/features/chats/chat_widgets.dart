@@ -6,6 +6,7 @@ import '../../core/format.dart';
 import '../../core/widgets/widgets.dart';
 import '../../data/models.dart';
 import '../../data/store.dart';
+import 'rsvp_dialog.dart';
 
 class MessageBubble extends StatelessWidget {
   const MessageBubble({super.key, required this.message, this.showSender = false, this.animate = true, this.onReply, this.onLongPress});
@@ -48,7 +49,7 @@ class MessageBubble extends StatelessWidget {
 
     Widget content;
     if (m.type == MessageType.meeting && m.meeting != null) {
-      content = MeetingCard(meeting: m.meeting!, mine: mine);
+      content = MeetingCard(meeting: m.meeting!, mine: mine, fromId: m.senderId);
     } else if (m.type == MessageType.attachment) {
       content = _bubble(
         context,
@@ -160,9 +161,12 @@ class MessageBubble extends StatelessWidget {
 }
 
 class MeetingCard extends StatelessWidget {
-  const MeetingCard({super.key, required this.meeting, required this.mine});
+  const MeetingCard({super.key, required this.meeting, required this.mine, this.fromId});
   final MeetingInvite meeting;
   final bool mine;
+
+  /// Who sent the invite; shown in the RSVP pop-up.
+  final String? fromId;
 
   @override
   Widget build(BuildContext context) {
@@ -249,9 +253,7 @@ class MeetingCard extends StatelessWidget {
                   ? Row(
                       key: const ValueKey('actions'),
                       children: [
-                        Expanded(child: _pill('Accept', Icons.check_rounded, AppColors.blue, () => Store.instance.setMeetingStatus(m, MeetingStatus.accepted))),
-                        const SizedBox(width: 8),
-                        Expanded(child: _pill('Reject', Icons.close_rounded, AppColors.red, () => Store.instance.setMeetingStatus(m, MeetingStatus.declined))),
+                        Expanded(child: _pill('RSVP', Icons.event_available_rounded, AppColors.blue, () => showRsvpDialog(context, m, fromId: fromId))),
                       ],
                     )
                   : Row(
