@@ -60,12 +60,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         key: const ValueKey('sent'),
         body: SafeArea(
           child: FillScrollView(
-            padding: const EdgeInsets.all(28),
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 const Spacer(),
-                const AnimatedCheck(size: 120),
-                const SizedBox(height: 28),
+                const AnimatedCheck(size: 100),
+                const SizedBox(height: 18),
                 Text('Check your inbox', style: context.tt.headlineSmall),
                 const SizedBox(height: 10),
                 Text(

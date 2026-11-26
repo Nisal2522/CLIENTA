@@ -52,7 +52,7 @@ class _ProfileBody extends StatelessWidget {
 
     return ListView(
       physics: const BouncingScrollPhysics(),
-      padding: EdgeInsets.fromLTRB(20, MediaQuery.paddingOf(context).top + 14, 20, kNavBarSpace),
+      padding: EdgeInsets.fromLTRB(20, MediaQuery.paddingOf(context).top + 8, 20, kNavBarSpace),
       children: [
         // Same header style as the other sub-screens (e.g. Knowledge Hub).
         FadeSlideIn(
@@ -68,7 +68,7 @@ class _ProfileBody extends StatelessWidget {
                   ],
                 ),
               ),
-              CircleIconBtn(icon: Icons.settings_rounded, size: 44, onTap: () => push(context, const SettingsScreen())),
+              CircleIconBtn(icon: Icons.settings_rounded, size: 42, onTap: () => push(context, const SettingsScreen())),
             ],
           ),
         ),
@@ -76,7 +76,7 @@ class _ProfileBody extends StatelessWidget {
         FadeSlideIn(
           index: 1,
           child: Container(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               gradient: AppColors.navyGradient,
               borderRadius: BorderRadius.circular(28),
@@ -91,7 +91,7 @@ class _ProfileBody extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Hero(tag: 'profile-avatar', child: AppAvatar(name: u.name, url: u.photoUrl, size: 74, ring: true, online: true)),
+                        Hero(tag: 'profile-avatar', child: AppAvatar(name: u.name, url: u.photoUrl, size: 64, ring: true, online: true)),
                         const SizedBox(width: 14),
                         Expanded(
                           child: Column(
@@ -114,7 +114,7 @@ class _ProfileBody extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 12),
                     Row(
                       children: [
                         const Icon(Icons.apartment_rounded, color: Colors.white60, size: 16),
@@ -130,7 +130,7 @@ class _ProfileBody extends StatelessWidget {
                         Expanded(child: Text(u.email, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white70))),
                       ],
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 12),
                     Row(
                       children: [
                         Expanded(child: AppButton(label: 'Edit profile', icon: Icons.edit_rounded, variant: ButtonVariant.light, height: 46, onPressed: () => push(context, const EditProfileScreen()))),

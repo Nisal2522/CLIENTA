@@ -40,7 +40,7 @@ class SettingsScreen extends StatelessWidget {
                               onTap: () => ThemeController.instance.value = mode,
                               child: AnimatedContainer(
                                 duration: const Duration(milliseconds: 250),
-                                padding: const EdgeInsets.symmetric(vertical: 14),
+                                padding: const EdgeInsets.symmetric(vertical: 12),
                                 decoration: BoxDecoration(
                                   gradient: ThemeController.instance.value == mode ? AppColors.brandGradient : null,
                                   color: ThemeController.instance.value == mode ? null : context.pal.surfaceAlt,
@@ -150,7 +150,7 @@ class LanguageScreen extends StatelessWidget {
                 index: i,
                 child: AppCard(
                   margin: const EdgeInsets.only(bottom: 10),
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   color: app.language == _langs[i].$2 ? AppColors.blue.withValues(alpha: 0.1) : null,
                   onTap: () {
                     app.update(() => app.language = _langs[i].$2);

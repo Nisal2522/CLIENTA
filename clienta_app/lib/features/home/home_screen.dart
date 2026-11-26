@@ -56,7 +56,7 @@ class _SupportAiBubble extends StatefulWidget {
 }
 
 class _SupportAiBubbleState extends State<_SupportAiBubble> {
-  static const double _size = 58;
+  static const double _size = 54;
   static const double _margin = 12;
   Offset? _pos; // top-left; null until first layout → default bottom-right
 
@@ -104,7 +104,7 @@ class _SupportAiBubbleState extends State<_SupportAiBubble> {
                         boxShadow: [BoxShadow(color: AppColors.blue.withValues(alpha: 0.45), blurRadius: 16, offset: const Offset(0, 6))],
                       ),
                       alignment: Alignment.center,
-                      child: const BotIcon(size: 32),
+                      child: const BotIcon(size: 30),
                     ),
                   ),
                 ),
@@ -523,7 +523,7 @@ class _HomeSkeleton extends StatelessWidget {
     return Shimmer(
       child: ListView(
         physics: const NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.fromLTRB(20, MediaQuery.paddingOf(context).top + 14, 20, 20),
+        padding: EdgeInsets.fromLTRB(20, MediaQuery.paddingOf(context).top + 6, 20, 20),
         children: const [
           Row(children: [SkeletonBox(height: 30, circle: true), SizedBox(width: 10), SkeletonBox(width: 90), Spacer(), SkeletonBox(height: 42, circle: true), SizedBox(width: 8), SkeletonBox(height: 42, circle: true), SizedBox(width: 8), SkeletonBox(height: 42, circle: true)]),
           SizedBox(height: 26),

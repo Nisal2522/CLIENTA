@@ -75,7 +75,7 @@ class _EventsScreenState extends State<EventsScreen> {
           slivers: [
             SliverToBoxAdapter(
               child: Padding(
-                padding: EdgeInsets.fromLTRB(20, MediaQuery.paddingOf(context).top + 14, 20, 0),
+                padding: EdgeInsets.fromLTRB(20, MediaQuery.paddingOf(context).top + 8, 20, 0),
                 child: FadeSlideIn(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

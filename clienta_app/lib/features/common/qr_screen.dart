@@ -26,7 +26,7 @@ class _Badge extends StatelessWidget {
   Widget build(BuildContext context) {
     final u = AppState.instance.user!;
     return ListView(
-      padding: const EdgeInsets.fromLTRB(24, 12, 24, 30),
+      padding: const EdgeInsets.fromLTRB(24, 12, 24, 20),
       children: [
         FadeSlideIn(
           child: Container(

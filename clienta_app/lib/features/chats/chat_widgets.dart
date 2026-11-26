@@ -374,7 +374,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
                     },
                     child: Column(
                       children: [
-                        IconBadge(icon: icon, color: color, size: 58, circle: true, solid: true),
+                        IconBadge(icon: icon, color: color, size: 48, circle: true, solid: true),
                         const SizedBox(height: 8),
                         Text(label, style: ctx.tt.labelMedium),
                       ],

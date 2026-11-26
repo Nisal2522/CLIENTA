@@ -331,11 +331,11 @@ Future<void> showRegisteredDialog(BuildContext context, ClientaEvent e) {
     context: context,
     builder: (ctx) => Dialog(
       child: Padding(
-        padding: const EdgeInsets.all(26),
+        padding: const EdgeInsets.all(22),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const AnimatedCheck(size: 100),
+            const AnimatedCheck(size: 80),
             const SizedBox(height: 16),
             Text(e.inviteOnly ? 'Request sent!' : 'You’re registered!', style: ctx.tt.titleLarge),
             const SizedBox(height: 8),

@@ -60,7 +60,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
             if (!widget.standalone)
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(20, MediaQuery.paddingOf(context).top + 14, 20, 0),
+                  padding: EdgeInsets.fromLTRB(20, MediaQuery.paddingOf(context).top + 8, 20, 0),
                   child: FadeSlideIn(
                     child: Row(
                       children: [
@@ -81,7 +81,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
               SliverToBoxAdapter(child: SectionHeader(title: 'Meetings', action: 'See all', onAction: () => push(context, const MeetingsScreen()), padding: const EdgeInsets.fromLTRB(20, 20, 12, 10))),
               SliverToBoxAdapter(
                 child: SizedBox(
-                  height: 92,
+                  height: 86,
                   child: ListView.separated(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     scrollDirection: Axis.horizontal,
@@ -314,7 +314,7 @@ class _MeetingChip extends StatelessWidget {
       MeetingStatus.declined => ('Declined', AppColors.red),
     };
     return AppCard(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       onTap: () => needsRsvp ? showRsvpDialog(context, m, fromId: message.senderId) : push(context, ConversationScreen(threadId: thread.id)),
       child: SizedBox(
         width: 210,
@@ -340,9 +340,9 @@ class _MeetingChip extends StatelessWidget {
                   Text(m.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: context.tt.titleSmall),
                   Text('${fmtTime12(m.start)} · ${thread.title.split(' ').first}', maxLines: 1, overflow: TextOverflow.ellipsis, style: context.tt.bodySmall),
                   if (needsRsvp) ...[
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 4),
                     Container(
-                      height: 24,
+                      height: 22,
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       decoration: BoxDecoration(
                         gradient: AppColors.brandGradient,

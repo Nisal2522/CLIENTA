@@ -94,7 +94,7 @@ class AppButton extends StatelessWidget {
 
 /// Circular icon button with optional animated badge.
 class CircleIconBtn extends StatelessWidget {
-  const CircleIconBtn({super.key, required this.icon, this.onTap, this.badge = 0, this.size = 44, this.child, this.color, this.iconColor});
+  const CircleIconBtn({super.key, required this.icon, this.onTap, this.badge = 0, this.size = 42, this.child, this.color, this.iconColor});
   final IconData icon;
   final VoidCallback? onTap;
   final int badge;

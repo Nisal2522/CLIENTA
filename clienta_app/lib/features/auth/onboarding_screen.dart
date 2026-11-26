@@ -124,7 +124,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             child: _PhotoCard(slide: s, parallax: delta),
                           ),
                         ),
-                        const SizedBox(height: 26),
+                        const SizedBox(height: 18),
                         Transform.translate(
                           offset: Offset(delta * 80, 0),
                           child: Opacity(
@@ -136,7 +136,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 children: [
                                   Text(s.tag, style: TextStyle(color: s.color, fontWeight: FontWeight.w800, fontSize: 12, letterSpacing: 2)),
                                   const SizedBox(height: 8),
-                                  Text(s.title, style: const TextStyle(color: AppColors.navy900, fontSize: 30, fontWeight: FontWeight.w800, height: 1.15, letterSpacing: -0.8)),
+                                  Text(s.title, style: const TextStyle(color: AppColors.navy900, fontSize: 27, fontWeight: FontWeight.w800, height: 1.15, letterSpacing: -0.8)),
                                   const SizedBox(height: 12),
                                   Text(s.body, style: TextStyle(color: pal.textMuted, fontSize: 15, height: 1.55)),
                                 ],
@@ -152,7 +152,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(26, 8, 26, 18),
+              padding: const EdgeInsets.fromLTRB(24, 8, 24, 12),
               child: Row(
                 children: [
                   Row(
@@ -173,17 +173,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 350),
                     curve: Curves.easeOutCubic,
-                    width: last ? 170 : 64,
+                    width: last ? 150 : 52,
                     child: Pressable(
                       onTap: () => last
                           ? _finish()
                           : _page.nextPage(duration: const Duration(milliseconds: 560), curve: Curves.easeOutCubic),
                       child: Container(
-                        height: 64,
+                        height: 52,
                         decoration: BoxDecoration(
                           gradient: AppColors.brandGradient,
-                          borderRadius: BorderRadius.circular(32),
-                          boxShadow: [BoxShadow(color: AppColors.blue.withValues(alpha: 0.35), blurRadius: 22, offset: const Offset(0, 10))],
+                          borderRadius: BorderRadius.circular(26),
+                          boxShadow: [BoxShadow(color: AppColors.blue.withValues(alpha: 0.3), blurRadius: 14, offset: const Offset(0, 6))],
                         ),
                         child: ClipRect(
                           child: Center(

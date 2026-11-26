@@ -86,12 +86,12 @@ class _SurveyState extends State<_Survey> with AutomaticKeepAliveClientMixin {
     if (Store.instance.submittedSurveys.contains(widget.eventId)) {
       return Center(
         child: Padding(
-          padding: const EdgeInsets.all(32),
+          padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const AnimatedCheck(size: 120),
-              const SizedBox(height: 22),
+              const AnimatedCheck(size: 96),
+              const SizedBox(height: 18),
               Text('Thank you for your feedback!', style: context.tt.headlineSmall, textAlign: TextAlign.center),
               const SizedBox(height: 8),
               Text('Your responses help us make future events even better.', textAlign: TextAlign.center, style: context.tt.bodyLarge?.copyWith(color: pal.textMuted)),

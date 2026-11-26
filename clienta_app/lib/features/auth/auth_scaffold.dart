@@ -40,7 +40,7 @@ class AuthScaffold extends StatelessWidget {
                     physics: const BouncingScrollPhysics(),
                     children: [
                       if (image != null)
-                        AuthHeroImage(asset: image!, height: 250 + top, caption: imageCaption, icon: icon)
+                        AuthHeroImage(asset: image!, height: 210 + top, caption: imageCaption, icon: icon)
                       else
                         SizedBox(height: top + 70),
                       Padding(
@@ -51,7 +51,7 @@ class AuthScaffold extends StatelessWidget {
                             FadeSlideIn(index: 1, child: Text(title, style: context.tt.headlineMedium?.copyWith(color: AppColors.navy900))),
                             const SizedBox(height: 8),
                             FadeSlideIn(index: 2, child: Text(subtitle, style: context.tt.bodyLarge?.copyWith(color: pal.textMuted))),
-                            const SizedBox(height: 26),
+                            const SizedBox(height: 18),
                             for (var i = 0; i < children.length; i++) FadeSlideIn(index: 3 + i, child: children[i]),
                           ],
                         ),

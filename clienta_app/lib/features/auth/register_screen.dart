@@ -279,12 +279,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget _success(BuildContext context) => Scaffold(
         body: SafeArea(
           child: FillScrollView(
-            padding: const EdgeInsets.all(28),
+            padding: const EdgeInsets.all(24),
             child: Column(
               children: [
                 const Spacer(),
-                const AnimatedCheck(size: 130),
-                const SizedBox(height: 28),
+                const AnimatedCheck(size: 100),
+                const SizedBox(height: 18),
                 FadeSlideIn(child: Text('Welcome to CLIENTA, ${_name.text.trim().split(' ').first}!', textAlign: TextAlign.center, style: context.tt.headlineSmall)),
                 const SizedBox(height: 10),
                 FadeSlideIn(

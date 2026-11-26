@@ -44,7 +44,7 @@ class _DownloadSheetState extends State<_DownloadSheet> with SingleTickerProvide
   Widget build(BuildContext context) {
     final pal = context.pal;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 0, 24, 28),
+      padding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
       child: AnimatedSize(
         duration: const Duration(milliseconds: 300),
         child: Column(

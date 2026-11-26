@@ -69,12 +69,12 @@ class GradientFab extends StatelessWidget {
     return Pressable(
       onTap: onTap,
       child: Container(
-        height: 56,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        height: 48,
+        padding: const EdgeInsets.symmetric(horizontal: 18),
         decoration: BoxDecoration(
           gradient: AppColors.brandGradient,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [BoxShadow(color: AppColors.blue.withValues(alpha: 0.45), blurRadius: 20, offset: const Offset(0, 8))],
+          borderRadius: BorderRadius.circular(18),
+          boxShadow: [BoxShadow(color: AppColors.blue.withValues(alpha: 0.35), blurRadius: 14, offset: const Offset(0, 6))],
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,

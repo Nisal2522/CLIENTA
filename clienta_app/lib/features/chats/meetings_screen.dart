@@ -67,14 +67,14 @@ class _MeetingsScreenState extends State<MeetingsScreen> {
         onTap: _newMeeting,
         scale: 0.9,
         child: Container(
-          width: 60,
-          height: 60,
+          width: 54,
+          height: 54,
           decoration: BoxDecoration(
             gradient: AppColors.brandGradient,
             shape: BoxShape.circle,
-            boxShadow: [BoxShadow(color: AppColors.blue.withValues(alpha: 0.45), blurRadius: 20, offset: const Offset(0, 8))],
+            boxShadow: [BoxShadow(color: AppColors.blue.withValues(alpha: 0.35), blurRadius: 14, offset: const Offset(0, 6))],
           ),
-          child: const Icon(Icons.add_rounded, color: Colors.white, size: 30),
+          child: const Icon(Icons.add_rounded, color: Colors.white, size: 28),
         ),
       ),
       body: AsyncView(

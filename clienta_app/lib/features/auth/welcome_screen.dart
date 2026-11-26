@@ -125,7 +125,7 @@ class WelcomeScreen extends StatelessWidget {
             ),
             // Full width so the wordmark lines up with the buttons below.
             Padding(
-              padding: const EdgeInsets.fromLTRB(28, 30, 28, 0),
+              padding: const EdgeInsets.fromLTRB(28, 20, 28, 0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -195,7 +195,7 @@ class _SupportSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 0, 24, 28),
+      padding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
