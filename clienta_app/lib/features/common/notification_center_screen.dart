@@ -10,7 +10,7 @@ import '../events/section_scaffold.dart';
 (IconData, Color) notificationStyle(NotificationType t) => switch (t) {
       NotificationType.announcement => (Icons.campaign_rounded, AppColors.blue),
       NotificationType.agenda => (Icons.sensors_rounded, AppColors.red),
-      NotificationType.news => (Icons.newspaper_rounded, AppColors.blueDeep),
+      NotificationType.news => (Icons.campaign_rounded, AppColors.blueDeep),
       NotificationType.chat => (Icons.chat_bubble_rounded, AppColors.darkGrey),
       NotificationType.meeting => (Icons.event_available_rounded, AppColors.blue),
       NotificationType.certificate => (Icons.workspace_premium_rounded, AppColors.darkBlue80),

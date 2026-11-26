@@ -73,7 +73,7 @@ class _MainShellState extends State<MainShell> with SingleTickerProviderStateMix
   static const _items = [
     (Icons.home_outlined, Icons.home_rounded, 'Home'),
     (Icons.event_outlined, Icons.event_rounded, 'Events'),
-    (Icons.newspaper_outlined, Icons.newspaper_rounded, 'News'),
+    (Icons.campaign_outlined, Icons.campaign_rounded, 'News'),
     (Icons.chat_bubble_outline_rounded, Icons.chat_bubble_rounded, 'Chats'),
     (Icons.person_outline_rounded, Icons.person_rounded, 'Profile'),
   ];

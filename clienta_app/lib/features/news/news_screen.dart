@@ -53,12 +53,7 @@ class _NewsScreenState extends State<NewsScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Expanded(child: Text('News', style: context.tt.headlineMedium)),
-                            TagChip(label: '${app.regionFlag} $region', color: AppColors.blueDeep),
-                          ],
-                        ),
+                        Text('News', style: context.tt.headlineMedium),
                         const SizedBox(height: 4),
                         Text('PCU updates from around the world', style: context.tt.bodyMedium?.copyWith(color: context.pal.textMuted)),
                         const SizedBox(height: 16),
@@ -80,7 +75,7 @@ class _NewsScreenState extends State<NewsScreen> {
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: kNavBarSpace),
                     child: StateView.empty(
-                      icon: Icons.newspaper_rounded,
+                      icon: Icons.campaign_rounded,
                       title: 'No news here yet',
                       message: _query.isNotEmpty ? 'Try another search term.' : 'Check back soon for new updates.',
                       actionLabel: _scope == 'PCU' ? null : 'Show PCU news',
