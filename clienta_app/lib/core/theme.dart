@@ -134,6 +134,9 @@ extension ThemeX on BuildContext {
 class AppTheme {
   AppTheme._();
 
+  /// Source Sans 3 (Source Sans Pro), bundled in assets/fonts.
+  static const fontFamily = 'SourceSans3';
+
   static final ThemeData _lightCache = _build(Brightness.light);
 
   static ThemeData light() => _lightCache;
@@ -178,6 +181,7 @@ class AppTheme {
 
     return ThemeData(
       useMaterial3: true,
+      fontFamily: fontFamily,
       brightness: b,
       colorScheme: scheme,
       scaffoldBackgroundColor: p.bg,
@@ -191,13 +195,13 @@ class AppTheme {
         scrolledUnderElevation: 0,
         centerTitle: true,
         foregroundColor: p.text,
-        titleTextStyle: TextStyle(fontSize: 17, fontWeight: FontWeight.w700, color: p.text, letterSpacing: -0.2),
+        titleTextStyle: TextStyle(fontFamily: fontFamily, fontSize: 17, fontWeight: FontWeight.w700, color: p.text, letterSpacing: -0.2),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: p.surfaceAlt,
-        hintStyle: TextStyle(color: p.textFaint, fontSize: 14.5),
-        labelStyle: TextStyle(color: p.textMuted),
+        hintStyle: TextStyle(fontFamily: fontFamily, color: p.textFaint, fontSize: 14.5),
+        labelStyle: TextStyle(fontFamily: fontFamily, color: p.textMuted),
         prefixIconColor: p.textMuted,
         suffixIconColor: p.textMuted,
         contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 17),
@@ -223,7 +227,7 @@ class AppTheme {
       snackBarTheme: SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
         backgroundColor: b == Brightness.dark ? AppColors.navy700 : AppColors.cuDarkBlue,
-        contentTextStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+        contentTextStyle: const TextStyle(fontFamily: fontFamily, color: Colors.white, fontWeight: FontWeight.w600),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
       tabBarTheme: TabBarThemeData(
@@ -231,7 +235,7 @@ class AppTheme {
         unselectedLabelColor: p.textMuted,
         dividerColor: Colors.transparent,
         indicatorSize: TabBarIndicatorSize.tab,
-        labelStyle: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13.5),
+        labelStyle: const TextStyle(fontFamily: fontFamily, fontWeight: FontWeight.w700, fontSize: 13.5),
         indicator: BoxDecoration(
           gradient: AppColors.brandGradient,
           borderRadius: BorderRadius.circular(14),

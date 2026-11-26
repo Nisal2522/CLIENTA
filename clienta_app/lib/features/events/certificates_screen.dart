@@ -170,7 +170,7 @@ class CertificatePreviewScreen extends StatelessWidget {
                               const Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('— signed —', style: TextStyle(fontStyle: FontStyle.italic, color: AppColors.steel)),
+                                  Text('Signed', style: TextStyle(fontStyle: FontStyle.italic, color: AppColors.steel)),
                                   Text('Managing Director', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 9.5)),
                                 ],
                               ),

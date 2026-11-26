@@ -23,3 +23,24 @@ flutter:
     - assets/images/events/
     - assets/images/profile/
     - assets/images/people/
+
+  # Source Sans 3 (formerly Source Sans Pro) by Adobe, SIL Open Font License.
+  # It has no ExtraBold, so weight 800 uses the Bold file.
+  fonts:
+    - family: SourceSans3
+      fonts:
+        - asset: assets/fonts/SourceSans3-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/SourceSans3-It.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/SourceSans3-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/SourceSans3-Semibold.ttf
+          weight: 600
+        - asset: assets/fonts/SourceSans3-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/SourceSans3-Bold.ttf
+          weight: 800
+        - asset: assets/fonts/SourceSans3-Black.ttf
+          weight: 900

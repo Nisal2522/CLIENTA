@@ -18,7 +18,7 @@ const _slides = [
     'assets/images/onboarding_events.jpg',
     'EVENTS',
     'Every event,\nbeautifully organised',
-    'Agenda, speakers, venue maps, resources and live updates — everything you need for PCU events in one place.',
+    'Agenda, speakers, venue maps, resources and live updates: everything you need for PCU events in one place.',
     AppColors.blue,
   ),
   _Slide(

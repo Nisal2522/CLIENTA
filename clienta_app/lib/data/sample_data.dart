@@ -77,9 +77,9 @@ class SampleData {
         directions: 'Enter via Gate 2 on Bauddhaloka Mawatha. Parking is available at the east car park; shuttle carts run to the main hall every 10 minutes.',
       ),
       description:
-          'FutureTech Connect is your essential gateway to the cutting edge of information technology. Join us for two days of transformative insights as we explore the revolutionary impact of AI, navigate the complex landscape of cybersecurity, and dive into the power of cloud-native development.\n\nConnect with industry leaders, gain actionable knowledge, and discover the innovations shaping tomorrow’s digital world — all in one place.',
+          'FutureTech Connect is your essential gateway to the cutting edge of information technology. Join us for two days of transformative insights as we explore the revolutionary impact of AI, navigate the complex landscape of cybersecurity, and dive into the power of cloud-native development.\n\nConnect with industry leaders, gain actionable knowledge, and discover the innovations shaping tomorrow’s digital world, all in one place.',
       disclaimers: const [
-        'PCU only — please carry your digital badge (QR) for entry.',
+        'PCU only. Please carry your digital badge (QR) for entry.',
         'Sessions may be photographed and recorded for internal communications.',
         'Agenda is subject to change; live updates appear in the app.',
       ],
@@ -92,7 +92,7 @@ class SampleData {
       speakerIds: const ['sp1', 'sp2', 'sp3', 'sp4'],
       sessions: [
         Session(id: 's1', start: at(0, 9), end: at(0, 9, 30), title: 'Opening and Welcome Ceremony', description: 'Welcome address, traditional lamp lighting and an overview of the two days ahead.', speakerIds: const ['sp1'], status: SessionStatus.completed, type: 'Ceremony'),
-        Session(id: 's2', start: at(0, 9, 30), end: at(0, 10, 30), title: 'Keynote: AI in Enterprise Solutions', description: 'How enterprises move from AI pilots to production — governance, ethics and measurable value.', speakerIds: const ['sp2'], status: SessionStatus.completed, type: 'Keynote'),
+        Session(id: 's2', start: at(0, 9, 30), end: at(0, 10, 30), title: 'Keynote: AI in Enterprise Solutions', description: 'How enterprises move from AI pilots to production: governance, ethics and measurable value.', speakerIds: const ['sp2'], status: SessionStatus.completed, type: 'Keynote'),
         Session(id: 's3', start: at(0, 10, 40), end: at(0, 11, 40), title: 'Panel: Securing the Cloud-Native Enterprise', description: 'Security leaders debate zero trust, supply-chain attacks and resilience in modern platforms.', speakerIds: const ['sp3', 'sp4'], status: SessionStatus.live, type: 'Panel', room: 'Main Hall'),
         Session(id: 's4', start: at(0, 11, 40), end: at(0, 12, 10), title: 'Networking Break', description: 'Coffee, partner booths and the innovation showcase in the foyer.', status: SessionStatus.upcoming, type: 'Break', room: 'Foyer'),
         Session(id: 's5', start: at(0, 12, 10), end: at(0, 13, 10), title: 'Technical Workshop: Building Cloud-Native', description: 'Hands-on workshop: containerising a service, CI/CD and observability from day one.', speakerIds: const ['sp4'], status: SessionStatus.upcoming, type: 'Workshop', room: 'Lotus Room'),
@@ -125,7 +125,7 @@ class SampleData {
       end: at(7, 17),
       venue: const Venue(name: 'Shanghai Tower', address: '501 Yincheng Middle Road, Pudong', city: 'Shanghai', country: 'China', flag: '🇨🇳', directions: 'Metro Line 2 to Lujiazui, Exit 6. Registration on the 2nd floor outside the Grand Ballroom.'),
       description: 'The annual Asia Meeting brings together client-facing teams and partners to share results, align on strategy and celebrate success stories from across the region.',
-      disclaimers: const ['PCU only — Asia Meeting ID required at all times.', 'Dinner at Shanghai Tower requires your badge.'],
+      disclaimers: const ['PCU only. Asia Meeting ID required at all times.', 'Dinner at Shanghai Tower requires your badge.'],
       sponsors: const [Sponsor('Lotus Garments', 'Partner', Color(0xFFDB2FA0), 'Certified sustainable apparel')],
       speakerIds: const ['sp6', 'sp5'],
       sessions: [
@@ -150,8 +150,8 @@ class SampleData {
       start: at(12, 8, 30),
       end: at(12, 17),
       venue: const Venue(name: 'Hilton Colombo', address: '2 Sir Chittampalam A. Gardiner Mawatha, Colombo 02', city: 'Colombo', country: 'Sri Lanka', flag: '🇱🇰', directions: 'Grand Ballroom, lobby level. Valet parking available.'),
-      description: 'TEX360° convenes brands, manufacturers and certifiers to accelerate climate action across the apparel and textile value chain — from regenerative fibres to circular design.',
-      disclaimers: const ['Open registration — limited seats.'],
+      description: 'TEX360° convenes brands, manufacturers and certifiers to accelerate climate action across the apparel and textile value chain, from regenerative fibres to circular design.',
+      disclaimers: const ['Open registration. Limited seats.'],
       sponsors: const [Sponsor('Saxon Renewables', 'Platinum', Color(0xFF15766A), 'Accelerating a sustainable future'), Sponsor('Ceylon Fiber Labs', 'Gold', Color(0xFF8B5CF6), 'Next-gen textile materials')],
       speakerIds: const ['sp5', 'sp6'],
       sessions: [
@@ -217,7 +217,7 @@ class SampleData {
       body: const [
         'The Global Organic Textile Standard (GOTS) has confirmed that its latest version, GOTS 7.0, is now fully effective. The update enhances sustainability and transparency in the textile industry by introducing stricter environmental criteria, emphasised water and energy usage requirements, and strengthened social criteria for fair labour practices.',
         'All new and renewed certifications are now assessed against the requirements outlined in GOTS 7.0. The updated standard reaffirms GOTS’ commitment to ensuring the integrity of organic textiles and promoting sustainable practices within the industry.',
-        'Stakeholders — including organic textile manufacturers, brands and consumers — are encouraged to familiarise themselves with the updated standard to align with the latest sustainability benchmarks.',
+        'Stakeholders, including organic textile manufacturers, brands and consumers, are encouraged to familiarise themselves with the updated standard to align with the latest sustainability benchmarks.',
         'Your client services contact can walk you through a gap assessment and help you plan the transition for each of your sites.',
       ],
     ),
@@ -225,7 +225,7 @@ class SampleData {
       id: 'n2',
       image: 'assets/images/news/digital_certificates.jpg',
       title: 'Digital certificates now available in CLIENTA',
-      summary: 'Event certificates can now be previewed, downloaded as PDF and verified with a credential ID — right from the app.',
+      summary: 'Event certificates can now be previewed, downloaded as PDF and verified with a credential ID, right from the app.',
       published: ago(days: 1, hours: 2),
       category: 'Product',
       scope: NewsScope.global,
@@ -234,7 +234,7 @@ class SampleData {
       likes: 86,
       body: const [
         'Certificates for participation and achievement are now delivered digitally inside CLIENTA. Open any event, tap Certificate and you’ll see every certificate issued to you.',
-        'Each certificate includes a unique credential ID that partners can verify. Paper certificates are no longer printed for most events — a small step that saves thousands of sheets each year.',
+        'Each certificate includes a unique credential ID that partners can verify. Paper certificates are no longer printed for most events. It is a small step that saves thousands of sheets each year.',
       ],
     ),
     NewsArticle(
@@ -341,7 +341,7 @@ class SampleData {
             ChatMessage(id: 'm1', senderId: 'u1', time: ago(minutes: 58), text: 'Hi! Great to meet you at the registration desk this morning.'),
             ChatMessage(id: 'm2', senderId: 'me', time: ago(minutes: 52), text: 'Likewise! The keynote on AI in enterprise was excellent.', reactions: {'u1': '👍'}),
             ChatMessage(id: 'm3', senderId: 'u1', time: ago(minutes: 40), text: 'AI bots, huh? I’m near the entrance trying to figure out which booth to visit first. Have you seen the full company list?'),
-            ChatMessage(id: 'm4', senderId: 'me', time: ago(minutes: 35), text: 'Yes — there’s a big screen near the info desk showing the layout. The networking zone is really active too.'),
+            ChatMessage(id: 'm4', senderId: 'me', time: ago(minutes: 35), text: 'Yes, there’s a big screen near the info desk showing the layout. The networking zone is really active too.'),
             ChatMessage(
               id: 'm5',
               senderId: 'u1',
@@ -366,7 +366,7 @@ class SampleData {
               type: MessageType.meeting,
               meeting: MeetingInvite(id: 'mt2', title: 'Traceability Coffee Chat', description: 'Digital traceability for certified mills', start: at(1, 10, 45), end: at(1, 11, 15), location: 'Foyer Café', status: MeetingStatus.accepted),
             ),
-            ChatMessage(id: 'm3', senderId: 'u2', time: ago(hours: 19), text: 'Accepted — see you tomorrow at the café!'),
+            ChatMessage(id: 'm3', senderId: 'u2', time: ago(hours: 19), text: 'Accepted! See you tomorrow at the café!'),
           ],
         ),
         ChatThread(
@@ -422,7 +422,7 @@ class SampleData {
           ChatMessage(id: 'l3', senderId: 'u2', time: ago(minutes: 44), text: 'Absolutely! I was particularly interested in her discussion on predictive analytics for business strategy. It got me thinking about our sales forecasting.'),
           ChatMessage(id: 'l4', senderId: 'u6', time: ago(minutes: 30), text: 'Anyone know if the slides will be shared?'),
           ChatMessage(id: 'l5', senderId: 'o1', time: ago(minutes: 27), text: 'Yes! Keynote slides are already in Resources 📎'),
-          ChatMessage(id: 'l6', senderId: 'u10', time: ago(minutes: 6), text: 'Panel on cloud-native security is live in the Main Hall now — packed room!'),
+          ChatMessage(id: 'l6', senderId: 'u10', time: ago(minutes: 6), text: 'Panel on cloud-native security is live in the Main Hall now. Packed room!'),
         ],
       };
 
@@ -436,7 +436,7 @@ class SampleData {
       at(0, 0): ['u10', 'u2', 'u7'],
       at(1, 0): ['u10', 'u6'],
     }),
-    EventGroup(id: 'g3', eventId: 'futuretech', number: 3, name: 'Supply Chain Integrity', room: 'Main Hall – Table 12', topic: 'Fraud prevention and transparency', color: AppColors.blueDeep, membersByDate: {
+    EventGroup(id: 'g3', eventId: 'futuretech', number: 3, name: 'Supply Chain Integrity', room: 'Main Hall, Table 12', topic: 'Fraud prevention and transparency', color: AppColors.blueDeep, membersByDate: {
       at(0, 0): ['u5', 'u6', 'u9'],
     }),
     EventGroup(id: 'g4', eventId: 'asia-meeting', number: 1, name: 'Client Experience Asia', room: 'Guanlan Room 2F', topic: 'Client journeys and service quality', color: AppColors.darkBlue80, membersByDate: {
@@ -446,7 +446,7 @@ class SampleData {
 
   // ───────────────────────── Notes ─────────────────────────
   static List<Note> notes() => [
-        Note(id: 'nt1', eventId: 'futuretech', title: 'SRCCS – Sustainable Regenerated Cellulosics Content Standard', body: 'Ask about scope for viscose suppliers. Follow up with Lars on timelines for the new claim labels.\n\n• Chain of custody requirements\n• Transaction certificates per shipment', updated: ago(hours: 3), color: 0),
+        Note(id: 'nt1', eventId: 'futuretech', title: 'SRCCS: Sustainable Regenerated Cellulosics Content Standard', body: 'Ask about scope for viscose suppliers. Follow up with Lars on timelines for the new claim labels.\n\n• Chain of custody requirements\n• Transaction certificates per shipment', updated: ago(hours: 3), color: 0),
         Note(id: 'nt2', eventId: 'futuretech', title: 'Community Waste Program (CWP)', body: 'The Community Waste Program is a collaborative initiative to reduce post-industrial textile waste. Check if our Kandy site qualifies.', updated: ago(hours: 4), color: 2),
         Note(id: 'nt3', eventId: 'asia-meeting', title: 'Questions for regional leadership', body: '1. Expansion plans for lab services\n2. Digital certificate verification for partners', updated: ago(days: 1), color: 1),
       ];
@@ -454,20 +454,20 @@ class SampleData {
   // ───────────────────────── Resources & Knowledge ─────────────────────────
   static final resources = <ResourceDoc>[
     ResourceDoc(id: 'r1', eventId: 'futuretech', title: 'Full Event Program', type: DocType.pdf, sizeMb: 2.4, category: 'Program', description: 'Two-day program with session abstracts and room plan.', updated: ago(days: 2), pages: 18),
-    ResourceDoc(id: 'r2', eventId: 'futuretech', title: 'Keynote Presentation – AI in Enterprise', type: DocType.pptx, sizeMb: 8.1, category: 'Presentations', description: 'Slides from Dr. Anya Sharma’s keynote.', updated: ago(hours: 1), pages: 42),
+    ResourceDoc(id: 'r2', eventId: 'futuretech', title: 'Keynote Presentation: AI in Enterprise', type: DocType.pptx, sizeMb: 8.1, category: 'Presentations', description: 'Slides from Dr. Anya Sharma’s keynote.', updated: ago(hours: 1), pages: 42),
     ResourceDoc(id: 'r3', eventId: 'futuretech', title: 'Map of Venue', type: DocType.image, sizeMb: 1.2, category: 'Venue', description: 'BMICH floor plan with session rooms and facilities.', updated: ago(days: 3), pages: 1),
-    ResourceDoc(id: 'r4', eventId: 'futuretech', title: 'Workshop Materials – Cloud-Native', type: DocType.docx, sizeMb: 0.9, category: 'Workshops', description: 'Step-by-step lab guide for the technical workshop.', updated: ago(days: 1), pages: 9),
+    ResourceDoc(id: 'r4', eventId: 'futuretech', title: 'Workshop Materials: Cloud-Native', type: DocType.docx, sizeMb: 0.9, category: 'Workshops', description: 'Step-by-step lab guide for the technical workshop.', updated: ago(days: 1), pages: 9),
     ResourceDoc(id: 'r5', eventId: 'futuretech', title: 'Speaker Biographies', type: DocType.pdf, sizeMb: 0.6, category: 'Program', description: 'Profiles of all speakers and panellists.', updated: ago(days: 2), pages: 6),
     ResourceDoc(id: 'r6', eventId: 'asia-meeting', title: 'Asia Meeting Travel Guidebook', type: DocType.pdf, sizeMb: 3.3, category: 'Travel', description: 'Hotels, transfers, visas and city tips.', updated: ago(days: 4), pages: 22),
   ];
 
   static final knowledge = <ResourceDoc>[
-    ResourceDoc(id: 'k1', title: 'GOTS 7.0 – What’s Changed', type: DocType.pdf, sizeMb: 1.8, category: 'Standards', description: 'Summary of key changes between GOTS 6.0 and 7.0 with a gap checklist.', updated: ago(days: 3), pages: 14),
-    ResourceDoc(id: 'k2', title: 'Organic Content Standard – Claims Guide', type: DocType.pdf, sizeMb: 1.1, category: 'Guides', description: 'How to label OCS products correctly and avoid common mistakes.', updated: ago(days: 12), pages: 10),
+    ResourceDoc(id: 'k1', title: 'GOTS 7.0: What’s Changed', type: DocType.pdf, sizeMb: 1.8, category: 'Standards', description: 'Summary of key changes between GOTS 6.0 and 7.0 with a gap checklist.', updated: ago(days: 3), pages: 14),
+    ResourceDoc(id: 'k2', title: 'Organic Content Standard: Claims Guide', type: DocType.pdf, sizeMb: 1.1, category: 'Guides', description: 'How to label OCS products correctly and avoid common mistakes.', updated: ago(days: 12), pages: 10),
     ResourceDoc(id: 'k3', title: 'EU Deforestation Regulation Checklist', type: DocType.docx, sizeMb: 0.4, category: 'Guides', description: 'Step-by-step due-diligence checklist for exporters.', updated: ago(days: 4), pages: 6),
     ResourceDoc(id: 'k4', title: 'Supplier Data Template', type: DocType.xlsx, sizeMb: 0.2, category: 'Templates', description: 'Collect plot coordinates and supplier details in one sheet.', updated: ago(days: 4), pages: 1),
     ResourceDoc(id: 'k5', title: 'Audit Preparation Handbook', type: DocType.pdf, sizeMb: 2.9, category: 'Guides', description: 'Documents, records and site readiness before your audit.', updated: ago(days: 30), pages: 28),
-    ResourceDoc(id: 'k6', title: 'Recycled Claim Standard – FAQ', type: DocType.pdf, sizeMb: 0.7, category: 'Standards', description: 'Answers to the most frequent RCS / GRS questions.', updated: ago(days: 45), pages: 8),
+    ResourceDoc(id: 'k6', title: 'Recycled Claim Standard: FAQ', type: DocType.pdf, sizeMb: 0.7, category: 'Standards', description: 'Answers to the most frequent RCS / GRS questions.', updated: ago(days: 45), pages: 8),
     ResourceDoc(id: 'k7', title: 'Carbon Footprint Methodology Webinar', type: DocType.video, sizeMb: 148, category: 'Webinars', description: 'Recorded webinar on product carbon footprint methods (52 min).', updated: ago(days: 20), pages: 1),
     ResourceDoc(id: 'k8', title: 'Sustainability Report Template', type: DocType.pptx, sizeMb: 5.6, category: 'Templates', description: 'Editable slide template for annual sustainability reporting.', updated: ago(days: 60), pages: 24),
   ];
@@ -529,10 +529,10 @@ class SampleData {
       return 'Open **Chats**, choose a participant and tap the **+** button next to the message field. Pick a title, date, time and place, then send. They can accept or decline, and the status updates in your chat.';
     }
     if (s.contains('gots')) {
-      return 'GOTS 7.0 introduces stricter environmental criteria, stronger water and energy requirements and reinforced social criteria. All new and renewed certifications are now assessed against 7.0. See **Knowledge Hub → GOTS 7.0 – What’s Changed** for a gap checklist.';
+      return 'GOTS 7.0 introduces stricter environmental criteria, stronger water and energy requirements and reinforced social criteria. All new and renewed certifications are now assessed against 7.0. See **Knowledge Hub → GOTS 7.0: What’s Changed** for a gap checklist.';
     }
     if (s.contains('password') || s.contains('login') || s.contains('sign')) {
-      return 'On the sign-in screen tap **Forgot password?** and enter your email — we’ll send a reset link. PCU employees should use **Sign in with Microsoft** instead; your password is managed by your organisation.';
+      return 'On the sign-in screen tap **Forgot password?** and enter your email. We’ll send you a reset link. PCU employees should use **Sign in with Microsoft** instead; your password is managed by your organisation.';
     }
     if (s.contains('agenda') || s.contains('session')) {
       return 'Open the event and tap **Agenda**. Sessions show as Completed, Live or Upcoming. Tap a session for details and speakers.';

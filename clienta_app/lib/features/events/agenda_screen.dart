@@ -308,7 +308,7 @@ void showSessionSheet(BuildContext context, Session s) {
                   variant: saved ? ButtonVariant.secondary : ButtonVariant.primary,
                   onPressed: () {
                     store.toggleSavedSession(s.id);
-                    toast(ctx, saved ? 'Removed from your agenda' : 'Added to your agenda — we’ll remind you 10 min before');
+                    toast(ctx, saved ? 'Removed from your agenda' : 'Added to your agenda. We’ll remind you 10 min before');
                   },
                 )
               else

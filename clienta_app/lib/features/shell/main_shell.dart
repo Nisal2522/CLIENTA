@@ -259,7 +259,7 @@ class _OfflineBanner extends StatelessWidget {
                     children: [
                       const Icon(Icons.wifi_off_rounded, color: Colors.white, size: 18),
                       const SizedBox(width: 10),
-                      const Expanded(child: Text('You’re offline — showing saved content', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 12.5))),
+                      const Expanded(child: Text('You’re offline. Showing saved content', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 12.5))),
                       GestureDetector(
                         onTap: () => AppState.instance.update(() => AppState.instance.offline = false),
                         child: const Text('Go online', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, decoration: TextDecoration.underline, decorationColor: Colors.white)),

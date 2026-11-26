@@ -154,7 +154,7 @@ class LanguageScreen extends StatelessWidget {
                   color: app.language == _langs[i].$2 ? AppColors.blue.withValues(alpha: 0.1) : null,
                   onTap: () {
                     app.update(() => app.language = _langs[i].$2);
-                    toast(context, 'Language set to ${_langs[i].$2}${_langs[i].$2 == 'English' ? '' : ' (preview — translations coming soon)'}');
+                    toast(context, 'Language set to ${_langs[i].$2}${_langs[i].$2 == 'English' ? '' : ' (preview, translations coming soon)'}');
                   },
                   child: Row(
                     children: [

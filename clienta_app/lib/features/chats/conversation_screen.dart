@@ -26,7 +26,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
   static const _replies = [
     'Sounds good, thanks!',
     'Let me check and get back to you shortly.',
-    'Great — I’ll bring the documents.',
+    'Great, I’ll bring the documents.',
     'Perfect 👍',
     'Thanks for reaching out!',
   ];
@@ -61,7 +61,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
     if (_rnd.nextDouble() < 0.35) Store.instance.react(sent, ['👍', '❤️', '😂'][_rnd.nextInt(3)], by: from);
     if (sent.type == MessageType.meeting && sent.meeting != null) {
       Store.instance.setMeetingStatus(sent.meeting!, MeetingStatus.accepted);
-      Store.instance.sendMessage(t.messages, ChatMessage(id: 'r${DateTime.now().microsecondsSinceEpoch}', senderId: from, time: DateTime.now(), text: 'Accepted — see you then!'));
+      Store.instance.sendMessage(t.messages, ChatMessage(id: 'r${DateTime.now().microsecondsSinceEpoch}', senderId: from, time: DateTime.now(), text: 'Accepted! See you then.'));
     } else {
       Store.instance.sendMessage(t.messages, ChatMessage(id: 'r${DateTime.now().microsecondsSinceEpoch}', senderId: from, time: DateTime.now(), text: _replies[_rnd.nextInt(_replies.length)]));
     }

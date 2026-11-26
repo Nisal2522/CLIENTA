@@ -35,7 +35,7 @@ class ContactUsScreen extends StatelessWidget {
                       SizedBox(width: 14),
                       Expanded(
                         child: Text(
-                          'Questions about the event? Our organising team is here to help — usually replying within an hour during the event.',
+                          'Questions about the event? Our organising team is here to help and usually replies within an hour during the event.',
                           style: TextStyle(color: Colors.white, height: 1.45, fontWeight: FontWeight.w500),
                         ),
                       ),

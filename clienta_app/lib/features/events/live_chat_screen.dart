@@ -22,7 +22,7 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
 
   static const _replies = [
     'Great point! 👏',
-    'Totally agree — the panel is packed right now.',
+    'Totally agree, the panel is packed right now.',
     'Does anyone know if this session is recorded?',
     'See you at the networking break ☕',
     'Thanks for sharing!',

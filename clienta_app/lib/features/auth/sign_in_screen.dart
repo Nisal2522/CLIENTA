@@ -49,7 +49,7 @@ class _SignInScreenState extends State<SignInScreen> {
         subtitle: 'Sign in to your CLIENTA client account to continue.',
         icon: Icons.login_rounded,
         image: 'assets/images/signin.jpg',
-        imageCaption: 'Your events, contacts and certificates — all in one place.',
+        imageCaption: 'Your events, contacts and certificates, all in one place.',
         children: [
           LabeledField(label: 'Email', controller: _email, hint: 'you@company.com', icon: Icons.mail_outline_rounded, keyboard: TextInputType.emailAddress, validator: emailField),
           LabeledField(

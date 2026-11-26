@@ -374,7 +374,7 @@ class _HistoryDrawer extends StatelessWidget {
                 label: 'Contact support',
                 icon: Icons.support_agent_rounded,
                 variant: ButtonVariant.secondary,
-                onPressed: () => toast(context, 'Support ticket created — we’ll email you shortly', icon: Icons.mark_email_read_rounded),
+                onPressed: () => toast(context, 'Support ticket created. We’ll email you shortly', icon: Icons.mark_email_read_rounded),
               ),
             ),
           ],

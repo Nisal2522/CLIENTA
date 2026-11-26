@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../core/app_state.dart';
 import '../../core/format.dart';
 import '../../core/widgets/widgets.dart';
 import '../../data/models.dart';
 import '../../data/store.dart';
 
 /// Outlook-style RSVP: shows the invite and asks "Will you attend?".
-/// Accepting needs consent to share your details with the other participants.
 Future<void> showRsvpDialog(BuildContext context, MeetingInvite meeting, {String? fromId}) {
   return showGeneralDialog<void>(
     context: context,
@@ -39,8 +37,6 @@ class _RsvpDialog extends StatefulWidget {
 }
 
 class _RsvpDialogState extends State<_RsvpDialog> {
-  late bool _agree = widget.meeting.status == MeetingStatus.accepted;
-
   void _respond(MeetingStatus status) {
     Store.instance.setMeetingStatus(widget.meeting, status);
     Navigator.of(context).pop();
@@ -57,7 +53,6 @@ class _RsvpDialogState extends State<_RsvpDialog> {
   Widget build(BuildContext context) {
     final pal = context.pal;
     final m = widget.meeting;
-    final user = AppState.instance.user;
     final from = widget.fromId == null ? null : Store.instance.person(widget.fromId!);
 
     final (String? statusText, Color statusColor) = switch (m.status) {
@@ -149,51 +144,7 @@ class _RsvpDialogState extends State<_RsvpDialog> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 14),
-
-                  // ── Your details ──
-                  _readOnlyField(context, Icons.person_outline_rounded, user?.name ?? 'You'),
-                  const SizedBox(height: 10),
-                  _readOnlyField(context, Icons.mail_outline_rounded, user?.email ?? ''),
-                  const SizedBox(height: 12),
-
-                  // ── Consent ──
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(14, 12, 6, 6),
-                    decoration: BoxDecoration(
-                      color: AppColors.blue.withValues(alpha: 0.08),
-                      borderRadius: BorderRadius.circular(14),
-                      border: Border.all(color: AppColors.blue.withValues(alpha: 0.25)),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8),
-                          child: Text(
-                            'To enhance your networking experience, accepting a meeting shares your name, email, company and designation with the other participants.',
-                            style: context.tt.bodySmall?.copyWith(color: pal.text, height: 1.45),
-                          ),
-                        ),
-                        InkWell(
-                          borderRadius: BorderRadius.circular(10),
-                          onTap: () => setState(() => _agree = !_agree),
-                          child: Row(
-                            children: [
-                              Expanded(child: Text('Do you agree to share these details?', style: context.tt.bodyMedium?.copyWith(fontWeight: FontWeight.w700))),
-                              Checkbox(
-                                value: _agree,
-                                activeColor: AppColors.blue,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                                onChanged: (v) => setState(() => _agree = v ?? false),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 18),
 
                   // ── Answer ──
                   if (statusText != null) ...[
@@ -226,19 +177,10 @@ class _RsvpDialogState extends State<_RsvpDialog> {
                           label: 'Yes',
                           icon: Icons.check_rounded,
                           height: 48,
-                          onPressed: !_agree || m.status == MeetingStatus.accepted ? null : () => _respond(MeetingStatus.accepted),
+                          onPressed: m.status == MeetingStatus.accepted ? null : () => _respond(MeetingStatus.accepted),
                         ),
                       ),
                     ],
-                  ),
-                  AnimatedSize(
-                    duration: const Duration(milliseconds: 200),
-                    child: !_agree && m.status != MeetingStatus.accepted
-                        ? Padding(
-                            padding: const EdgeInsets.only(top: 8),
-                            child: Text('Tick the box above to accept.', textAlign: TextAlign.center, style: context.tt.bodySmall?.copyWith(color: pal.textFaint)),
-                          )
-                        : const SizedBox(width: double.infinity),
                   ),
                 ],
               ),
@@ -256,22 +198,4 @@ class _RsvpDialogState extends State<_RsvpDialog> {
           Expanded(child: Text(text, style: context.tt.bodyMedium?.copyWith(fontWeight: FontWeight.w700))),
         ],
       );
-
-  Widget _readOnlyField(BuildContext context, IconData icon, String value) {
-    final pal = context.pal;
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: pal.border),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, size: 18, color: pal.textMuted),
-          const SizedBox(width: 10),
-          Expanded(child: Text(value, maxLines: 1, overflow: TextOverflow.ellipsis, style: context.tt.bodyMedium)),
-        ],
-      ),
-    );
-  }
 }
