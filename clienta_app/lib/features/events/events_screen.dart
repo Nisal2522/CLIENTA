@@ -80,24 +80,7 @@ class _EventsScreenState extends State<EventsScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          CircleIconBtn(
-                            icon: Icons.arrow_back_ios_new_rounded,
-                            size: 40,
-                            onTap: () {
-                              final nav = Navigator.of(context);
-                              if (nav.canPop()) {
-                                nav.pop();
-                              } else {
-                                ShellScope.maybeOf(context)?.goTo(0);
-                              }
-                            },
-                          ),
-                          const SizedBox(width: 12),
-                          Text('Events', style: context.tt.headlineMedium),
-                        ],
-                      ),
+                      Text('Events', style: context.tt.headlineMedium),
                       const SizedBox(height: 4),
                       Text('Explore and register for PCU events worldwide', style: context.tt.bodyMedium?.copyWith(color: context.pal.textMuted)),
                       const SizedBox(height: 16),

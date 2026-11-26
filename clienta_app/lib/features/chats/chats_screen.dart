@@ -7,10 +7,10 @@ import '../../data/store.dart';
 import '../events/event_card.dart';
 import '../events/live_chat_screen.dart';
 import '../events/section_scaffold.dart';
-import '../services/contacts_screen.dart';
 import '../shell/main_shell.dart';
 import 'conversation_screen.dart';
 import 'meetings_screen.dart';
+import 'new_message_screen.dart';
 
 /// Chat list. Used as a bottom-nav tab and (with [standalone]) from an event.
 class ChatsScreen extends StatefulWidget {
@@ -25,11 +25,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
   String _filter = 'All';
   String _query = '';
 
-  Future<void> _newChat() async {
-    final p = await push<Person>(context, const ContactsScreen(pickMode: true, title: 'New message'));
-    if (p == null || !mounted) return;
-    push(context, ConversationScreen(threadId: Store.instance.threadWith(p.id).id));
-  }
+  void _newChat() => push(context, const NewMessageScreen());
 
   @override
   Widget build(BuildContext context) {

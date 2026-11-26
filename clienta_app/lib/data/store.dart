@@ -191,6 +191,27 @@ class Store extends ChangeNotifier {
     return t;
   }
 
+  /// Group chat with exactly [personIds] (plus you). Reuses an existing one.
+  ChatThread groupWith(List<String> personIds) {
+    final ids = personIds.toSet();
+    final existing = threads
+        .where((t) => t.isGroup && t.eventId == null && t.participantIds.length == ids.length && ids.containsAll(t.participantIds))
+        .firstOrNull;
+    if (existing != null) return existing;
+    final names = [for (final id in ids) person(id)?.name.split(' ').first ?? ''];
+    final t = ChatThread(
+      id: 't_${DateTime.now().microsecondsSinceEpoch}',
+      title: names.join(', '),
+      participantIds: ids.toList(),
+      messages: [],
+      isGroup: true,
+      subtitle: '${ids.length + 1} members',
+    );
+    threads.insert(0, t);
+    notifyListeners();
+    return t;
+  }
+
   static const maxPinnedThreads = 3;
   final Set<String> pinnedThreads = {};
 

@@ -294,8 +294,11 @@ class MeetingCard extends StatelessWidget {
 
 /// Message composer with attachment and optional meeting button.
 class ChatInputBar extends StatefulWidget {
-  const ChatInputBar({super.key, required this.onSend, this.onAttach, this.onMeeting, this.hint = 'Type your message here…', this.replyTo, this.onCancelReply});
+  const ChatInputBar({super.key, required this.onSend, this.onAttach, this.onMeeting, this.hint = 'Type your message here…', this.replyTo, this.onCancelReply, this.canSend});
   final ValueChanged<String> onSend;
+
+  /// Checked before sending; when it returns false the typed text is kept.
+  final bool Function()? canSend;
   final ValueChanged<String>? onAttach;
   final VoidCallback? onMeeting;
   final String hint;
@@ -329,6 +332,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
   void _send() {
     final t = _c.text.trim();
     if (t.isEmpty) return;
+    if (widget.canSend?.call() == false) return;
     widget.onSend(t);
     _c.clear();
     setState(() => _hasText = false);
