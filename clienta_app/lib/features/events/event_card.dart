@@ -96,62 +96,69 @@ class EventHeroCard extends StatelessWidget {
           children: [
             Positioned.fill(child: heroEnabled ? Hero(tag: eventHeroTag(e.id), child: cover) : cover),
             Positioned.fill(
-              child: Padding(
-                padding: const EdgeInsets.all(18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
+              // Short cards (Home on smaller phones) get tighter spacing and
+              // one-line details so nothing spills out of the card.
+              child: LayoutBuilder(
+                builder: (context, c) {
+                  final compact = c.maxHeight < 270;
+                  return Padding(
+                    padding: EdgeInsets.all(compact ? 14 : 18),
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: Wrap(
-                            spacing: 6,
-                            runSpacing: 6,
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Wrap(
+                                spacing: 6,
+                                runSpacing: 6,
+                                children: [
+                                  if (e.inviteOnly) const TagChip(label: 'PCU only', color: AppColors.blueDeep, icon: Icons.lock_rounded),
+                                ],
+                              ),
+                            ),
+                            if (e.isLive) const LiveBadge(solid: true),
+                          ],
+                        ),
+                        const Spacer(),
+                        Text(
+                          e.title,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(color: Colors.white, fontSize: compact ? 21 : 23, fontWeight: FontWeight.w800, height: 1.15, letterSpacing: -0.4),
+                        ),
+                        SizedBox(height: compact ? 10 : 12),
+                        GlassCard(
+                          radius: 18,
+                          padding: compact ? const EdgeInsets.fromLTRB(12, 10, 10, 10) : const EdgeInsets.fromLTRB(14, 12, 12, 12),
+                          tint: Colors.white.withValues(alpha: 0.16),
+                          child: Row(
                             children: [
-                              if (e.inviteOnly) const TagChip(label: 'PCU only', color: AppColors.blueDeep, icon: Icons.lock_rounded),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    _HeroInfo(icon: Icons.schedule_rounded, text: eventWhen(e), bold: true, maxLines: compact ? 1 : null),
+                                    SizedBox(height: compact ? 4 : 6),
+                                    _HeroInfo(icon: Icons.place_rounded, text: eventWhere(e), maxLines: compact ? 1 : null),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Container(
+                                width: 40,
+                                height: 40,
+                                decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+                                child: const Icon(Icons.arrow_forward_rounded, color: AppColors.navy900, size: 20),
+                              ),
                             ],
                           ),
                         ),
-                        if (e.isLive) const LiveBadge(solid: true),
                       ],
                     ),
-                    const Spacer(),
-                    Text(
-                      e.title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(color: Colors.white, fontSize: 23, fontWeight: FontWeight.w800, height: 1.15, letterSpacing: -0.4),
-                    ),
-                    const SizedBox(height: 12),
-                    GlassCard(
-                      radius: 18,
-                      padding: const EdgeInsets.fromLTRB(14, 12, 12, 12),
-                      tint: Colors.white.withValues(alpha: 0.16),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                _HeroInfo(icon: Icons.schedule_rounded, text: eventWhen(e), bold: true),
-                                const SizedBox(height: 6),
-                                _HeroInfo(icon: Icons.place_rounded, text: eventWhere(e)),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
-                            child: const Icon(Icons.arrow_forward_rounded, color: AppColors.navy900, size: 20),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  );
+                },
               ),
             ),
           ],
@@ -162,10 +169,11 @@ class EventHeroCard extends StatelessWidget {
 }
 
 class _HeroInfo extends StatelessWidget {
-  const _HeroInfo({required this.icon, required this.text, this.bold = false});
+  const _HeroInfo({required this.icon, required this.text, this.bold = false, this.maxLines});
   final IconData icon;
   final String text;
   final bool bold;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) => Row(
@@ -174,7 +182,12 @@ class _HeroInfo extends StatelessWidget {
           Padding(padding: const EdgeInsets.only(top: 1), child: Icon(icon, color: Colors.white, size: 16)),
           const SizedBox(width: 7),
           Expanded(
-            child: Text(text, style: TextStyle(color: Colors.white, fontWeight: bold ? FontWeight.w700 : FontWeight.w600, fontSize: 13, height: 1.3)),
+            child: Text(
+              text,
+              maxLines: maxLines,
+              overflow: maxLines == null ? null : TextOverflow.ellipsis,
+              style: TextStyle(color: Colors.white, fontWeight: bold ? FontWeight.w700 : FontWeight.w600, fontSize: 13, height: 1.3),
+            ),
           ),
         ],
       );

@@ -132,7 +132,14 @@ class SectionHeader extends StatelessWidget {
           if (action != null)
             TextButton(
               onPressed: onAction,
-              style: TextButton.styleFrom(foregroundColor: AppColors.blue, textStyle: const TextStyle(fontFamily: AppTheme.fontFamily, fontWeight: FontWeight.w700)),
+              style: TextButton.styleFrom(
+                foregroundColor: AppColors.blue,
+                textStyle: const TextStyle(fontFamily: AppTheme.fontFamily, fontWeight: FontWeight.w700),
+                // Compact: the default 48 px button made the whole header taller.
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                minimumSize: const Size(0, 34),
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [Text(action!), const SizedBox(width: 2), const Icon(Icons.chevron_right_rounded, size: 18)],

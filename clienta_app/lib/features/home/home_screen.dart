@@ -152,11 +152,11 @@ class _HomeContentState extends State<_HomeContent> {
             ),
           ),
           SliverToBoxAdapter(
-            child: SectionHeader(title: 'Popular Events', action: 'See all', onAction: () => ShellScope.maybeOf(context)?.goTo(1)),
+            child: SectionHeader(title: 'Popular Events', padding: _tightHeader, action: 'See all', onAction: () => ShellScope.maybeOf(context)?.goTo(1)),
           ),
           SliverToBoxAdapter(child: FadeSlideIn(index: 4, child: _EventCarousel(events: upcoming))),
           SliverToBoxAdapter(
-            child: SectionHeader(title: 'Recent News', action: 'See more', onAction: () => ShellScope.maybeOf(context)?.goTo(2)),
+            child: SectionHeader(title: 'Recent News', padding: _tightHeader, action: 'See more', onAction: () => ShellScope.maybeOf(context)?.goTo(2)),
           ),
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -176,6 +176,9 @@ class _HomeContentState extends State<_HomeContent> {
   }
 }
 
+// Tighter section spacing above the fold, so Recent News shows without scrolling.
+const _tightHeader = EdgeInsets.fromLTRB(20, 16, 12, 8);
+
 class _Header extends StatelessWidget {
   const _Header();
 
@@ -189,7 +192,7 @@ class _Header extends StatelessWidget {
     return ListenableBuilder(
       listenable: Listenable.merge([app, Store.instance]),
       builder: (context, _) => Padding(
-        padding: EdgeInsets.fromLTRB(20, MediaQuery.paddingOf(context).top + 10, 20, 0),
+        padding: EdgeInsets.fromLTRB(20, MediaQuery.paddingOf(context).top + 6, 20, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -218,7 +221,7 @@ class _Header extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 22),
+            const SizedBox(height: 14),
             FadeSlideIn(
               index: 1,
               child: Row(
@@ -238,7 +241,7 @@ class _Header extends StatelessWidget {
                   const SizedBox(width: 12),
                   Pressable(
                     onTap: () => ShellScope.maybeOf(context)?.goTo(4),
-                    child: AppAvatar(name: user.name, url: user.photoUrl, size: 52, ring: true, online: true),
+                    child: AppAvatar(name: user.name, url: user.photoUrl, size: 48, ring: true, online: true),
                   ),
                 ],
               ),
@@ -325,9 +328,9 @@ class _WeekStrip extends StatelessWidget {
     final days = List.generate(7, (i) => DateTime(now.year, now.month, now.day - 1 + i));
     final selIndex = days.indexWhere((d) => sameDay(d, selected)).clamp(0, 6);
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 18, 20, 0),
+      padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
       child: Container(
-        height: 84,
+        height: 66,
         padding: const EdgeInsets.all(6),
         decoration: BoxDecoration(
           color: pal.surface,
@@ -369,13 +372,13 @@ class _WeekStrip extends StatelessWidget {
                               style: TextStyle(fontFamily: AppTheme.fontFamily, fontSize: 11.5, fontWeight: FontWeight.w600, color: i == selIndex ? Colors.white70 : pal.textFaint),
                               child: Text(sameDay(days[i], now) ? 'Today' : weekdayShort(days[i])),
                             ),
-                            const SizedBox(height: 4),
+                            const SizedBox(height: 2),
                             AnimatedDefaultTextStyle(
                               duration: const Duration(milliseconds: 250),
-                              style: TextStyle(fontFamily: AppTheme.fontFamily, fontSize: 18, fontWeight: FontWeight.w800, color: i == selIndex ? Colors.white : pal.text),
+                              style: TextStyle(fontFamily: AppTheme.fontFamily, fontSize: 17, fontWeight: FontWeight.w800, color: i == selIndex ? Colors.white : pal.text),
                               child: Text('${days[i].day}'),
                             ),
-                            const SizedBox(height: 4),
+                            const SizedBox(height: 3),
                             Container(
                               width: 5,
                               height: 5,
@@ -425,10 +428,13 @@ class _EventCarouselState extends State<_EventCarousel> {
   @override
   Widget build(BuildContext context) {
     final pal = context.pal;
+    // Grows with the screen: on a typical phone it leaves room for the first
+    // Recent News card above the nav bar; tall phones get a bigger card.
+    final height = (MediaQuery.sizeOf(context).height - 612).clamp(230.0, 345.0);
     return Column(
       children: [
         SizedBox(
-          height: 345,
+          height: height,
           child: PageView.builder(
             controller: _c,
             itemCount: widget.events.length,
@@ -436,7 +442,7 @@ class _EventCarouselState extends State<_EventCarousel> {
             itemBuilder: (context, i) {
               final delta = (i - _page).abs().clamp(0.0, 1.0);
               return Padding(
-                padding: EdgeInsets.only(left: i == 0 ? 20 : 8, right: 8, top: 6, bottom: 18),
+                padding: EdgeInsets.only(left: i == 0 ? 20 : 8, right: 8, top: 4, bottom: 12),
                 child: Transform.scale(
                   scale: 1 - 0.06 * delta,
                   child: Opacity(opacity: 1 - 0.3 * delta, child: EventHeroCard(event: widget.events[i])),
@@ -525,11 +531,11 @@ class _HomeSkeleton extends StatelessWidget {
           SizedBox(height: 10),
           SkeletonBox(width: 220, height: 28),
           SizedBox(height: 22),
-          SkeletonBox(height: 84, radius: 24),
+          SkeletonBox(height: 66, radius: 24),
           SizedBox(height: 28),
           SkeletonBox(width: 150, height: 20),
           SizedBox(height: 14),
-          SkeletonBox(height: 270, radius: 28),
+          SkeletonBox(height: 230, radius: 28),
           SizedBox(height: 24),
           SkeletonBox(height: 120, radius: 22),
         ],
