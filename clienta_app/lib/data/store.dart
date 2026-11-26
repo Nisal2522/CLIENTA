@@ -130,6 +130,22 @@ class Store extends ChangeNotifier {
     notifyListeners();
   }
 
+  // ── Knowledge Hub ──
+  final Set<String> savedDocs = {};
+  final Map<String, int> _docViews = {};
+
+  void toggleSavedDoc(String id) {
+    savedDocs.contains(id) ? savedDocs.remove(id) : savedDocs.add(id);
+    notifyListeners();
+  }
+
+  int docViews(ResourceDoc d) => d.views + (_docViews[d.id] ?? 0);
+
+  void markDocViewed(ResourceDoc d) {
+    _docViews[d.id] = (_docViews[d.id] ?? 0) + 1;
+    notifyListeners();
+  }
+
   void toggleSavedSession(String id) {
     savedSessions.contains(id) ? savedSessions.remove(id) : savedSessions.add(id);
     notifyListeners();

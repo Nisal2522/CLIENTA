@@ -301,6 +301,11 @@ class ResourceDoc {
     required this.updated,
     this.eventId,
     this.pages = 12,
+    this.image,
+    this.language = 'English',
+    this.region = 'Global',
+    this.author = 'PCU',
+    this.views = 0,
   });
   final String id;
   final String title;
@@ -311,6 +316,15 @@ class ResourceDoc {
   final DateTime updated;
   final String? eventId;
   final int pages;
+
+  /// Cover image (asset path) shown on Knowledge Hub cards.
+  final String? image;
+  final String language;
+  final String region;
+
+  /// Who uploaded it.
+  final String author;
+  final int views;
 }
 
 enum NotificationType { announcement, agenda, news, chat, meeting, certificate, system }
