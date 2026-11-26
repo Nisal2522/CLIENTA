@@ -39,7 +39,11 @@ class Store extends ChangeNotifier {
   Future<void> ensure(String key, {bool refresh = false}) {
     if (_loaded.contains(key) && !refresh) return Future.value();
     if (!refresh && _inFlight[key] != null) return _inFlight[key]!;
-    final f = _load(key).whenComplete(() => _inFlight.remove(key));
+    // Block body on purpose: `=> _inFlight.remove(key)` would return this very
+    // future to whenComplete, which then waits on itself forever.
+    final f = _load(key).whenComplete(() {
+      _inFlight.remove(key);
+    });
     _inFlight[key] = f;
     return f;
   }
