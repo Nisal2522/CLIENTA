@@ -170,17 +170,6 @@ class _DeviceFrameState extends State<_DeviceFrame> {
                                 padding: const EdgeInsets.fromLTRB(44, 18, 34, 0),
                                 child: Row(
                                   children: [
-                                    StreamBuilder<DateTime>(
-                                      stream: Stream.periodic(const Duration(seconds: 15), (_) => DateTime.now()),
-                                      initialData: DateTime.now(),
-                                      builder: (_, snap) {
-                                        final t = snap.data!;
-                                        return Text(
-                                          '${t.hour}:${t.minute.toString().padLeft(2, '0')}',
-                                          style: TextStyle(color: fg, fontSize: 17, fontWeight: FontWeight.w600, letterSpacing: -0.2),
-                                        );
-                                      },
-                                    ),
                                     const Spacer(),
                                     Icon(Icons.signal_cellular_alt_rounded, size: 18, color: fg),
                                     const SizedBox(width: 5),
