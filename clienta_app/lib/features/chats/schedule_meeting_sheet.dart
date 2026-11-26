@@ -17,8 +17,8 @@ class _ScheduleMeetingSheetState extends State<ScheduleMeetingSheet> {
   final _title = TextEditingController(text: 'Catch-up');
   final _desc = TextEditingController();
   late DateTime _date = DateTime.now().add(const Duration(days: 1));
-  TimeOfDay _time = const TimeOfDay(hour: 10, minute: 30);
-  int _duration = 30;
+  TimeOfDay _from = const TimeOfDay(hour: 10, minute: 30);
+  TimeOfDay _to = const TimeOfDay(hour: 11, minute: 0);
   bool _online = true;
   final _place = TextEditingController();
   final _placeFocus = FocusNode();
@@ -42,9 +42,32 @@ class _ScheduleMeetingSheetState extends State<ScheduleMeetingSheet> {
     if (d != null) setState(() => _date = d);
   }
 
-  Future<void> _pickTime() async {
-    final t = await showTimePicker(context: context, initialTime: _time);
-    if (t != null) setState(() => _time = t);
+  static int _mins(TimeOfDay t) => t.hour * 60 + t.minute;
+
+  DateTime _at(TimeOfDay t) => DateTime(_date.year, _date.month, _date.day, t.hour, t.minute);
+
+  Future<void> _pickFrom() async {
+    final t = await showTimePicker(context: context, initialTime: _from, helpText: 'Start time');
+    if (t == null) return;
+    setState(() {
+      // Keep the same length when the start moves past the end.
+      final length = _mins(_to) - _mins(_from);
+      _from = t;
+      if (_mins(_to) <= _mins(_from)) {
+        final end = (_mins(_from) + (length > 0 ? length : 30)).clamp(0, 23 * 60 + 59);
+        _to = TimeOfDay(hour: end ~/ 60, minute: end % 60);
+      }
+    });
+  }
+
+  Future<void> _pickTo() async {
+    final t = await showTimePicker(context: context, initialTime: _to, helpText: 'End time');
+    if (t == null || !mounted) return;
+    if (_mins(t) <= _mins(_from)) {
+      toast(context, 'End time must be after the start time', icon: Icons.info_rounded, color: AppColors.orange);
+      return;
+    }
+    setState(() => _to = t);
   }
 
   void _send() {
@@ -57,15 +80,18 @@ class _ScheduleMeetingSheetState extends State<ScheduleMeetingSheet> {
       _placeFocus.requestFocus();
       return;
     }
-    final start = DateTime(_date.year, _date.month, _date.day, _time.hour, _time.minute);
+    if (_mins(_to) <= _mins(_from)) {
+      toast(context, 'End time must be after the start time', icon: Icons.info_rounded, color: AppColors.orange);
+      return;
+    }
     Navigator.pop(
       context,
       MeetingInvite(
         id: 'mt${DateTime.now().microsecondsSinceEpoch}',
         title: _title.text.trim(),
         description: _desc.text.trim().isEmpty ? 'Meeting with ${widget.withName}' : _desc.text.trim(),
-        start: start,
-        end: start.add(Duration(minutes: _duration)),
+        start: _at(_from),
+        end: _at(_to),
         location: _online ? 'Online' : _place.text.trim(),
       ),
     );
@@ -73,7 +99,8 @@ class _ScheduleMeetingSheetState extends State<ScheduleMeetingSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final start = DateTime(_date.year, _date.month, _date.day, _time.hour, _time.minute);
+    final length = _mins(_to) - _mins(_from);
+    final lengthText = length >= 60 ? '${length ~/ 60} h${length % 60 == 0 ? '' : ' ${length % 60} min'}' : '$length min';
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
       child: Column(
@@ -99,17 +126,20 @@ class _ScheduleMeetingSheetState extends State<ScheduleMeetingSheet> {
           const SizedBox(height: 10),
           TextField(controller: _desc, decoration: const InputDecoration(hintText: 'Agenda / description (optional)', prefixIcon: Icon(Icons.notes_rounded))),
           const SizedBox(height: 14),
+          _picker(context, Icons.calendar_month_rounded, 'Date', fmtDate(_date), _pickDate),
+          const SizedBox(height: 10),
           Row(
             children: [
-              Expanded(child: _picker(context, Icons.calendar_month_rounded, 'Date', fmtDate(_date), _pickDate)),
+              Expanded(child: _picker(context, Icons.schedule_rounded, 'From', fmtTime12(_at(_from)), _pickFrom)),
               const SizedBox(width: 10),
-              Expanded(child: _picker(context, Icons.schedule_rounded, 'Time', fmtTime12(start), _pickTime)),
+              Expanded(child: _picker(context, Icons.update_rounded, 'To', fmtTime12(_at(_to)), _pickTo)),
             ],
           ),
-          const SizedBox(height: 16),
-          Text('DURATION', style: context.tt.labelSmall?.copyWith(color: context.pal.textFaint, letterSpacing: 1)),
-          const SizedBox(height: 8),
-          Wrap(spacing: 8, children: [for (final d in [15, 30, 45, 60]) _chip('$d min', _duration == d, () => setState(() => _duration = d))]),
+          if (length > 0)
+            Padding(
+              padding: const EdgeInsets.only(top: 8, left: 4),
+              child: Text('Meeting length: $lengthText', style: context.tt.bodySmall),
+            ),
           const SizedBox(height: 16),
           Text('LOCATION', style: context.tt.labelSmall?.copyWith(color: context.pal.textFaint, letterSpacing: 1)),
           const SizedBox(height: 8),
@@ -185,23 +215,6 @@ class _ScheduleMeetingSheetState extends State<ScheduleMeetingSheet> {
             Text(label, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: sel ? Colors.white : pal.text)),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _chip(String label, bool sel, VoidCallback onTap) {
-    final pal = context.pal;
-    return Pressable(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 220),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
-        decoration: BoxDecoration(
-          gradient: sel ? AppColors.brandGradient : null,
-          color: sel ? null : pal.surfaceAlt,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Text(label, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 13, color: sel ? Colors.white : pal.text)),
       ),
     );
   }

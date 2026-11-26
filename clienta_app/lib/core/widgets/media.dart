@@ -441,6 +441,7 @@ class VenueMapPainter extends CustomPainter {
         text: TextSpan(
           text: text,
           style: TextStyle(
+            fontFamily: AppTheme.fontFamily,
             color: dark ? const Color(0xFFA3B1C6) : const Color(0xFF55657A),
             fontSize: 10.5,
             fontWeight: FontWeight.w700,

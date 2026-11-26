@@ -24,7 +24,11 @@ class ClientaApp extends StatelessWidget {
         themeAnimationDuration: const Duration(milliseconds: 500),
         themeAnimationCurve: Curves.easeInOutCubic,
         home: const SplashScreen(),
-        builder: (context, child) => _DeviceFrame(child: child!),
+        // Brand font everywhere, also for text drawn outside a Material widget.
+        builder: (context, child) => DefaultTextStyle.merge(
+          style: const TextStyle(fontFamily: AppTheme.fontFamily),
+          child: _DeviceFrame(child: child!),
+        ),
       ),
     );
   }

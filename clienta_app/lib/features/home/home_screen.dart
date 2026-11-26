@@ -342,13 +342,13 @@ class _WeekStrip extends StatelessWidget {
                           children: [
                             AnimatedDefaultTextStyle(
                               duration: const Duration(milliseconds: 250),
-                              style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w600, color: i == selIndex ? Colors.white70 : pal.textFaint),
+                              style: TextStyle(fontFamily: AppTheme.fontFamily, fontSize: 11.5, fontWeight: FontWeight.w600, color: i == selIndex ? Colors.white70 : pal.textFaint),
                               child: Text(sameDay(days[i], now) ? 'Today' : weekdayShort(days[i])),
                             ),
                             const SizedBox(height: 4),
                             AnimatedDefaultTextStyle(
                               duration: const Duration(milliseconds: 250),
-                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: i == selIndex ? Colors.white : pal.text),
+                              style: TextStyle(fontFamily: AppTheme.fontFamily, fontSize: 18, fontWeight: FontWeight.w800, color: i == selIndex ? Colors.white : pal.text),
                               child: Text('${days[i].day}'),
                             ),
                             const SizedBox(height: 4),

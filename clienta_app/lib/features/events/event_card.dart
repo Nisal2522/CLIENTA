@@ -224,14 +224,10 @@ class EventListCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Flexible(child: TagChip(label: e.category, small: true, color: categoryColor(e.category))),
-                    const SizedBox(width: 6),
-                    if (e.isLive) const LiveBadge(compact: true) else if (e.isPast) const TagChip(label: 'Past', small: true, color: AppColors.steel),
-                  ],
-                ),
-                const SizedBox(height: 8),
+                if (e.isLive || e.isPast) ...[
+                  if (e.isLive) const LiveBadge(compact: true) else const TagChip(label: 'Past', small: true, color: AppColors.steel),
+                  const SizedBox(height: 8),
+                ],
                 Text(e.title, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.tt.titleMedium),
                 const SizedBox(height: 6),
                 _ListInfo(icon: Icons.schedule_rounded, text: eventWhen(e)),

@@ -139,7 +139,7 @@ class CertificatePreviewScreen extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(20, 22, 20, 18),
                     decoration: BoxDecoration(border: Border.all(color: AppColors.lightBlue40, width: 2), borderRadius: BorderRadius.circular(4)),
                     child: DefaultTextStyle(
-                      style: const TextStyle(color: AppColors.cuDarkBlue, fontSize: 11, height: 1.5),
+                      style: const TextStyle(fontFamily: AppTheme.fontFamily, color: AppColors.cuDarkBlue, fontSize: 11, height: 1.5),
                       textAlign: TextAlign.center,
                       child: Column(
                         children: [

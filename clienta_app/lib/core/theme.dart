@@ -172,7 +172,7 @@ class AppTheme {
           labelMedium: base.labelMedium?.copyWith(fontSize: 12.5, fontWeight: FontWeight.w600),
           labelSmall: base.labelSmall?.copyWith(fontSize: 11, fontWeight: FontWeight.w600, letterSpacing: 0.3),
         )
-        .apply(bodyColor: p.text, displayColor: p.text);
+        .apply(bodyColor: p.text, displayColor: p.text, fontFamily: fontFamily);
 
     OutlineInputBorder border(Color c, [double w = 1]) => OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
@@ -186,6 +186,7 @@ class AppTheme {
       colorScheme: scheme,
       scaffoldBackgroundColor: p.bg,
       textTheme: text,
+      primaryTextTheme: Typography.material2021().white.apply(fontFamily: fontFamily),
       dividerColor: p.border,
       splashFactory: InkSparkle.splashFactory,
       appBarTheme: AppBarTheme(
