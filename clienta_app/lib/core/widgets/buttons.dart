@@ -15,7 +15,7 @@ class AppButton extends StatelessWidget {
     this.loading = false,
     this.variant = ButtonVariant.primary,
     this.expanded = true,
-    this.height = 54,
+    this.height = 50,
   });
 
   final String label;
@@ -74,7 +74,7 @@ class AppButton extends StatelessWidget {
           duration: const Duration(milliseconds: 250),
           height: height,
           width: expanded ? double.infinity : null,
-          padding: const EdgeInsets.symmetric(horizontal: 22),
+          padding: const EdgeInsets.symmetric(horizontal: 18),
           alignment: Alignment.center,
           decoration: BoxDecoration(
             gradient: gradient,

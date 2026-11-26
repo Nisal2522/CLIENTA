@@ -100,7 +100,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
                     index: 1,
                     child: AppCard(
                       padding: const EdgeInsets.all(14),
-                      gradient: LinearGradient(colors: [AppColors.blue.withValues(alpha: 0.16), AppColors.blueDeep.withValues(alpha: 0.06)]),
+                      gradient: LinearGradient(colors: [Color.alphaBlend(AppColors.blue.withValues(alpha: 0.14), context.pal.surface), Color.alphaBlend(AppColors.blue.withValues(alpha: 0.04), context.pal.surface)]),
                       onTap: () => push(context, LiveChatScreen(eventId: live.id)),
                       child: Row(
                         children: [

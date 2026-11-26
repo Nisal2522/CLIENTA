@@ -307,29 +307,27 @@ class KnowledgeCard extends StatelessWidget {
                     const SizedBox(height: 6),
                     Text(d.description, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.tt.bodyMedium?.copyWith(color: pal.textMuted, height: 1.4)),
                     const SizedBox(height: 12),
-                    _Meta(icon: Icons.person_outline_rounded, text: 'Uploaded by ${d.author}'),
-                    const SizedBox(height: 6),
-                    _Meta(icon: Icons.visibility_outlined, text: '${_count(store.docViews(d))} views · Updated ${timeAgo(d.updated)}'),
-                  ],
-                ),
-              ),
-              // ── Footer ──
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 12, 12, 12),
-                child: Column(
-                  children: [
-                    Divider(height: 1, color: pal.border),
-                    const SizedBox(height: 12),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text('PCU', style: context.tt.labelLarge?.copyWith(color: pal.textMuted, letterSpacing: 0.4)),
-                        const Spacer(),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              _Meta(icon: Icons.person_outline_rounded, text: 'Uploaded by ${d.author}'),
+                              const SizedBox(height: 6),
+                              _Meta(icon: Icons.visibility_outlined, text: '${_count(store.docViews(d))} views · Updated ${timeAgo(d.updated)}'),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 10),
                         _ViewButton(onTap: () => _open(context)),
                       ],
                     ),
                   ],
                 ),
               ),
+              const SizedBox(height: 14),
             ],
           ),
         ),

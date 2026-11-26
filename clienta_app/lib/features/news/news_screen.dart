@@ -138,11 +138,11 @@ class _FeaturedNews extends StatelessWidget {
                       children: [
                         const TagChip(label: 'FEATURED', color: AppColors.blueDeep, solid: true, small: true),
                         const SizedBox(width: 6),
-                        ScopeLabel(article: a),
+                        ScopeLabel(article: a, solid: true),
                       ],
                     ),
                     const Spacer(),
-                    Text(a.category.toUpperCase(), style: const TextStyle(color: AppColors.blue, fontWeight: FontWeight.w800, fontSize: 11, letterSpacing: 1)),
+                    Text(a.category.toUpperCase(), style: const TextStyle(color: AppColors.lightBlue40, fontWeight: FontWeight.w800, fontSize: 11, letterSpacing: 1)),
                     const SizedBox(height: 6),
                     Text(a.title, maxLines: 2, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white, fontSize: 21, fontWeight: FontWeight.w800, height: 1.2)),
                     const SizedBox(height: 10),

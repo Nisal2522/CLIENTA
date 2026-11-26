@@ -126,7 +126,7 @@ class _Dashboard extends StatelessWidget {
                           runSpacing: 6,
                           children: [
                             if (e.inviteOnly) const TagChip(label: 'PCU only', solid: true, color: AppColors.blueDeep, icon: Icons.lock_rounded),
-                            if (e.isLive) const LiveBadge(),
+                            if (e.isLive) const LiveBadge(solid: true),
                           ],
                         ),
                       ),
@@ -190,7 +190,7 @@ class _Dashboard extends StatelessWidget {
                 FadeSlideIn(
                   index: 4,
                   child: AppCard(
-                    gradient: LinearGradient(colors: [AppColors.red.withValues(alpha: 0.16), AppColors.red.withValues(alpha: 0.04)]),
+                    gradient: LinearGradient(colors: [Color.alphaBlend(AppColors.red.withValues(alpha: 0.12), pal.surface), Color.alphaBlend(AppColors.red.withValues(alpha: 0.03), pal.surface)]),
                     onTap: () => push(context, AgendaScreen(eventId: e.id)),
                     child: Row(
                       children: [

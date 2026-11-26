@@ -52,28 +52,23 @@ class _ProfileBody extends StatelessWidget {
 
     return ListView(
       physics: const BouncingScrollPhysics(),
-      padding: EdgeInsets.fromLTRB(20, MediaQuery.paddingOf(context).top + 8, 20, kNavBarSpace),
+      padding: EdgeInsets.fromLTRB(20, MediaQuery.paddingOf(context).top + 14, 20, kNavBarSpace),
       children: [
         // Same header style as the other sub-screens (e.g. Knowledge Hub).
         FadeSlideIn(
           child: Row(
             children: [
-              CircleIconBtn(
-                icon: Icons.arrow_back_ios_new_rounded,
-                size: 40,
-                onTap: () => ShellScope.maybeOf(context)?.goTo(0),
-              ),
-              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Profile', maxLines: 1, overflow: TextOverflow.ellipsis, style: context.tt.titleLarge),
-                    Text('Your account & activity', maxLines: 1, overflow: TextOverflow.ellipsis, style: context.tt.bodySmall),
+                    Text('Profile', maxLines: 1, overflow: TextOverflow.ellipsis, style: context.tt.headlineMedium),
+                    const SizedBox(height: 4),
+                    Text('Your account & activity', maxLines: 1, overflow: TextOverflow.ellipsis, style: context.tt.bodyMedium?.copyWith(color: pal.textMuted)),
                   ],
                 ),
               ),
-              CircleIconBtn(icon: Icons.settings_rounded, size: 40, onTap: () => push(context, const SettingsScreen())),
+              CircleIconBtn(icon: Icons.settings_rounded, size: 44, onTap: () => push(context, const SettingsScreen())),
             ],
           ),
         ),
@@ -85,7 +80,7 @@ class _ProfileBody extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: AppColors.navyGradient,
               borderRadius: BorderRadius.circular(28),
-              boxShadow: [BoxShadow(color: AppColors.navy900.withValues(alpha: 0.35), blurRadius: 30, offset: const Offset(0, 14))],
+              boxShadow: [BoxShadow(color: AppColors.navy900.withValues(alpha: 0.18), blurRadius: 24, offset: const Offset(0, 10), spreadRadius: -6)],
             ),
             child: Stack(
               clipBehavior: Clip.none,
@@ -191,7 +186,21 @@ class _ProfileBody extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 14),
-        FadeSlideIn(index: 4, child: MenuGroup(children: [MenuTile(icon: Icons.logout_rounded, title: 'Log out', destructive: true, trailing: const SizedBox.shrink(), onTap: () => _logout(context))])),
+        FadeSlideIn(
+          index: 4,
+          child: Center(
+            child: TextButton.icon(
+              onPressed: () => _logout(context),
+              icon: const Icon(Icons.logout_rounded, size: 19),
+              label: const Text('Log out'),
+              style: TextButton.styleFrom(
+                foregroundColor: AppColors.red,
+                padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                textStyle: const TextStyle(fontFamily: AppTheme.fontFamily, fontWeight: FontWeight.w700, fontSize: 15),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }

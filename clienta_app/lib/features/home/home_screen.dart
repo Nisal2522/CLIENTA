@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart' show ScrollDirection;
 
 import '../../core/app_state.dart';
 import '../../core/format.dart';
@@ -22,10 +23,18 @@ class HomeScreen extends StatelessWidget {
     return Stack(
       children: [
         Positioned.fill(
-          child: AsyncView(
-            keys: const ['events', 'news', 'notifications', 'chats'],
-            skeleton: const _HomeSkeleton(),
-            builder: (context) => const _HomeContent(),
+          // Hide the Support AI bubble while the user scrolls down so it doesn't
+          // cover what they're reading; it comes back as soon as scrolling stops.
+          child: NotificationListener<UserScrollNotification>(
+            onNotification: (n) {
+              if (n.metrics.axis == Axis.vertical) _aiBubbleVisible.value = n.direction != ScrollDirection.reverse;
+              return false;
+            },
+            child: AsyncView(
+              keys: const ['events', 'news', 'notifications', 'chats'],
+              skeleton: const _HomeSkeleton(),
+              builder: (context) => const _HomeContent(),
+            ),
           ),
         ),
         const _SupportAiBubble(),
@@ -33,6 +42,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+final _aiBubbleVisible = ValueNotifier(true);
 
 /// Floating Support AI button. Starts at the bottom-right (above the nav bar)
 /// and can be dragged anywhere on the home screen; tap opens Support AI.
@@ -64,7 +75,18 @@ class _SupportAiBubbleState extends State<_SupportAiBubble> {
             Positioned(
               left: pos.dx,
               top: pos.dy,
-              child: GestureDetector(
+              child: ValueListenableBuilder<bool>(
+                valueListenable: _aiBubbleVisible,
+                builder: (context, visible, child) => IgnorePointer(
+                  ignoring: !visible,
+                  child: AnimatedScale(
+                    scale: visible ? 1 : 0,
+                    duration: const Duration(milliseconds: 220),
+                    curve: visible ? Curves.easeOutBack : Curves.easeIn,
+                    child: child,
+                  ),
+                ),
+                child: GestureDetector(
                 onPanUpdate: (d) => setState(() => _pos = clamp(pos + d.delta)),
                 child: Pressable(
                   scale: 0.9,
@@ -85,6 +107,7 @@ class _SupportAiBubbleState extends State<_SupportAiBubble> {
                     ),
                   ),
                 ),
+              ),
               ),
             ),
           ],
@@ -144,7 +167,8 @@ class _HomeContentState extends State<_HomeContent> {
           ),
           const SliverToBoxAdapter(child: SectionHeader(title: 'CLIENTA Services')),
           const SliverToBoxAdapter(child: _Services()),
-          const SliverToBoxAdapter(child: SizedBox(height: kNavBarSpace)),
+          // Extra room so the last cards can scroll clear of the Support AI bubble.
+          const SliverToBoxAdapter(child: SizedBox(height: kNavBarSpace + 64)),
         ],
       ),
     );
@@ -173,6 +197,8 @@ class _Header extends StatelessWidget {
                 children: [
                   Image.asset('assets/images/control_union_logo.png', height: 30, fit: BoxFit.contain),
                   const Spacer(),
+                  CircleIconBtn(icon: Icons.qr_code_2_rounded, size: 42, onTap: () => push(context, const QrScreen())),
+                  const SizedBox(width: 8),
                   CircleIconBtn(
                     icon: Icons.flag_rounded,
                     size: 42,
@@ -208,8 +234,7 @@ class _Header extends StatelessWidget {
                       ],
                     ),
                   ),
-                  CircleIconBtn(icon: Icons.qr_code_2_rounded, size: 48, onTap: () => push(context, const QrScreen())),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: 12),
                   Pressable(
                     onTap: () => ShellScope.maybeOf(context)?.goTo(4),
                     child: AppAvatar(name: user.name, url: user.photoUrl, size: 52, ring: true, online: true),
@@ -447,33 +472,36 @@ class _Services extends StatelessWidget {
     ];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: GridView.count(
-        crossAxisCount: 2,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.zero,
-        mainAxisSpacing: 12,
-        crossAxisSpacing: 12,
-        childAspectRatio: 1.3,
+      child: Row(
         children: [
-          for (var i = 0; i < items.length; i++)
-            FadeSlideIn(
-              index: 8 + i,
-              child: AppCard(
-                padding: const EdgeInsets.all(16),
-                onTap: items[i].$5,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    IconBadge(icon: items[i].$1, color: items[i].$4, size: 42, solid: true),
-                    const Spacer(),
-                    Text(items[i].$2, maxLines: 1, overflow: TextOverflow.ellipsis, style: context.tt.titleSmall?.copyWith(fontSize: 15)),
-                    const SizedBox(height: 2),
-                    Text(items[i].$3, maxLines: 1, overflow: TextOverflow.ellipsis, style: context.tt.bodySmall),
-                  ],
+          for (var i = 0; i < items.length; i++) ...[
+            if (i > 0) const SizedBox(width: 12),
+            Expanded(
+              child: FadeSlideIn(
+                index: 8 + i,
+                child: AppCard(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+                  radius: 18,
+                  onTap: items[i].$5,
+                  child: Row(
+                    children: [
+                      IconBadge(icon: items[i].$1, color: items[i].$4, size: 34, solid: true),
+                      const SizedBox(width: 9),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(items[i].$2, maxLines: 1, overflow: TextOverflow.ellipsis, style: context.tt.titleSmall),
+                            Text(items[i].$3, maxLines: 1, overflow: TextOverflow.ellipsis, style: context.tt.bodySmall?.copyWith(fontSize: 11.5)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
+          ],
         ],
       ),
     );

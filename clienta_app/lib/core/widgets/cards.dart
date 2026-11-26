@@ -132,7 +132,7 @@ class SectionHeader extends StatelessWidget {
           if (action != null)
             TextButton(
               onPressed: onAction,
-              style: TextButton.styleFrom(foregroundColor: AppColors.blue, textStyle: const TextStyle(fontWeight: FontWeight.w700)),
+              style: TextButton.styleFrom(foregroundColor: AppColors.blue, textStyle: const TextStyle(fontFamily: AppTheme.fontFamily, fontWeight: FontWeight.w700)),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [Text(action!), const SizedBox(width: 2), const Icon(Icons.chevron_right_rounded, size: 18)],

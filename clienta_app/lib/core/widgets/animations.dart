@@ -171,23 +171,27 @@ class _PulseDotState extends State<PulseDot> with SingleTickerProviderStateMixin
 
 /// Small "LIVE" badge with a pulsing dot.
 class LiveBadge extends StatelessWidget {
-  const LiveBadge({super.key, this.compact = false});
+  const LiveBadge({super.key, this.compact = false, this.solid = false});
   final bool compact;
+
+  /// Solid red with white text, for use on top of photos.
+  final bool solid;
 
   @override
   Widget build(BuildContext context) {
+    final fg = solid ? Colors.white : AppColors.red;
     return Container(
       padding: EdgeInsets.only(left: 2, right: compact ? 7 : 9, top: 2, bottom: 2),
       decoration: BoxDecoration(
-        color: AppColors.red.withValues(alpha: 0.14),
+        color: solid ? AppColors.red : AppColors.red.withValues(alpha: 0.14),
         borderRadius: BorderRadius.circular(30),
-        border: Border.all(color: AppColors.red.withValues(alpha: 0.35)),
+        border: solid ? null : Border.all(color: AppColors.red.withValues(alpha: 0.35)),
       ),
-      child: const Row(
+      child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          PulseDot(size: 7),
-          Text('LIVE', style: TextStyle(color: AppColors.red, fontSize: 10.5, fontWeight: FontWeight.w800, letterSpacing: 0.8)),
+          PulseDot(size: 7, color: fg),
+          Text('LIVE', style: TextStyle(color: fg, fontSize: 10.5, fontWeight: FontWeight.w800, letterSpacing: 0.8)),
         ],
       ),
     );

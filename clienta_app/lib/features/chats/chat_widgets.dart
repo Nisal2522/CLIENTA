@@ -9,10 +9,15 @@ import '../../data/store.dart';
 import 'rsvp_dialog.dart';
 
 class MessageBubble extends StatelessWidget {
-  const MessageBubble({super.key, required this.message, this.showSender = false, this.animate = true, this.onReply, this.onLongPress});
+  const MessageBubble({super.key, required this.message, this.showSender = false, this.animate = true, this.onReply, this.onLongPress, this.firstInGroup = true, this.lastInGroup = true});
   final ChatMessage message;
   final bool showSender;
   final bool animate;
+
+  /// Consecutive messages from one sender form a group: the sender name shows
+  /// on the first, the avatar and time only on the last.
+  final bool firstInGroup;
+  final bool lastInGroup;
 
   /// Enables swipe-right-to-reply when set.
   final ValueChanged<ChatMessage>? onReply;
@@ -86,13 +91,14 @@ class MessageBubble extends StatelessWidget {
     }
 
     final row = Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
+      padding: EdgeInsets.only(top: firstInGroup ? 6 : 1.5, bottom: lastInGroup ? 6 : 1.5),
       child: Row(
         mainAxisAlignment: mine ? MainAxisAlignment.end : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           if (!mine) ...[
-            AppAvatar(name: sender?.name ?? '?', url: sender?.photoUrl, size: 32),
+            // Keep the space when the avatar is hidden so bubbles stay aligned.
+            lastInGroup ? Padding(padding: const EdgeInsets.only(bottom: 18), child: AppAvatar(name: sender?.name ?? '?', url: sender?.photoUrl, size: 32)) : const SizedBox(width: 32),
             const SizedBox(width: 8),
           ],
           Flexible(
@@ -101,7 +107,7 @@ class MessageBubble extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: mine ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                 children: [
-                  if (showSender && sender != null)
+                  if (showSender && firstInGroup && sender != null)
                     Padding(
                       padding: const EdgeInsets.only(left: 4, bottom: 4),
                       child: Text(
@@ -110,16 +116,17 @@ class MessageBubble extends StatelessWidget {
                       ),
                     ),
                   content,
-                  Padding(
-                    padding: const EdgeInsets.only(top: 4, left: 4, right: 4),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(fmtTime(m.time), style: context.tt.labelSmall?.copyWith(color: pal.textFaint, fontWeight: FontWeight.w500)),
-                        if (mine) ...[const SizedBox(width: 4), const Icon(Icons.done_all_rounded, size: 14, color: AppColors.blue)],
-                      ],
+                  if (lastInGroup)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4, left: 4, right: 4),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(fmtTime(m.time), style: context.tt.labelSmall?.copyWith(color: pal.textFaint, fontWeight: FontWeight.w500)),
+                          if (mine) ...[const SizedBox(width: 4), const Icon(Icons.done_all_rounded, size: 14, color: AppColors.blue)],
+                        ],
+                      ),
                     ),
-                  ),
                 ],
               ),
             ),
@@ -510,7 +517,19 @@ List<Widget> buildMessageList(
 }) {
   final out = <Widget>[];
   DateTime? last;
-  for (final m in messages) {
+  // Same sender, same day, within 5 minutes, and not a system / meeting card.
+  bool joins(ChatMessage a, ChatMessage b) =>
+      a.senderId == b.senderId &&
+      sameDay(a.time, b.time) &&
+      b.time.difference(a.time).inMinutes.abs() < 5 &&
+      a.type != MessageType.system &&
+      b.type != MessageType.system &&
+      a.type != MessageType.meeting &&
+      b.type != MessageType.meeting;
+  for (var i = 0; i < messages.length; i++) {
+    final m = messages[i];
+    final prev = i > 0 ? messages[i - 1] : null;
+    final next = i + 1 < messages.length ? messages[i + 1] : null;
     if (last == null || !sameDay(last, m.time)) {
       out.add(Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -523,7 +542,15 @@ List<Widget> buildMessageList(
       ));
     }
     last = m.time;
-    out.add(MessageBubble(key: ValueKey(m.id), message: m, showSender: showSender, onReply: onReply, onLongPress: onLongPress));
+    out.add(MessageBubble(
+      key: ValueKey(m.id),
+      message: m,
+      showSender: showSender,
+      onReply: onReply,
+      onLongPress: onLongPress,
+      firstInGroup: prev == null || !joins(prev, m),
+      lastInGroup: next == null || !joins(m, next),
+    ));
   }
   return out;
 }

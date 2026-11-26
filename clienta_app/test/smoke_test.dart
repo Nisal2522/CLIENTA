@@ -110,7 +110,7 @@ void main() {
         await back();
 
         // Tabs
-        for (final tab in [Icons.event_outlined, Icons.newspaper_outlined, Icons.chat_bubble_outline_rounded, Icons.person_outline_rounded, Icons.home_outlined]) {
+        for (final tab in [Icons.event_outlined, Icons.campaign_outlined, Icons.chat_bubble_outline_rounded, Icons.person_outline_rounded, Icons.home_outlined]) {
           _step = 'tab $tab';
           await tester.tap(find.byIcon(tab).last, warnIfMissed: false);
           await settle(2000);
@@ -147,7 +147,7 @@ void main() {
       await back();
       await back();
 
-      await tester.tap(find.byIcon(Icons.newspaper_outlined).last, warnIfMissed: false);
+      await tester.tap(find.byIcon(Icons.campaign_outlined).last, warnIfMissed: false);
       await settle();
       await tapText('PCU');
       await tapText('For you');

@@ -216,9 +216,12 @@ class ReactionPanel extends StatelessWidget {
 }
 
 class ScopeLabel extends StatelessWidget {
-  const ScopeLabel({super.key, required this.article, this.small = true});
+  const ScopeLabel({super.key, required this.article, this.small = true, this.solid = false});
   final NewsArticle article;
   final bool small;
+
+  /// Filled chip, for use on top of photos.
+  final bool solid;
 
   @override
   Widget build(BuildContext context) {
@@ -227,6 +230,7 @@ class ScopeLabel extends StatelessWidget {
       label: global ? '🌍 Global' : '${article.flag} ${article.country}',
       color: global ? AppColors.blue : AppColors.blueDeep,
       small: small,
+      solid: solid,
     );
   }
 }

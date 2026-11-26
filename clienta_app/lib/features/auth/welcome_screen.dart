@@ -70,7 +70,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-    final heroH = (size.height * 0.5).clamp(320.0, 480.0);
+    final heroH = (size.height * 0.56).clamp(320.0, 540.0);
     final pal = context.pal;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -118,10 +118,12 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ],
             ),
+            // Full width so the wordmark lines up with the buttons below.
             Padding(
-              padding: const EdgeInsets.fromLTRB(28, 34, 28, 0),
+              padding: const EdgeInsets.fromLTRB(28, 30, 28, 0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const FadeSlideIn(
                     index: 2,

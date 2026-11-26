@@ -29,9 +29,13 @@ Color categoryColor(String c) => switch (c) {
 void openEvent(BuildContext context, ClientaEvent e) => push(context, EventDashboardScreen(eventId: e.id));
 
 /// "Mon, 23 Nov · 09:00 – 16:00" for one-day events, otherwise the date range and start time.
-String eventWhen(ClientaEvent e) => sameDay(e.start, e.end)
-    ? '${fmtDate(e.start)} · ${fmtTime(e.start)} – ${fmtTime(e.end)}'
-    : '${fmtDate(e.start)} – ${fmtDate(e.end)} · ${fmtTime(e.start)}';
+String eventWhen(ClientaEvent e) {
+  if (sameDay(e.start, e.end)) return '${fmtDate(e.start)} · ${fmtTime(e.start)} – ${fmtTime(e.end)}';
+  final days = e.start.month == e.end.month
+      ? '${e.start.day}–${e.end.day} ${monthShort(e.end)}'
+      : '${e.start.day} ${monthShort(e.start)} – ${e.end.day} ${monthShort(e.end)}';
+  return '$days · ${fmtTime(e.start)}';
+}
 
 /// "BMICH, Bauddhaloka Mawatha, Colombo 07 🇱🇰" style full location.
 String eventWhere(ClientaEvent e) => '${e.venue.name}, ${e.venue.city}, ${e.venue.country} ${e.venue.flag}';
@@ -86,7 +90,7 @@ class EventHeroCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(28),
-          boxShadow: [BoxShadow(color: CoverArt.colorsFor(e.art)[1].withValues(alpha: 0.45), blurRadius: 26, offset: const Offset(0, 14), spreadRadius: -6)],
+          boxShadow: [BoxShadow(color: CoverArt.colorsFor(e.art)[1].withValues(alpha: 0.22), blurRadius: 22, offset: const Offset(0, 10), spreadRadius: -8)],
         ),
         child: Stack(
           children: [
@@ -109,7 +113,7 @@ class EventHeroCard extends StatelessWidget {
                             ],
                           ),
                         ),
-                        if (e.isLive) const LiveBadge(),
+                        if (e.isLive) const LiveBadge(solid: true),
                       ],
                     ),
                     const Spacer(),
