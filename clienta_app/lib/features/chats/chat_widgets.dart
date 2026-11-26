@@ -39,7 +39,7 @@ class MessageBubble extends StatelessWidget {
               children: [
                 const Icon(Icons.campaign_rounded, size: 16, color: AppColors.blue),
                 const SizedBox(width: 6),
-                Flexible(child: Text(m.text, textAlign: TextAlign.center, style: context.tt.bodySmall)),
+                Flexible(child: Text.rich(emojiSpan(m.text, style: context.tt.bodySmall), textAlign: TextAlign.center)),
               ],
             ),
           ),
@@ -64,7 +64,7 @@ class MessageBubble extends StatelessWidget {
         ),
       );
     } else {
-      content = _bubble(context, mine, Text(m.text, style: TextStyle(color: mine ? Colors.white : pal.text, height: 1.42, fontSize: 14.5)));
+      content = _bubble(context, mine, Text.rich(emojiSpan(m.text, style: TextStyle(color: mine ? Colors.white : pal.text, height: 1.42, fontSize: 14.5))));
     }
 
     if (onLongPress != null) {
@@ -569,11 +569,10 @@ class QuotedMessage extends StatelessWidget {
           children: [
             Text(messageSenderName(message), maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: accent, fontWeight: FontWeight.w800, fontSize: 12.5)),
             const SizedBox(height: 2),
-            Text(
-              messageSnippet(message),
+            Text.rich(
+              emojiSpan(messageSnippet(message), style: TextStyle(color: onDark ? Colors.white.withValues(alpha: 0.85) : pal.textMuted, fontSize: 13, height: 1.3)),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: onDark ? Colors.white.withValues(alpha: 0.85) : pal.textMuted, fontSize: 13, height: 1.3),
             ),
           ],
         ),
@@ -607,7 +606,7 @@ class ReactionPill extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(emojis, style: const TextStyle(fontSize: 14)),
+            Text(emojis, style: const TextStyle(fontSize: 14, fontFamily: kEmojiFontFamily, fontFamilyFallback: kEmojiFallback)),
             if (r.length > 1) ...[const SizedBox(width: 3), Text('${r.length}', style: context.tt.labelSmall?.copyWith(color: pal.textMuted))],
           ],
         ),
@@ -637,7 +636,7 @@ class ReactionPill extends StatelessWidget {
                   leading: AppAvatar(name: mine ? (me?.name ?? 'You') : name, url: mine ? me?.photoUrl : p?.photoUrl, size: 40),
                   title: Text(name, style: ctx.tt.titleSmall),
                   subtitle: mine ? const Text('Tap to remove') : null,
-                  trailing: Text(e.value, style: const TextStyle(fontSize: 24)),
+                  trailing: Text(e.value, style: const TextStyle(fontSize: 24, fontFamily: kEmojiFontFamily, fontFamilyFallback: kEmojiFallback)),
                   onTap: mine
                       ? () {
                           Navigator.pop(ctx);
@@ -830,7 +829,7 @@ class _MessageActions extends StatelessWidget {
                         height: 44,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(shape: BoxShape.circle, color: current == e ? pal.surfaceAlt : null),
-                        child: Text(e, style: const TextStyle(fontSize: 26)),
+                        child: Text(e, style: const TextStyle(fontSize: 26, fontFamily: kEmojiFontFamily, fontFamilyFallback: kEmojiFallback)),
                       ),
                     ),
                 ],

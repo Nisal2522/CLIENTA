@@ -158,7 +158,7 @@ class LanguageScreen extends StatelessWidget {
                   },
                   child: Row(
                     children: [
-                      Text(_langs[i].$3, style: const TextStyle(fontSize: 26)),
+                      Text(_langs[i].$3, style: const TextStyle(fontSize: 26, fontFamily: kEmojiFontFamily, fontFamilyFallback: kEmojiFallback)),
                       const SizedBox(width: 14),
                       Expanded(
                         child: Column(

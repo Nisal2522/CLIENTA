@@ -181,8 +181,11 @@ class _Dashboard extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 14),
-              FadeSlideIn(index: 3, child: _RegistrationBar(event: e, registered: registered)),
+              // Once registered, the Registered / My badge row is not shown.
+              if (!registered || e.isPast) ...[
+                const SizedBox(height: 14),
+                FadeSlideIn(index: 3, child: _RegistrationBar(event: e, registered: registered)),
+              ],
               if (live != null) ...[
                 const SizedBox(height: 14),
                 FadeSlideIn(

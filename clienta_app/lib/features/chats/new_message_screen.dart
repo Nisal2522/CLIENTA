@@ -333,7 +333,7 @@ class _SuggestionList extends StatelessWidget {
                     ],
                   ),
                 ),
-                Text(p.flag, style: const TextStyle(fontSize: 18)),
+                Text(p.flag, style: const TextStyle(fontSize: 18, fontFamily: kEmojiFontFamily, fontFamilyFallback: kEmojiFallback)),
               ],
             ),
           ),

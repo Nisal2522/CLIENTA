@@ -62,7 +62,7 @@ class ReactionButton extends StatelessWidget {
               if (top.isEmpty)
                 Icon(Icons.add_reaction_outlined, size: 17, color: textColor)
               else
-                Text(top, style: const TextStyle(fontSize: 13.5)),
+                Text(top, style: const TextStyle(fontSize: 13.5, fontFamily: kEmojiFontFamily, fontFamilyFallback: kEmojiFallback)),
               const SizedBox(width: 5),
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 250),
@@ -165,7 +165,7 @@ class ReactionPanel extends StatelessWidget {
                     height: 48,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(shape: BoxShape.circle, color: mine == e ? AppColors.blue.withValues(alpha: 0.14) : null),
-                    child: Text(e, style: const TextStyle(fontSize: 27)),
+                    child: Text(e, style: const TextStyle(fontSize: 27, fontFamily: kEmojiFontFamily, fontFamilyFallback: kEmojiFallback)),
                   ),
                 ),
             ],
@@ -195,7 +195,7 @@ class ReactionPanel extends StatelessWidget {
                             scale: mine == e ? 1.18 : 1,
                             duration: const Duration(milliseconds: 250),
                             curve: Curves.easeOutBack,
-                            child: Text(e, style: const TextStyle(fontSize: 24)),
+                            child: Text(e, style: const TextStyle(fontSize: 24, fontFamily: kEmojiFontFamily, fontFamilyFallback: kEmojiFallback)),
                           ),
                           const SizedBox(height: 3),
                           Text(

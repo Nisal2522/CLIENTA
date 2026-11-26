@@ -117,7 +117,7 @@ class _ContactRow extends StatelessWidget {
               ],
             ),
           ),
-          Text(p.flag, style: const TextStyle(fontSize: 20)),
+          Text(p.flag, style: const TextStyle(fontSize: 20, fontFamily: kEmojiFontFamily, fontFamilyFallback: kEmojiFallback)),
         ],
       ),
     );

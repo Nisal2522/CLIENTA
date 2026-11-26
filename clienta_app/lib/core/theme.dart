@@ -260,3 +260,31 @@ class ForceLight extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Theme(data: AppTheme.light(), child: Builder(builder: builder));
 }
+
+/// Emoji must not be drawn with the brand font: Source Sans has its own
+/// text-style ❤ glyph, which shows in the text colour instead of a red heart.
+/// Use with emoji-only text (reactions, flags).
+const kEmojiFontFamily = 'Noto Color Emoji';
+const kEmojiFallback = ['Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji'];
+
+/// Emoji, with any skin tone, variation selector or joiner after them.
+final _emojiRun = RegExp(
+  r'(?:[☀-➿⬀-⯿〰〽㊗㊙\u{1F000}-\u{1FAFF}][\u{1F3FB}-\u{1F3FF}️⃣]*(?:‍[☀-➿\u{1F000}-\u{1FAFF}][\u{1F3FB}-\u{1F3FF}️]*)*)+',
+  unicode: true,
+);
+
+/// Text that may mix words and emoji: the words keep the brand font, the
+/// emoji use the emoji font (so ❤️ stays red). Use with `Text.rich`.
+TextSpan emojiSpan(String text, {TextStyle? style}) {
+  const emoji = TextStyle(fontFamily: kEmojiFontFamily, fontFamilyFallback: kEmojiFallback);
+  final spans = <InlineSpan>[];
+  var last = 0;
+  for (final m in _emojiRun.allMatches(text)) {
+    if (m.start > last) spans.add(TextSpan(text: text.substring(last, m.start)));
+    spans.add(TextSpan(text: m.group(0), style: emoji));
+    last = m.end;
+  }
+  if (spans.isEmpty) return TextSpan(text: text, style: style);
+  if (last < text.length) spans.add(TextSpan(text: text.substring(last)));
+  return TextSpan(style: style, children: spans);
+}

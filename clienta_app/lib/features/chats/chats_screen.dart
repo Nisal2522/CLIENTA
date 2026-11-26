@@ -212,11 +212,10 @@ class _ThreadTile extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                        child: Text(
-                          '$prefix$preview',
+                        child: Text.rich(
+                          emojiSpan('$prefix$preview', style: context.tt.bodySmall?.copyWith(color: t.unread > 0 ? pal.text : pal.textMuted, fontWeight: t.unread > 0 ? FontWeight.w600 : null)),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: context.tt.bodySmall?.copyWith(color: t.unread > 0 ? pal.text : pal.textMuted, fontWeight: t.unread > 0 ? FontWeight.w600 : null),
                         ),
                       ),
                       if (pinned)

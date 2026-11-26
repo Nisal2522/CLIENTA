@@ -171,15 +171,13 @@ class _Header extends StatelessWidget {
             FadeSlideIn(
               child: Row(
                 children: [
-                  const ClientaLogo(size: 30),
-                  const SizedBox(width: 9),
-                  Text('CLIENTA', style: context.tt.titleMedium?.copyWith(letterSpacing: 3, fontWeight: FontWeight.w800)),
+                  Image.asset('assets/images/control_union_logo.png', height: 30, fit: BoxFit.contain),
                   const Spacer(),
                   CircleIconBtn(
                     icon: Icons.flag_rounded,
                     size: 42,
                     onTap: () => _regionSheet(context),
-                    child: Text(app.regionFlag, style: const TextStyle(fontSize: 19)),
+                    child: Text(app.regionFlag, style: const TextStyle(fontSize: 19, fontFamily: kEmojiFontFamily, fontFamilyFallback: kEmojiFallback)),
                   ),
                   const SizedBox(width: 8),
                   const _ThemeToggle(),
@@ -242,7 +240,7 @@ class _Header extends StatelessWidget {
             for (final r in regions.entries)
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 4),
-                leading: Text(r.value, style: const TextStyle(fontSize: 26)),
+                leading: Text(r.value, style: const TextStyle(fontSize: 26, fontFamily: kEmojiFontFamily, fontFamilyFallback: kEmojiFallback)),
                 title: Text(r.key, style: ctx.tt.titleSmall),
                 trailing: AppState.instance.regionCountry == r.key ? const Icon(Icons.check_circle_rounded, color: AppColors.blue) : null,
                 onTap: () {
