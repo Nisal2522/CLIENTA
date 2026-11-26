@@ -307,17 +307,6 @@ class KnowledgeCard extends StatelessWidget {
                     const SizedBox(height: 6),
                     Text(d.description, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.tt.bodyMedium?.copyWith(color: pal.textMuted, height: 1.4)),
                     const SizedBox(height: 12),
-                    Wrap(
-                      spacing: 14,
-                      runSpacing: 6,
-                      children: [
-                        _Meta(icon: Icons.calendar_today_rounded, text: '${d.updated.year}'),
-                        _Meta(icon: Icons.language_rounded, text: d.language),
-                        _Meta(icon: Icons.place_outlined, text: d.region),
-                        _Meta(icon: Icons.insert_drive_file_outlined, text: d.type == DocType.video ? fmtSize(d.sizeMb) : '${d.pages} ${d.pages == 1 ? 'page' : 'pages'} · ${fmtSize(d.sizeMb)}'),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
                     _Meta(icon: Icons.person_outline_rounded, text: 'Uploaded by ${d.author}'),
                     const SizedBox(height: 6),
                     _Meta(icon: Icons.visibility_outlined, text: '${_count(store.docViews(d))} views · Updated ${timeAgo(d.updated)}'),
@@ -334,8 +323,6 @@ class KnowledgeCard extends StatelessWidget {
                     Row(
                       children: [
                         Text('PCU', style: context.tt.labelLarge?.copyWith(color: pal.textMuted, letterSpacing: 0.4)),
-                        const SizedBox(width: 8),
-                        const TagChip(label: 'Approved', icon: Icons.verified_rounded, color: AppColors.green, small: true),
                         const Spacer(),
                         _ViewButton(onTap: () => _open(context)),
                       ],

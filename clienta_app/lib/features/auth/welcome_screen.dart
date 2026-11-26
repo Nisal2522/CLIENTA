@@ -4,7 +4,6 @@ import '../../core/app_state.dart';
 import '../../core/widgets/widgets.dart';
 import '../shell/main_shell.dart';
 import 'register_screen.dart';
-import 'sign_in_screen.dart';
 import 'auth_scaffold.dart';
 
 /// Signs the user in and opens the app.
@@ -154,23 +153,7 @@ class WelcomeScreen extends StatelessWidget {
                     index: 5,
                     child: const EmployeeSignInButton(),
                   ),
-                  const SizedBox(height: 6),
-                  FadeSlideIn(
-                    index: 6,
-                    child: TextButton(
-                      onPressed: () => push(context, const SignInScreen()),
-                      child: Text.rich(
-                        TextSpan(
-                          style: TextStyle(color: pal.textMuted, fontSize: 14),
-                          children: const [
-                            TextSpan(text: 'Already a client?  '),
-                            TextSpan(text: 'Sign in', style: TextStyle(color: AppColors.blue, fontWeight: FontWeight.w800)),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 6),
+                  const SizedBox(height: 18),
                   FadeSlideIn(
                     index: 7,
                     child: Column(

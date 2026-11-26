@@ -187,12 +187,15 @@ class TagChip extends StatelessWidget {
 }
 
 class InfoRow extends StatelessWidget {
-  const InfoRow({super.key, required this.icon, required this.label, required this.value, this.color = AppColors.blue, this.trailing});
+  const InfoRow({super.key, required this.icon, required this.label, required this.value, this.color = AppColors.blue, this.trailing, this.solid = false});
   final IconData icon;
   final String label;
   final String value;
   final Color color;
   final Widget? trailing;
+
+  /// Solid round icon (as on the event feature tiles) instead of a tinted square.
+  final bool solid;
 
   @override
   Widget build(BuildContext context) {
@@ -200,7 +203,7 @@ class InfoRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 7),
       child: Row(
         children: [
-          IconBadge(icon: icon, color: color, size: 42),
+          IconBadge(icon: icon, color: color, size: solid ? 40 : 42, circle: solid, solid: solid),
           const SizedBox(width: 14),
           Expanded(
             child: Column(

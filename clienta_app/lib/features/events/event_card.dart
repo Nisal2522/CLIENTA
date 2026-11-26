@@ -224,8 +224,8 @@ class EventListCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (e.isLive || e.isPast) ...[
-                  if (e.isLive) const LiveBadge(compact: true) else const TagChip(label: 'Past', small: true, color: AppColors.steel),
+                if (e.isLive) ...[
+                  const LiveBadge(compact: true),
                   const SizedBox(height: 8),
                 ],
                 Text(e.title, maxLines: 2, overflow: TextOverflow.ellipsis, style: context.tt.titleMedium),

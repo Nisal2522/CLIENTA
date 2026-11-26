@@ -51,23 +51,28 @@ class _Dashboard extends StatelessWidget {
     final live = e.sessions.where((s) => s.status == SessionStatus.live).firstOrNull;
     final topPad = MediaQuery.paddingOf(context).top;
 
+    // The "Event experience" tiles keep their own colourful icons on purpose
+    // (the rest of the app uses the brand palette).
+    const steel = Color(0xFF5E7A86), green = Color(0xFF22B573), pink = Color(0xFFDB2FA0), orange = Color(0xFFFF8A3D);
+    const indigo = Color(0xFF3B48D8), purple = Color(0xFF8B5CF6), yellow = Color(0xFFF5B400), lime = Color(0xFF7CB342);
+    const red = Color(0xFFEF4444), blue = Color(0xFF29A9E1), teal = Color(0xFF14B8A6), sky = Color(0xFF29B6F6);
     final features = <(IconData, String, Color, Widget, String?)>[
-      (Icons.description_rounded, 'About Event', AppColors.steel, AboutEventScreen(eventId: e.id), null),
-      (Icons.lightbulb_rounded, 'Tips', AppColors.blue, TipsScreen(eventId: e.id), null),
-      (Icons.view_timeline_rounded, 'Agenda', AppColors.blueDeep, AgendaScreen(eventId: e.id), live != null ? 'LIVE' : null),
-      (Icons.record_voice_over_rounded, 'Speakers', AppColors.darkBlue80, SpeakersScreen(eventId: e.id), null),
-      (Icons.near_me_rounded, 'Location', AppColors.blue, LocationScreen(eventId: e.id), null),
-      (Icons.photo_library_rounded, 'Gallery', AppColors.blueDeep, GalleryScreen(eventId: e.id), null),
-      (Icons.workspace_premium_rounded, 'Certificate', AppColors.darkBlue80, CertificatesScreen(eventId: e.id), null),
-      (Icons.fact_check_rounded, 'Evaluations', AppColors.steel, EvaluationsScreen(eventId: e.id), null),
-      (Icons.sensors_rounded, 'Live Chat', AppColors.blue, LiveChatScreen(eventId: e.id), null),
-      (Icons.event_note_rounded, 'Meetings', AppColors.blueDeep, const MeetingsScreen(), null),
-      (Icons.groups_rounded, 'Groups', AppColors.darkGrey, GroupsScreen(eventId: e.id), null),
-      (Icons.edit_note_rounded, 'My Notes', AppColors.blue, NotesScreen(eventId: e.id), null),
-      (Icons.contact_mail_rounded, 'Contact Us', AppColors.blueDeep, ContactUsScreen(eventId: e.id), null),
-      (Icons.folder_copy_rounded, 'Resources', AppColors.darkBlue80, ResourcesScreen(eventId: e.id), null),
-      (Icons.campaign_rounded, 'Notifications', AppColors.blue, EventNotificationsScreen(eventId: e.id), null),
-      (Icons.people_alt_rounded, 'Participants', AppColors.steel, const ContactsScreen(title: 'Participants'), null),
+      (Icons.description_rounded, 'About Event', steel, AboutEventScreen(eventId: e.id), null),
+      (Icons.lightbulb_rounded, 'Tips', green, TipsScreen(eventId: e.id), null),
+      (Icons.view_timeline_rounded, 'Agenda', pink, AgendaScreen(eventId: e.id), live != null ? 'LIVE' : null),
+      (Icons.record_voice_over_rounded, 'Speakers', orange, SpeakersScreen(eventId: e.id), null),
+      (Icons.near_me_rounded, 'Location', indigo, LocationScreen(eventId: e.id), null),
+      (Icons.photo_library_rounded, 'Gallery', purple, GalleryScreen(eventId: e.id), null),
+      (Icons.workspace_premium_rounded, 'Certificate', yellow, CertificatesScreen(eventId: e.id), null),
+      (Icons.fact_check_rounded, 'Evaluations', lime, EvaluationsScreen(eventId: e.id), null),
+      (Icons.sensors_rounded, 'Live Chat', red, LiveChatScreen(eventId: e.id), null),
+      (Icons.event_note_rounded, 'Meetings', blue, const MeetingsScreen(), null),
+      (Icons.groups_rounded, 'Groups', teal, GroupsScreen(eventId: e.id), null),
+      (Icons.edit_note_rounded, 'My Notes', sky, NotesScreen(eventId: e.id), null),
+      (Icons.contact_mail_rounded, 'Contact Us', green, ContactUsScreen(eventId: e.id), null),
+      (Icons.folder_copy_rounded, 'Resources', orange, ResourcesScreen(eventId: e.id), null),
+      (Icons.campaign_rounded, 'Notifications', pink, EventNotificationsScreen(eventId: e.id), null),
+      (Icons.people_alt_rounded, 'Participants', indigo, const ContactsScreen(title: 'Participants'), null),
     ];
 
     return CustomScrollView(
@@ -158,19 +163,20 @@ class _Dashboard extends StatelessWidget {
                 child: AppCard(
                   child: Column(
                     children: [
-                      InfoRow(icon: Icons.calendar_month_rounded, label: 'Date', value: fmtRange(e.start, e.end)),
-                      InfoRow(icon: Icons.schedule_rounded, label: 'Starts', value: '${fmtTime12(e.start)} · ${countdown(e.start)}', color: AppColors.blue),
+                      InfoRow(icon: Icons.calendar_month_rounded, label: 'Date', value: fmtRange(e.start, e.end), solid: true),
+                      InfoRow(icon: Icons.schedule_rounded, label: 'Starts', value: '${fmtTime12(e.start)} · ${countdown(e.start)}', color: AppColors.darkBlue80, solid: true),
                       InfoRow(
                         icon: Icons.place_rounded,
                         label: 'Venue',
                         value: '${e.venue.name}, ${e.venue.city} ${e.venue.flag}',
                         color: AppColors.blueDeep,
+                        solid: true,
                         trailing: IconButton(
                           icon: const Icon(Icons.directions_rounded, color: AppColors.blue),
                           onPressed: () => push(context, LocationScreen(eventId: e.id)),
                         ),
                       ),
-                      InfoRow(icon: Icons.groups_rounded, label: 'Attendees', value: '${e.attendees} registered', color: AppColors.blueDeep),
+                      InfoRow(icon: Icons.groups_rounded, label: 'Attendees', value: '${e.attendees} registered', color: AppColors.steel, solid: true),
                     ],
                   ),
                 ),
