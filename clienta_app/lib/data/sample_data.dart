@@ -14,7 +14,8 @@ class SampleData {
   static DateTime ago({int days = 0, int hours = 0, int minutes = 0}) =>
       _now.subtract(Duration(days: days, hours: hours, minutes: minutes));
 
-  static String _p(String g, int n) => 'https://randomuser.me/api/portraits/$g/$n.jpg';
+  // Bundled portraits (from randomuser.me), so they also load on web.
+  static String _p(String g, int n) => 'assets/images/people/${g}_$n.jpg';
   static List<String> _gallery(String seed, int n) =>
       List.generate(n, (i) => 'https://picsum.photos/seed/$seed$i/900/900');
 

@@ -329,7 +329,8 @@ class _AiOrb extends StatelessWidget {
         gradient: AppColors.brandGradient,
         boxShadow: [BoxShadow(color: AppColors.blue.withValues(alpha: 0.35), blurRadius: size * 0.4)],
       ),
-      child: Icon(Icons.auto_awesome_rounded, color: Colors.white, size: size * 0.45),
+      alignment: Alignment.center,
+      child: BotIcon(size: size * 0.62),
     );
   }
 }

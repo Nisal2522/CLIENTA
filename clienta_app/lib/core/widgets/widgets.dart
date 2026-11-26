@@ -1,6 +1,7 @@
 export '../nav.dart';
 export '../theme.dart';
 export 'animations.dart';
+export 'bot_icon.dart';
 export 'buttons.dart';
 export 'cards.dart';
 export 'media.dart';
