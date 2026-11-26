@@ -47,11 +47,10 @@ class AboutEventScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Wrap(spacing: 6, runSpacing: 6, children: [
-                            TagChip(label: e.category, color: Colors.white, icon: categoryIcon(e.category)),
-                            if (e.inviteOnly) const TagChip(label: 'PCU only', color: AppColors.blueDeep, icon: Icons.lock_rounded),
-                          ]),
-                          const SizedBox(height: 8),
+                          if (e.inviteOnly) ...[
+                            const TagChip(label: 'PCU only', color: AppColors.blueDeep, icon: Icons.lock_rounded),
+                            const SizedBox(height: 8),
+                          ],
                           Text(e.title, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w800)),
                         ],
                       ),

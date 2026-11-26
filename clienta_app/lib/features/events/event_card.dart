@@ -1,3 +1,5 @@
+import 'dart:ui' show ImageFilter;
+
 import 'package:flutter/material.dart';
 
 import '../../core/format.dart';
@@ -103,7 +105,6 @@ class EventHeroCard extends StatelessWidget {
                             spacing: 6,
                             runSpacing: 6,
                             children: [
-                              TagChip(label: e.category, color: Colors.white, icon: categoryIcon(e.category)),
                               if (e.inviteOnly) const TagChip(label: 'PCU only', color: AppColors.blueDeep, icon: Icons.lock_rounded),
                             ],
                           ),
@@ -186,9 +187,13 @@ class EventListCard extends StatelessWidget {
     final pal = context.pal;
     final store = Store.instance;
     final registered = store.isRegistered(e.id);
-    return AppCard(
+    // Closed (finished) events stay in the list, dimmed and blurred, but can't be opened.
+    final closed = e.isPast;
+    final card = AppCard(
       padding: const EdgeInsets.all(12),
-      onTap: () => openEvent(context, e),
+      onTap: closed
+          ? () => toast(context, 'This event is closed', icon: Icons.lock_clock_rounded, color: AppColors.steel)
+          : () => openEvent(context, e),
       child: Row(
         children: [
           SizedBox(
@@ -199,7 +204,12 @@ class EventListCard extends StatelessWidget {
                 Positioned.fill(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(18),
-                    child: EventImage(event: e, icon: categoryIcon(e.category), iconSize: 34),
+                    child: closed
+                        ? ImageFiltered(
+                            imageFilter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+                            child: ColorFiltered(colorFilter: _greyscale, child: EventImage(event: e, icon: categoryIcon(e.category), iconSize: 34)),
+                          )
+                        : EventImage(event: e, icon: categoryIcon(e.category), iconSize: 34),
                   ),
                 ),
                 Positioned(
@@ -240,16 +250,85 @@ class EventListCard extends StatelessWidget {
                     const SizedBox(width: 4),
                     Text('${e.attendees}', style: context.tt.bodySmall),
                     const Spacer(),
-                    if (registered)
+                    if (closed)
+                      const TagChip(label: 'Closed', small: true, color: AppColors.steel, icon: Icons.lock_rounded)
+                    else if (registered)
                       const TagChip(label: 'Registered', small: true, color: AppColors.green, icon: Icons.check_rounded)
-                    else if (!e.isPast)
-                      Text(countdown(e.start), style: context.tt.labelMedium?.copyWith(color: AppColors.blue)),
+                    else
+                      _RegisterButton(event: e),
                   ],
                 ),
               ],
             ),
           ),
         ],
+      ),
+    );
+    if (!closed) return card;
+    return Opacity(
+      opacity: 0.55,
+      child: ImageFiltered(imageFilter: ImageFilter.blur(sigmaX: 0.6, sigmaY: 0.6), child: card),
+    );
+  }
+}
+
+const _greyscale = ColorFilter.matrix([
+  0.2126, 0.7152, 0.0722, 0, 0,
+  0.2126, 0.7152, 0.0722, 0, 0,
+  0.2126, 0.7152, 0.0722, 0, 0,
+  0, 0, 0, 1, 0,
+]);
+
+/// Small Register button on an event card. Registers without opening the event.
+class _RegisterButton extends StatefulWidget {
+  const _RegisterButton({required this.event});
+  final ClientaEvent event;
+
+  @override
+  State<_RegisterButton> createState() => _RegisterButtonState();
+}
+
+class _RegisterButtonState extends State<_RegisterButton> {
+  bool _busy = false;
+
+  Future<void> _register() async {
+    if (_busy) return;
+    setState(() => _busy = true);
+    await Future.delayed(const Duration(milliseconds: 700));
+    if (!mounted) return;
+    Store.instance.toggleRegistration(widget.event.id);
+    toast(
+      context,
+      widget.event.inviteOnly ? 'Request sent for ${widget.event.title}' : 'You’re registered for ${widget.event.title}',
+      icon: Icons.how_to_reg_rounded,
+      color: AppColors.green,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Pressable(
+      onTap: _register,
+      scale: 0.92,
+      child: Container(
+        height: 30,
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        decoration: BoxDecoration(
+          gradient: AppColors.brandGradient,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [BoxShadow(color: AppColors.blue.withValues(alpha: 0.3), blurRadius: 8, offset: const Offset(0, 3))],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (_busy)
+              const SizedBox(width: 14, height: 14, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+            else
+              const Icon(Icons.how_to_reg_rounded, size: 15, color: Colors.white),
+            const SizedBox(width: 5),
+            const Text('Register', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 12.5)),
+          ],
+        ),
       ),
     );
   }

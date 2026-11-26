@@ -40,6 +40,31 @@ class _MainShellState extends State<MainShell> with SingleTickerProviderStateMix
   late final Animation<double> _fadeCurve = CurvedAnimation(parent: _fade, curve: Curves.easeOut);
 
   @override
+  void initState() {
+    super.initState();
+    // Warm up screens opened from Home (Contacts, Knowledge Hub) so they open
+    // instantly instead of waiting for their data and cover photos.
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final store = Store.instance;
+      store.prefetch(const ['people', 'knowledge']);
+      try {
+        await store.ensure('knowledge');
+        await store.ensure('people');
+      } catch (_) {
+        return; // Offline or error: the screens show it when opened.
+      }
+      if (!mounted) return;
+      for (final d in store.knowledge) {
+        if (d.image != null) precacheImage(AssetImage(d.image!), context);
+      }
+      for (final p in store.people) {
+        final url = p.photoUrl;
+        if (url != null && url.startsWith('assets/')) precacheImage(AssetImage(url), context);
+      }
+    });
+  }
+
+  @override
   void dispose() {
     _fade.dispose();
     super.dispose();

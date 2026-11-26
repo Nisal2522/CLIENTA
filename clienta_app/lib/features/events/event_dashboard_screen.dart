@@ -125,7 +125,6 @@ class _Dashboard extends StatelessWidget {
                           spacing: 6,
                           runSpacing: 6,
                           children: [
-                            TagChip(label: e.category, solid: true, color: categoryColor(e.category), icon: categoryIcon(e.category)),
                             if (e.inviteOnly) const TagChip(label: 'PCU only', solid: true, color: AppColors.blueDeep, icon: Icons.lock_rounded),
                             if (e.isLive) const LiveBadge(),
                           ],

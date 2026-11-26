@@ -33,8 +33,26 @@ class Store extends ChangeNotifier {
 
   bool isLoaded(List<String> keys) => keys.every(_loaded.contains);
 
-  Future<void> ensure(String key, {bool refresh = false}) async {
-    if (_loaded.contains(key) && !refresh) return;
+  final Map<String, Future<void>> _inFlight = {};
+
+  /// Loads [key] once. Calls made while it is already loading share that load.
+  Future<void> ensure(String key, {bool refresh = false}) {
+    if (_loaded.contains(key) && !refresh) return Future.value();
+    if (!refresh && _inFlight[key] != null) return _inFlight[key]!;
+    final f = _load(key).whenComplete(() => _inFlight.remove(key));
+    _inFlight[key] = f;
+    return f;
+  }
+
+  /// Loads [keys] in the background so their screens open without waiting.
+  /// Errors are ignored here; the screen shows them if it still can't load.
+  void prefetch(List<String> keys) {
+    for (final k in keys) {
+      ensure(k).catchError((_) {});
+    }
+  }
+
+  Future<void> _load(String key) async {
     switch (key) {
       case 'events':
         events = await api.fetchEvents();
