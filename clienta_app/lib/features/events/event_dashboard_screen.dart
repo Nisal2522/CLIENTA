@@ -282,32 +282,7 @@ class _RegistrationBarState extends State<_RegistrationBar> {
     if (!mounted) return;
     Store.instance.toggleRegistration(e.id);
     setState(() => _loading = false);
-    if (!widget.registered) {
-      showDialog(
-        context: context,
-        builder: (ctx) => Dialog(
-          child: Padding(
-            padding: const EdgeInsets.all(26),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const AnimatedCheck(size: 100),
-                const SizedBox(height: 16),
-                Text(e.inviteOnly ? 'Request sent!' : 'You’re registered!', style: ctx.tt.titleLarge),
-                const SizedBox(height: 8),
-                Text(
-                  e.inviteOnly ? 'The organisers will confirm your invitation shortly.' : 'Your digital badge is ready. Show the QR code at the entrance.',
-                  textAlign: TextAlign.center,
-                  style: ctx.tt.bodyMedium?.copyWith(color: ctx.pal.textMuted),
-                ),
-                const SizedBox(height: 20),
-                AppButton(label: 'Done', onPressed: () => Navigator.pop(ctx)),
-              ],
-            ),
-          ),
-        ),
-      );
-    }
+    if (!widget.registered) showRegisteredDialog(context, e);
   }
 
   @override
@@ -347,4 +322,33 @@ class _RegistrationBarState extends State<_RegistrationBar> {
       ],
     );
   }
+}
+
+/// Success pop-up after registering (or requesting an invitation) for [e].
+/// Used by the event page and by the Register button on event cards.
+Future<void> showRegisteredDialog(BuildContext context, ClientaEvent e) {
+  return showDialog(
+    context: context,
+    builder: (ctx) => Dialog(
+      child: Padding(
+        padding: const EdgeInsets.all(26),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const AnimatedCheck(size: 100),
+            const SizedBox(height: 16),
+            Text(e.inviteOnly ? 'Request sent!' : 'You’re registered!', style: ctx.tt.titleLarge),
+            const SizedBox(height: 8),
+            Text(
+              e.inviteOnly ? 'The organisers will confirm your invitation shortly.' : 'Your digital badge is ready. Show the QR code at the entrance.',
+              textAlign: TextAlign.center,
+              style: ctx.tt.bodyMedium?.copyWith(color: ctx.pal.textMuted),
+            ),
+            const SizedBox(height: 20),
+            AppButton(label: 'Done', onPressed: () => Navigator.pop(ctx)),
+          ],
+        ),
+      ),
+    ),
+  );
 }

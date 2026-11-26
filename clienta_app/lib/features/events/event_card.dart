@@ -294,15 +294,10 @@ class _RegisterButtonState extends State<_RegisterButton> {
   Future<void> _register() async {
     if (_busy) return;
     setState(() => _busy = true);
-    await Future.delayed(const Duration(milliseconds: 700));
+    await Future.delayed(const Duration(milliseconds: 900));
     if (!mounted) return;
     Store.instance.toggleRegistration(widget.event.id);
-    toast(
-      context,
-      widget.event.inviteOnly ? 'Request sent for ${widget.event.title}' : 'You’re registered for ${widget.event.title}',
-      icon: Icons.how_to_reg_rounded,
-      color: AppColors.green,
-    );
+    showRegisteredDialog(context, widget.event);
   }
 
   @override
