@@ -95,17 +95,6 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                         ),
                       ),
                     ),
-                    const SizedBox(height: 12),
-                    Opacity(
-                      opacity: tag,
-                      child: Transform.translate(
-                        offset: Offset(0, 10 * (1 - tag)),
-                        child: Text(
-                          'A Smarter Way to Collaborate with Clients',
-                          style: const TextStyle(color: Color(0xFF5B6B7F), fontSize: 14, letterSpacing: 0.3),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -115,23 +104,12 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                 bottom: 40,
                 child: Opacity(
                   opacity: tag,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: 120,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: LinearProgressIndicator(
-                            value: _c.value,
-                            minHeight: 3,
-                            backgroundColor: const Color(0xFFE6EBF1),
-                            color: AppColors.blue,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      Text('PETERSON & CONTROL UNION', style: const TextStyle(color: Color(0xFF94A3B5), fontSize: 11, letterSpacing: 2.4, fontWeight: FontWeight.w700)),
-                    ],
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/control_union_logo.png',
+                      width: 170,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ),

@@ -182,7 +182,7 @@ class WelcomeScreen extends StatelessWidget {
                               onTap: () => showAppSheet(context, builder: (_) => const _SupportSheet()),
                               child: Text('Need support?', style: TextStyle(color: pal.textMuted, fontSize: 12, fontWeight: FontWeight.w700)),
                             ),
-                            Text('   ·   v2.0.08 · Prototype', style: TextStyle(color: pal.textFaint, fontSize: 11.5)),
+                            Text('   ·   v2.0.08', style: TextStyle(color: pal.textFaint, fontSize: 11.5)),
                           ],
                         ),
                       ],
