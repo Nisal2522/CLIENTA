@@ -19,15 +19,22 @@ class _ScheduleMeetingSheetState extends State<ScheduleMeetingSheet> {
   late DateTime _date = DateTime.now().add(const Duration(days: 1));
   TimeOfDay _time = const TimeOfDay(hour: 10, minute: 30);
   int _duration = 30;
-  String _place = 'Meeting Hall';
-
-  static const _places = ['Meeting Hall', 'Foyer Café', 'Lotus Room', 'Online (Teams)'];
+  bool _online = true;
+  final _place = TextEditingController();
+  final _placeFocus = FocusNode();
 
   @override
   void dispose() {
     _title.dispose();
     _desc.dispose();
+    _place.dispose();
+    _placeFocus.dispose();
     super.dispose();
+  }
+
+  void _setOnline(bool online) {
+    setState(() => _online = online);
+    if (!online) WidgetsBinding.instance.addPostFrameCallback((_) => _placeFocus.requestFocus());
   }
 
   Future<void> _pickDate() async {
@@ -45,6 +52,11 @@ class _ScheduleMeetingSheetState extends State<ScheduleMeetingSheet> {
       toast(context, 'Please add a meeting title', icon: Icons.info_rounded, color: AppColors.orange);
       return;
     }
+    if (!_online && _place.text.trim().isEmpty) {
+      toast(context, 'Please type the meeting location', icon: Icons.info_rounded, color: AppColors.orange);
+      _placeFocus.requestFocus();
+      return;
+    }
     final start = DateTime(_date.year, _date.month, _date.day, _time.hour, _time.minute);
     Navigator.pop(
       context,
@@ -54,7 +66,7 @@ class _ScheduleMeetingSheetState extends State<ScheduleMeetingSheet> {
         description: _desc.text.trim().isEmpty ? 'Meeting with ${widget.withName}' : _desc.text.trim(),
         start: start,
         end: start.add(Duration(minutes: _duration)),
-        location: _place,
+        location: _online ? 'Online' : _place.text.trim(),
       ),
     );
   }
@@ -101,7 +113,30 @@ class _ScheduleMeetingSheetState extends State<ScheduleMeetingSheet> {
           const SizedBox(height: 16),
           Text('LOCATION', style: context.tt.labelSmall?.copyWith(color: context.pal.textFaint, letterSpacing: 1)),
           const SizedBox(height: 8),
-          Wrap(spacing: 8, runSpacing: 8, children: [for (final p in _places) _chip(p, _place == p, () => setState(() => _place = p))]),
+          Row(
+            children: [
+              Expanded(child: _option(Icons.videocam_rounded, 'Online', _online, () => _setOnline(true))),
+              const SizedBox(width: 10),
+              Expanded(child: _option(Icons.place_rounded, 'Physical', !_online, () => _setOnline(false))),
+            ],
+          ),
+          AnimatedSize(
+            duration: const Duration(milliseconds: 240),
+            curve: Curves.easeOutCubic,
+            alignment: Alignment.topCenter,
+            child: _online
+                ? const SizedBox(width: double.infinity)
+                : Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: TextField(
+                      controller: _place,
+                      focusNode: _placeFocus,
+                      textCapitalization: TextCapitalization.words,
+                      textInputAction: TextInputAction.done,
+                      decoration: const InputDecoration(hintText: 'Type the location (e.g. Meeting Hall, Level 2)', prefixIcon: Icon(Icons.edit_location_alt_rounded)),
+                    ),
+                  ),
+          ),
           const SizedBox(height: 22),
           AppButton(label: 'Send invitation', icon: Icons.send_rounded, onPressed: _send),
         ],
@@ -129,6 +164,30 @@ class _ScheduleMeetingSheetState extends State<ScheduleMeetingSheet> {
           ),
         ),
       );
+
+  Widget _option(IconData icon, String label, bool sel, VoidCallback onTap) {
+    final pal = context.pal;
+    return Pressable(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 220),
+        height: 48,
+        decoration: BoxDecoration(
+          gradient: sel ? AppColors.brandGradient : null,
+          color: sel ? null : pal.surfaceAlt,
+          borderRadius: BorderRadius.circular(14),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 19, color: sel ? Colors.white : AppColors.blue),
+            const SizedBox(width: 8),
+            Text(label, style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: sel ? Colors.white : pal.text)),
+          ],
+        ),
+      ),
+    );
+  }
 
   Widget _chip(String label, bool sel, VoidCallback onTap) {
     final pal = context.pal;
