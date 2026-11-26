@@ -340,8 +340,29 @@ class _MeetingChip extends StatelessWidget {
                 children: [
                   Text(m.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: context.tt.titleSmall),
                   Text('${fmtTime12(m.start)} · ${thread.title.split(' ').first}', maxLines: 1, overflow: TextOverflow.ellipsis, style: context.tt.bodySmall),
-                  const SizedBox(height: 3),
-                  Row(children: [Container(width: 7, height: 7, decoration: BoxDecoration(color: color, shape: BoxShape.circle)), const SizedBox(width: 4), Text(label, style: context.tt.labelSmall?.copyWith(color: color))]),
+                  if (needsRsvp) ...[
+                    const SizedBox(height: 5),
+                    Container(
+                      height: 24,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        gradient: AppColors.brandGradient,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [BoxShadow(color: AppColors.blue.withValues(alpha: 0.35), blurRadius: 8, offset: const Offset(0, 3))],
+                      ),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.event_available_rounded, size: 13, color: Colors.white),
+                          SizedBox(width: 4),
+                          Text('RSVP', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 11.5, letterSpacing: 0.6)),
+                        ],
+                      ),
+                    ),
+                  ] else ...[
+                    const SizedBox(height: 3),
+                    Row(children: [Container(width: 7, height: 7, decoration: BoxDecoration(color: color, shape: BoxShape.circle)), const SizedBox(width: 4), Text(label, style: context.tt.labelSmall?.copyWith(color: color))]),
+                  ],
                 ],
               ),
             ),
