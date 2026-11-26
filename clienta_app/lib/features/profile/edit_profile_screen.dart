@@ -57,7 +57,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               AppState.instance.update(() => u.photoUrl = 'assets/images/profile/${u.isEmployee ? 'dilini' : 'induwara'}.jpg');
               setState(() {});
             }),
-            MenuTile(icon: Icons.camera_alt_rounded, title: 'Take a photo', color: AppColors.purple, onTap: () {
+            MenuTile(icon: Icons.camera_alt_rounded, title: 'Take a photo', color: AppColors.blueDeep, onTap: () {
               Navigator.pop(ctx);
               toast(context, 'Camera opened (prototype)', icon: Icons.camera_alt_rounded);
             }),

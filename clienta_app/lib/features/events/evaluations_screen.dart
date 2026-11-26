@@ -171,13 +171,13 @@ class _SurveyState extends State<_Survey> with AutomaticKeepAliveClientMixin {
                       scale: s <= v ? 1.15 : 1,
                       duration: const Duration(milliseconds: 250),
                       curve: Curves.easeOutBack,
-                      child: Icon(s <= v ? Icons.star_rounded : Icons.star_outline_rounded, size: 40, color: s <= v ? AppColors.yellow : pal.textFaint),
+                      child: Icon(s <= v ? Icons.star_rounded : Icons.star_outline_rounded, size: 40, color: s <= v ? AppColors.blue : pal.textFaint),
                     ),
                   ),
               ],
             ),
             const SizedBox(height: 6),
-            AnimatedSwitcher(duration: const Duration(milliseconds: 200), child: Text(labels[v], key: ValueKey(v), style: context.tt.labelMedium?.copyWith(color: AppColors.yellow))),
+            AnimatedSwitcher(duration: const Duration(milliseconds: 200), child: Text(labels[v], key: ValueKey(v), style: context.tt.labelMedium?.copyWith(color: AppColors.blue))),
           ],
         );
       case QuestionType.single:

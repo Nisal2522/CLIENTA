@@ -56,7 +56,7 @@ class _NewsScreenState extends State<NewsScreen> {
                         Row(
                           children: [
                             Expanded(child: Text('News', style: context.tt.headlineMedium)),
-                            TagChip(label: '${app.regionFlag} $region', color: AppColors.purple),
+                            TagChip(label: '${app.regionFlag} $region', color: AppColors.blueDeep),
                           ],
                         ),
                         const SizedBox(height: 4),
@@ -141,7 +141,7 @@ class _FeaturedNews extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const TagChip(label: 'FEATURED', color: AppColors.yellow, solid: true, small: true),
+                        const TagChip(label: 'FEATURED', color: AppColors.blueDeep, solid: true, small: true),
                         const SizedBox(width: 6),
                         ScopeLabel(article: a),
                       ],

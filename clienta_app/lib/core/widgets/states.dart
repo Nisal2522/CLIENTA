@@ -28,7 +28,7 @@ class _ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final pal = context.pal;
-    final hi = pal.dark ? const Color(0xFF2A3956) : const Color(0xFFF7F9FC);
+    final hi = pal.dark ? AppColors.navy700 : const Color(0xFFF7F9F9);
     return AnimatedBuilder(
       animation: _c,
       child: widget.child,

@@ -9,12 +9,12 @@ import '../services/document_preview_screen.dart';
 import 'section_scaffold.dart';
 
 (IconData, Color, String) docStyle(DocType t) => switch (t) {
-      DocType.pdf => (Icons.picture_as_pdf_rounded, AppColors.red, 'PDF'),
-      DocType.pptx => (Icons.slideshow_rounded, AppColors.orange, 'PPTX'),
+      DocType.pdf => (Icons.picture_as_pdf_rounded, AppColors.blueDeep, 'PDF'),
+      DocType.pptx => (Icons.slideshow_rounded, AppColors.darkBlue80, 'PPTX'),
       DocType.docx => (Icons.description_rounded, AppColors.blue, 'DOCX'),
-      DocType.xlsx => (Icons.table_chart_rounded, AppColors.green, 'XLSX'),
-      DocType.image => (Icons.image_rounded, AppColors.purple, 'IMAGE'),
-      DocType.video => (Icons.play_circle_fill_rounded, AppColors.pink, 'VIDEO'),
+      DocType.xlsx => (Icons.table_chart_rounded, AppColors.darkGrey, 'XLSX'),
+      DocType.image => (Icons.image_rounded, AppColors.steel, 'IMAGE'),
+      DocType.video => (Icons.play_circle_fill_rounded, AppColors.blue, 'VIDEO'),
     };
 
 class ResourcesScreen extends StatelessWidget {

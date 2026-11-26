@@ -115,7 +115,7 @@ class _FakePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget line(double w, {double h = 7, Color c = const Color(0xFFE3E8EF)}) => Container(
+    Widget line(double w, {double h = 7, Color c = AppColors.lightGrey20}) => Container(
           margin: const EdgeInsets.only(bottom: 7),
           width: w,
           height: h,

@@ -69,7 +69,7 @@ class SettingsScreen extends StatelessWidget {
                   MenuTile(
                     icon: Icons.notifications_rounded,
                     title: e.key,
-                    color: AppColors.orange,
+                    color: AppColors.blue,
                     trailing: Switch.adaptive(value: e.value, onChanged: (v) => app.update(() => app.notificationPrefs[e.key] = v)),
                     onTap: () => app.update(() => app.notificationPrefs[e.key] = !e.value),
                   ),
@@ -78,14 +78,14 @@ class SettingsScreen extends StatelessWidget {
             MenuGroup(
               title: 'General',
               children: [
-                MenuTile(icon: Icons.language_rounded, title: 'Language', subtitle: app.language, color: AppColors.teal, onTap: () => push(context, const LanguageScreen())),
-                MenuTile(icon: Icons.shield_rounded, title: 'Privacy settings', color: AppColors.purple, onTap: () => push(context, const PrivacySettingsScreen())),
+                MenuTile(icon: Icons.language_rounded, title: 'Language', subtitle: app.language, color: AppColors.blue, onTap: () => push(context, const LanguageScreen())),
+                MenuTile(icon: Icons.shield_rounded, title: 'Privacy settings', color: AppColors.blueDeep, onTap: () => push(context, const PrivacySettingsScreen())),
                 MenuTile(icon: Icons.manage_accounts_rounded, title: 'Account management', color: AppColors.steel, onTap: () => push(context, const AccountManagementScreen())),
                 MenuTile(
                   icon: Icons.cleaning_services_rounded,
                   title: 'Clear cache',
                   subtitle: '48.2 MB of images and documents',
-                  color: AppColors.green,
+                  color: AppColors.darkGrey,
                   onTap: () => toast(context, 'Cache cleared'),
                 ),
               ],
@@ -97,7 +97,7 @@ class SettingsScreen extends StatelessWidget {
                   icon: Icons.wifi_off_rounded,
                   title: 'Simulate offline',
                   subtitle: 'Shows offline banner & states',
-                  color: AppColors.orange,
+                  color: AppColors.steel,
                   trailing: Switch.adaptive(value: app.offline, onChanged: (v) => app.update(() => app.offline = v)),
                   onTap: () => app.update(() => app.offline = !app.offline),
                 ),
@@ -105,11 +105,11 @@ class SettingsScreen extends StatelessWidget {
                   icon: Icons.error_outline_rounded,
                   title: 'Simulate server errors',
                   subtitle: 'New requests fail with an error state',
-                  color: AppColors.red,
+                  color: AppColors.darkBlue80,
                   trailing: Switch.adaptive(value: app.simulateErrors, onChanged: (v) => app.update(() => app.simulateErrors = v)),
                   onTap: () => app.update(() => app.simulateErrors = !app.simulateErrors),
                 ),
-                MenuTile(icon: Icons.widgets_rounded, title: 'UI states gallery', subtitle: 'Loading, empty, error, offline, permissions', color: AppColors.purple, onTap: () => push(context, const StatesDemoScreen())),
+                MenuTile(icon: Icons.widgets_rounded, title: 'UI states gallery', subtitle: 'Loading, empty, error, offline, permissions', color: AppColors.blueDeep, onTap: () => push(context, const StatesDemoScreen())),
                 MenuTile(icon: Icons.slideshow_rounded, title: 'Replay onboarding', color: AppColors.blue, onTap: () => push(context, const OnboardingScreen())),
               ],
             ),
@@ -208,7 +208,7 @@ class PrivacySettingsScreen extends StatelessWidget {
                   MenuTile(
                     icon: Icons.visibility_rounded,
                     title: e.key,
-                    color: AppColors.purple,
+                    color: AppColors.blueDeep,
                     trailing: Switch.adaptive(value: e.value, onChanged: (v) => app.update(() => app.privacyPrefs[e.key] = v)),
                     onTap: () => app.update(() => app.privacyPrefs[e.key] = !e.value),
                   ),
@@ -262,16 +262,16 @@ class AccountManagementScreen extends StatelessWidget {
                 const MenuTile(icon: Icons.badge_rounded, title: 'Microsoft organisation account', subtitle: 'Single sign-on enabled', color: AppColors.blue, trailing: Icon(Icons.verified_rounded, color: AppColors.green))
               else ...[
                 MenuTile(icon: Icons.password_rounded, title: 'Change password', subtitle: 'Last changed 3 months ago', onTap: () => showAppSheet(context, builder: (_) => const _ChangePasswordSheet())),
-                MenuTile(icon: Icons.alternate_email_rounded, title: 'Change email', color: AppColors.purple, onTap: () => toast(context, 'Verification email sent', icon: Icons.mark_email_read_rounded)),
+                MenuTile(icon: Icons.alternate_email_rounded, title: 'Change email', color: AppColors.blueDeep, onTap: () => toast(context, 'Verification email sent', icon: Icons.mark_email_read_rounded)),
               ],
-              MenuTile(icon: Icons.phonelink_lock_rounded, title: 'Two-step verification', subtitle: 'On · Authenticator app', color: AppColors.green, onTap: () {}),
-              MenuTile(icon: Icons.devices_rounded, title: 'Active sessions', subtitle: 'This phone · Chrome on Windows', color: AppColors.orange, onTap: () => toast(context, 'Signed out of other sessions')),
+              MenuTile(icon: Icons.phonelink_lock_rounded, title: 'Two-step verification', subtitle: 'On · Authenticator app', color: AppColors.blue, onTap: () {}),
+              MenuTile(icon: Icons.devices_rounded, title: 'Active sessions', subtitle: 'This phone · Chrome on Windows', color: AppColors.steel, onTap: () => toast(context, 'Signed out of other sessions')),
             ],
           ),
           MenuGroup(
             title: 'Your data',
             children: [
-              MenuTile(icon: Icons.download_rounded, title: 'Download my data', subtitle: 'Profile, notes, messages (JSON)', color: AppColors.teal, onTap: () => toast(context, 'We’ll email your data export within 24 hours', icon: Icons.mark_email_read_rounded)),
+              MenuTile(icon: Icons.download_rounded, title: 'Download my data', subtitle: 'Profile, notes, messages (JSON)', color: AppColors.darkGrey, onTap: () => toast(context, 'We’ll email your data export within 24 hours', icon: Icons.mark_email_read_rounded)),
             ],
           ),
           MenuGroup(

@@ -28,14 +28,14 @@ class _PermissionScreenState extends State<PermissionScreen> {
           ),
         PermissionKind.camera => (
             Icons.qr_code_scanner_rounded,
-            AppColors.purple,
+            AppColors.blueDeep,
             'Scan QR codes',
             'CLIENTA needs camera access to scan event badges, session check-in codes and participant QR codes.',
             [(Icons.how_to_reg_rounded, 'Fast check-in at sessions'), (Icons.contacts_rounded, 'Swap contacts instantly'), (Icons.lock_rounded, 'The camera is only used while scanning')],
           ),
         PermissionKind.location => (
             Icons.near_me_rounded,
-            AppColors.green,
+            AppColors.blue,
             'Find your way',
             'Allow location access to show where you are on the venue map and get directions to the event.',
             [(Icons.map_rounded, 'Live position on venue map'), (Icons.directions_rounded, 'Directions to the venue'), (Icons.lock_rounded, 'Only used while the app is open')],

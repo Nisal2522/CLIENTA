@@ -144,7 +144,7 @@ void showSpeakerSheet(BuildContext context, Speaker s) {
             alignment: WrapAlignment.center,
             spacing: 6,
             runSpacing: 6,
-            children: [for (final t in s.topics) TagChip(label: t, color: AppColors.purple)],
+            children: [for (final t in s.topics) TagChip(label: t, color: AppColors.blueDeep)],
           ),
           const SizedBox(height: 18),
           Text('Biography', style: ctx.tt.titleMedium),

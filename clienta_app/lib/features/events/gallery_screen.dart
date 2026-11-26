@@ -155,7 +155,7 @@ class _PhotoViewerState extends State<PhotoViewer> {
                         fileName: 'IMG_${(_index + 1).toString().padLeft(4, '0')}.jpg',
                         sizeLabel: '2.4 MB',
                         icon: Icons.image_rounded,
-                        color: AppColors.purple,
+                        color: AppColors.blueDeep,
                       ),
                     ),
                   ),

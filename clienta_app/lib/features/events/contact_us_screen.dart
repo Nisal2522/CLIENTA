@@ -111,7 +111,7 @@ class _OrganizerCard extends StatelessWidget {
             MenuTile(
               icon: Icons.chat_bubble_rounded,
               title: 'Message in CLIENTA',
-              color: AppColors.purple,
+              color: AppColors.blueDeep,
               onTap: () {
                 Navigator.pop(ctx);
                 push(context, ConversationScreen(threadId: Store.instance.threadWith(p.id).id));
@@ -120,7 +120,7 @@ class _OrganizerCard extends StatelessWidget {
             MenuTile(
               icon: Icons.copy_rounded,
               title: 'Copy email address',
-              color: AppColors.green,
+              color: AppColors.steel,
               onTap: () {
                 Clipboard.setData(ClipboardData(text: p.email));
                 Navigator.pop(ctx);

@@ -409,8 +409,8 @@ class _ComposeArtPainter extends CustomPainter {
 
     // Bubble: circle plus a tail at the bottom left.
     final bubbleColors = dark
-        ? [const Color(0xFF2A3654), const Color(0xFF3A2F5E)]
-        : [const Color(0xFFF1F4F8), const Color(0xFFDCD3F5)];
+        ? [AppColors.navy700, AppColors.navy800]
+        : [const Color(0xFFF1F5F5), AppColors.lightBlue20];
     final bubbleRect = Rect.fromCircle(center: center, radius: r);
     final bubblePaint = Paint()..shader = LinearGradient(begin: Alignment.topRight, end: Alignment.bottomLeft, colors: bubbleColors).createShader(bubbleRect);
     final tail = Path()
@@ -425,7 +425,7 @@ class _ComposeArtPainter extends CustomPainter {
     canvas.drawPath(bubble, bubblePaint);
 
     // Three dots on the left edge.
-    const dots = [AppColors.purple, AppColors.green, AppColors.orange];
+    const dots = [AppColors.cuDarkBlue, AppColors.cuLightBlue, AppColors.cuLightGrey];
     final dotR = s * 0.055;
     for (var i = 0; i < dots.length; i++) {
       final c = Offset(center.dx - r * 0.95 + i * dotR * 2.1, center.dy + r * 0.05);
@@ -454,7 +454,7 @@ class _ComposeArtPainter extends CustomPainter {
       topRight: Radius.circular(w / 2),
     );
     final bodyRect = body.outerRect;
-    canvas.drawRRect(body, Paint()..shader = const LinearGradient(colors: [Color(0xFF5BC6F0), AppColors.blue, AppColors.blueDeep], stops: [0, 0.45, 1]).createShader(bodyRect));
+    canvas.drawRRect(body, Paint()..shader = const LinearGradient(colors: [AppColors.lightBlue80, AppColors.cuLightBlue, AppColors.darkBlue80], stops: [0, 0.45, 1]).createShader(bodyRect));
     // Cap band.
     canvas.drawRect(Rect.fromLTWH(-w / 2, -len / 2 + w * 0.9, w, w * 0.22), Paint()..color = Colors.white.withValues(alpha: 0.55));
     // Wooden tip and nib.
@@ -464,13 +464,13 @@ class _ComposeArtPainter extends CustomPainter {
       ..lineTo(w / 2, tipTop)
       ..lineTo(0, tipTop + len * 0.26)
       ..close();
-    canvas.drawPath(tip, Paint()..color = const Color(0xFFF4D7A8));
+    canvas.drawPath(tip, Paint()..color = AppColors.lightGrey40);
     final nib = Path()
       ..moveTo(-w * 0.17, tipTop + len * 0.17)
       ..lineTo(w * 0.17, tipTop + len * 0.17)
       ..lineTo(0, tipTop + len * 0.26)
       ..close();
-    canvas.drawPath(nib, Paint()..color = AppColors.navy700);
+    canvas.drawPath(nib, Paint()..color = AppColors.cuDarkBlue);
     canvas.restore();
   }
 

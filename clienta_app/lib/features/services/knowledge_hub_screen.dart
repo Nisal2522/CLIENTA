@@ -18,9 +18,9 @@ class _KnowledgeHubScreenState extends State<KnowledgeHubScreen> {
 
   static const _cats = {
     'Standards': (Icons.verified_rounded, AppColors.blue),
-    'Guides': (Icons.menu_book_rounded, AppColors.green),
-    'Templates': (Icons.dashboard_customize_rounded, AppColors.purple),
-    'Webinars': (Icons.ondemand_video_rounded, AppColors.pink),
+    'Guides': (Icons.menu_book_rounded, AppColors.blueDeep),
+    'Templates': (Icons.dashboard_customize_rounded, AppColors.darkBlue80),
+    'Webinars': (Icons.ondemand_video_rounded, AppColors.steel),
   };
 
   @override

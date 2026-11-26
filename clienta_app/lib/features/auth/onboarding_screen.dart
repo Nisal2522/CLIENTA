@@ -26,14 +26,14 @@ const _slides = [
     'NETWORKING',
     'Connect and\ncollaborate',
     'Chat with participants, schedule 1:1 meetings and join event groups to make every conversation count.',
-    AppColors.purple,
+    AppColors.blueDeep,
   ),
   _Slide(
     'assets/images/onboarding_sustain.jpg',
     'INSIGHTS',
     'Stay informed,\nget recognised',
     'Global and country news, a Knowledge Hub of standards and guides, and digital certificates you can share.',
-    AppColors.green,
+    AppColors.darkBlue80,
   ),
 ];
 

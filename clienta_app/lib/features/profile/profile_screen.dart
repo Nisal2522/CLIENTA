@@ -110,7 +110,7 @@ class _ProfileBody extends StatelessWidget {
                                 spacing: 6,
                                 runSpacing: 6,
                                 children: [
-                                  TagChip(label: u.isEmployee ? 'PCU Employee' : 'Client', color: u.isEmployee ? AppColors.purple : AppColors.blue, solid: true, small: true),
+                                  TagChip(label: u.isEmployee ? 'PCU Employee' : 'Client', color: u.isEmployee ? AppColors.blueDeep : AppColors.blue, solid: true, small: true),
                                   TagChip(label: '${u.flag} ${u.country}', color: Colors.white, small: true),
                                 ],
                               ),
@@ -185,8 +185,8 @@ class _ProfileBody extends StatelessWidget {
             title: 'My activity',
             children: [
               MenuTile(icon: Icons.event_available_rounded, title: 'My events', subtitle: '${store.registeredEvents.length} registered', onTap: () => ShellScope.maybeOf(context)?.goTo(1)),
-              MenuTile(icon: Icons.workspace_premium_rounded, title: 'My certificates', color: AppColors.yellow, onTap: () => push(context, const CertificatesScreen())),
-              MenuTile(icon: Icons.edit_note_rounded, title: 'My notes', color: AppColors.green, onTap: () => push(context, const NotesScreen())),
+              MenuTile(icon: Icons.workspace_premium_rounded, title: 'My certificates', color: AppColors.darkBlue80, onTap: () => push(context, const CertificatesScreen())),
+              MenuTile(icon: Icons.edit_note_rounded, title: 'My notes', color: AppColors.blue, onTap: () => push(context, const NotesScreen())),
             ],
           ),
         ),

@@ -312,7 +312,7 @@ class _StrengthMeter extends StatelessWidget {
     if (RegExp(r'[0-9]').hasMatch(password)) score++;
     if (RegExp(r'[^A-Za-z0-9]').hasMatch(password)) score++;
     const labels = ['Too short', 'Weak', 'Fair', 'Good', 'Strong'];
-    const colors = [AppColors.red, AppColors.red, AppColors.orange, AppColors.yellow, AppColors.green];
+    const colors = [AppColors.red, AppColors.red, AppColors.orange, AppColors.blue, AppColors.green];
     return Row(
       children: [
         for (var i = 0; i < 4; i++)

@@ -130,7 +130,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
                         child: Row(
                           children: [
                             if (t.isGroup)
-                              const IconBadge(icon: Icons.groups_rounded, size: 42, circle: true, solid: true, color: AppColors.teal)
+                              const IconBadge(icon: Icons.groups_rounded, size: 42, circle: true, solid: true, color: AppColors.darkGrey)
                             else
                               AppAvatar(name: t.title, url: other?.photoUrl, size: 42, online: other?.online ?? false),
                             const SizedBox(width: 10),

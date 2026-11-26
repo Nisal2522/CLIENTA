@@ -142,12 +142,12 @@ class _SearchScreenState extends State<SearchScreen> {
                       if (events.isNotEmpty) header('Events', events.length),
                       for (final e in events) result(categoryIcon(e.category), categoryColor(e.category), e.title, '${fmtDate(e.start)} · ${e.venue.city}', () => openEvent(context, e)),
                       if (news.isNotEmpty) header('News', news.length),
-                      for (final n in news) result(n.icon, AppColors.purple, n.title, '${n.category} · ${timeAgo(n.published)}', () => push(context, NewsArticleScreen(articleId: n.id))),
+                      for (final n in news) result(n.icon, AppColors.blueDeep, n.title, '${n.category} · ${timeAgo(n.published)}', () => push(context, NewsArticleScreen(articleId: n.id))),
                       if (people.isNotEmpty) header('People', people.length),
                       for (final p in people)
                         result(Icons.person, AppColors.blue, p.name, '${p.title} · ${p.company}', () => showPersonSheet(context, p), leading: AppAvatar(name: p.name, url: p.photoUrl, size: 44, online: p.online)),
                       if (docs.isNotEmpty) header('Knowledge Hub', docs.length),
-                      for (final d in docs) result(Icons.menu_book_rounded, AppColors.green, d.title, d.category, () => push(context, DocumentPreviewScreen(doc: d))),
+                      for (final d in docs) result(Icons.menu_book_rounded, AppColors.darkGrey, d.title, d.category, () => push(context, DocumentPreviewScreen(doc: d))),
                     ],
                   );
                 },

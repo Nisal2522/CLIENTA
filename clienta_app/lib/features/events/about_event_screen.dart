@@ -49,7 +49,7 @@ class AboutEventScreen extends StatelessWidget {
                         children: [
                           Wrap(spacing: 6, runSpacing: 6, children: [
                             TagChip(label: e.category, color: Colors.white, icon: categoryIcon(e.category)),
-                            if (e.inviteOnly) const TagChip(label: 'PCU only', color: AppColors.yellow, icon: Icons.lock_rounded),
+                            if (e.inviteOnly) const TagChip(label: 'PCU only', color: AppColors.blueDeep, icon: Icons.lock_rounded),
                           ]),
                           const SizedBox(height: 8),
                           Text(e.title, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w800)),
@@ -70,9 +70,9 @@ class AboutEventScreen extends StatelessWidget {
               child: Column(
                 children: [
                   InfoRow(icon: Icons.calendar_month_rounded, label: 'Date', value: fmtRange(e.start, e.end)),
-                  InfoRow(icon: Icons.schedule_rounded, label: 'Time', value: '${fmtTime12(e.start)} – ${fmtTime12(e.end)}', color: AppColors.orange),
-                  InfoRow(icon: Icons.place_rounded, label: 'Venue', value: '${e.venue.name}, ${e.venue.address}', color: AppColors.green),
-                  InfoRow(icon: Icons.checkroom_rounded, label: 'Dress code', value: e.dressCode, color: AppColors.purple),
+                  InfoRow(icon: Icons.schedule_rounded, label: 'Time', value: '${fmtTime12(e.start)} – ${fmtTime12(e.end)}', color: AppColors.blue),
+                  InfoRow(icon: Icons.place_rounded, label: 'Venue', value: '${e.venue.name}, ${e.venue.address}', color: AppColors.blueDeep),
+                  InfoRow(icon: Icons.checkroom_rounded, label: 'Dress code', value: e.dressCode, color: AppColors.blueDeep),
                 ],
               ),
             ),
@@ -88,14 +88,14 @@ class AboutEventScreen extends StatelessWidget {
                   margin: const EdgeInsets.only(bottom: 8),
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(
-                    color: AppColors.yellow.withValues(alpha: 0.1),
+                    color: AppColors.blue.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: AppColors.yellow.withValues(alpha: 0.3)),
+                    border: Border.all(color: AppColors.blue.withValues(alpha: 0.3)),
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Icon(Icons.info_rounded, color: AppColors.yellow, size: 20),
+                      const Icon(Icons.info_rounded, color: AppColors.blue, size: 20),
                       const SizedBox(width: 10),
                       Expanded(child: Text(e.disclaimers[i], style: context.tt.bodyMedium)),
                     ],
@@ -178,7 +178,7 @@ class _SponsorCard extends StatelessWidget {
           const Spacer(),
           Text(s.name.toUpperCase(), style: TextStyle(color: s.color, fontWeight: FontWeight.w900, fontSize: 15, letterSpacing: 1.2)),
           const SizedBox(height: 3),
-          Text(s.tagline, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: Color(0xFF5B6B7F), fontSize: 11.5)),
+          Text(s.tagline, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(color: AppColors.cuDarkGrey, fontSize: 11.5)),
         ],
       ),
     );

@@ -6,7 +6,7 @@ import '../../data/models.dart';
 import '../../data/store.dart';
 import 'section_scaffold.dart';
 
-const noteColors = [AppColors.blue, AppColors.purple, AppColors.green, AppColors.orange, AppColors.pink];
+const noteColors = [AppColors.blue, AppColors.blueDeep, AppColors.darkGrey, AppColors.steel, AppColors.darkBlue80];
 
 class NotesScreen extends StatefulWidget {
   const NotesScreen({super.key, this.eventId});

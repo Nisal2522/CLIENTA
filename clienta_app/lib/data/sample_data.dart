@@ -103,11 +103,11 @@ class SampleData {
       ],
       tips: const [
         EventTip('Download Event Resources', 'Access presentation slides, whitepapers and workshop materials via the Resources section. These assets remain available for you to review during and after the event.', Icons.download_rounded, AppColors.blue),
-        EventTip('Share Your Experience', 'We value your feedback! Look out for our post-event survey in the Evaluations section to share your thoughts on the sessions, speakers and overall experience.', Icons.rate_review_rounded, AppColors.green),
-        EventTip('Your Digital Badge', 'Open the QR code from the home screen at registration desks and session doors. Screen brightness up helps the scanners.', Icons.qr_code_2_rounded, AppColors.purple),
-        EventTip('Getting Around BMICH', 'Use the Location section for the venue map. Main Hall is on the ground floor; Lotus and Charles rooms are on level 2.', Icons.map_rounded, AppColors.orange),
-        EventTip('Networking Made Easy', 'Use Chats to message participants and Schedule Meeting to book 1:1 time. Accepted meetings appear in your chat.', Icons.handshake_rounded, AppColors.pink),
-        EventTip('Wi-Fi & Charging', 'Network: FTC-Guest · Password on your badge. Charging lockers are next to the registration desk.', Icons.wifi_rounded, AppColors.teal),
+        EventTip('Share Your Experience', 'We value your feedback! Look out for our post-event survey in the Evaluations section to share your thoughts on the sessions, speakers and overall experience.', Icons.rate_review_rounded, AppColors.blue),
+        EventTip('Your Digital Badge', 'Open the QR code from the home screen at registration desks and session doors. Screen brightness up helps the scanners.', Icons.qr_code_2_rounded, AppColors.blueDeep),
+        EventTip('Getting Around BMICH', 'Use the Location section for the venue map. Main Hall is on the ground floor; Lotus and Charles rooms are on level 2.', Icons.map_rounded, AppColors.darkBlue80),
+        EventTip('Networking Made Easy', 'Use Chats to message participants and Schedule Meeting to book 1:1 time. Accepted meetings appear in your chat.', Icons.handshake_rounded, AppColors.darkBlue80),
+        EventTip('Wi-Fi & Charging', 'Network: FTC-Guest · Password on your badge. Charging lockers are next to the registration desk.', Icons.wifi_rounded, AppColors.darkGrey),
       ],
       gallery: _gallery('ftc', 18),
     ),
@@ -134,7 +134,7 @@ class SampleData {
         Session(id: 'a3', start: at(6, 9, 30), end: at(6, 12), title: 'Certification Roadmap 2027', description: 'Upcoming standard versions and what they mean for clients.', speakerIds: const ['sp6'], type: 'Workshop'),
       ],
       tips: const [
-        EventTip('Collect Your Meeting Kit', 'Kits are available from 2:00 PM on day one outside the Grand Ballroom.', Icons.card_giftcard_rounded, AppColors.pink),
+        EventTip('Collect Your Meeting Kit', 'Kits are available from 2:00 PM on day one outside the Grand Ballroom.', Icons.card_giftcard_rounded, AppColors.darkBlue80),
         EventTip('Travel Tips', 'Find the full guidebook in Resources. Safe travels and see you soon!', Icons.flight_takeoff_rounded, AppColors.blue),
       ],
       gallery: _gallery('asia', 9),
@@ -428,7 +428,7 @@ class SampleData {
 
   // ───────────────────────── Groups ─────────────────────────
   static final groups = <EventGroup>[
-    EventGroup(id: 'g1', eventId: 'futuretech', number: 1, name: 'Sustainability Assurance + Environment Systems', room: 'Lotus Room, Level 2', topic: 'Assurance & environmental management', color: AppColors.green, membersByDate: {
+    EventGroup(id: 'g1', eventId: 'futuretech', number: 1, name: 'Sustainability Assurance + Environment Systems', room: 'Lotus Room, Level 2', topic: 'Assurance & environmental management', color: AppColors.blue, membersByDate: {
       at(0, 0): ['me', 'u1', 'u4'],
       at(1, 0): ['me', 'u8', 'u3'],
     }),
@@ -436,10 +436,10 @@ class SampleData {
       at(0, 0): ['u10', 'u2', 'u7'],
       at(1, 0): ['u10', 'u6'],
     }),
-    EventGroup(id: 'g3', eventId: 'futuretech', number: 3, name: 'Supply Chain Integrity', room: 'Main Hall – Table 12', topic: 'Fraud prevention and transparency', color: AppColors.purple, membersByDate: {
+    EventGroup(id: 'g3', eventId: 'futuretech', number: 3, name: 'Supply Chain Integrity', room: 'Main Hall – Table 12', topic: 'Fraud prevention and transparency', color: AppColors.blueDeep, membersByDate: {
       at(0, 0): ['u5', 'u6', 'u9'],
     }),
-    EventGroup(id: 'g4', eventId: 'asia-meeting', number: 1, name: 'Client Experience Asia', room: 'Guanlan Room 2F', topic: 'Client journeys and service quality', color: AppColors.pink, membersByDate: {
+    EventGroup(id: 'g4', eventId: 'asia-meeting', number: 1, name: 'Client Experience Asia', room: 'Guanlan Room 2F', topic: 'Client journeys and service quality', color: AppColors.darkBlue80, membersByDate: {
       at(5, 0): ['me', 'u2', 'u7'],
     }),
   ];

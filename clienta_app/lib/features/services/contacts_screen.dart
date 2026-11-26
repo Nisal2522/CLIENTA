@@ -110,7 +110,7 @@ class _ContactRow extends StatelessWidget {
                 Row(
                   children: [
                     Flexible(child: Text(p.name, overflow: TextOverflow.ellipsis, style: context.tt.titleSmall)),
-                    if (p.isOrganizer) ...[const SizedBox(width: 6), const TagChip(label: 'Organiser', color: AppColors.purple, small: true)],
+                    if (p.isOrganizer) ...[const SizedBox(width: 6), const TagChip(label: 'Organiser', color: AppColors.blueDeep, small: true)],
                   ],
                 ),
                 Text('${p.title} · ${p.company}', maxLines: 1, overflow: TextOverflow.ellipsis, style: context.tt.bodySmall),
@@ -199,7 +199,7 @@ void showPersonSheet(BuildContext context, Person p) {
                       toast(ctx, 'Phone number copied');
                     },
                   ),
-                MenuTile(icon: Icons.apartment_rounded, title: p.department, subtitle: 'Department', color: AppColors.purple, trailing: const SizedBox.shrink()),
+                MenuTile(icon: Icons.apartment_rounded, title: p.department, subtitle: 'Department', color: AppColors.blueDeep, trailing: const SizedBox.shrink()),
               ],
             ),
           ),

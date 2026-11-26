@@ -57,7 +57,7 @@ class MessageBubble extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.insert_drive_file_rounded, color: mine ? Colors.white : AppColors.green),
+            Icon(Icons.insert_drive_file_rounded, color: mine ? Colors.white : AppColors.blue),
             const SizedBox(width: 8),
             Flexible(child: Text(m.attachmentName ?? 'File', style: TextStyle(fontWeight: FontWeight.w700, color: mine ? Colors.white : pal.text))),
           ],
@@ -106,7 +106,7 @@ class MessageBubble extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 4, bottom: 4),
                       child: Text(
                         sender.isOrganizer ? '${sender.name} · Organiser' : sender.name,
-                        style: context.tt.labelSmall?.copyWith(color: sender.isOrganizer ? AppColors.purple : AppColors.blue),
+                        style: context.tt.labelSmall?.copyWith(color: sender.isOrganizer ? AppColors.blueDeep : AppColors.blue),
                       ),
                     ),
                   content,
@@ -355,10 +355,10 @@ class _ChatInputBarState extends State<ChatInputBar> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 for (final (icon, label, color, file) in [
-                  (Icons.photo_rounded, 'Photo', AppColors.purple, 'Photo_2026.jpg'),
-                  (Icons.camera_alt_rounded, 'Camera', AppColors.pink, 'Camera_capture.jpg'),
-                  (Icons.description_rounded, 'Document', AppColors.blue, 'Proposal_v2.pdf'),
-                  (Icons.location_on_rounded, 'Location', AppColors.green, 'My location · BMICH'),
+                  (Icons.photo_rounded, 'Photo', AppColors.blue, 'Photo_2026.jpg'),
+                  (Icons.camera_alt_rounded, 'Camera', AppColors.blueDeep, 'Camera_capture.jpg'),
+                  (Icons.description_rounded, 'Document', AppColors.darkBlue80, 'Proposal_v2.pdf'),
+                  (Icons.location_on_rounded, 'Location', AppColors.steel, 'My location · BMICH'),
                 ])
                   Pressable(
                     onTap: () {
@@ -553,7 +553,7 @@ class QuotedMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pal = context.pal;
-    final accent = onDark ? Colors.white : (message.senderId == 'me' ? AppColors.blue : AppColors.purple);
+    final accent = onDark ? Colors.white : (message.senderId == 'me' ? AppColors.blue : AppColors.blueDeep);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: Container(

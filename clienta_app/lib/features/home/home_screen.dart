@@ -281,7 +281,7 @@ class _ThemeToggle extends StatelessWidget {
           dark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
           key: ValueKey(dark),
           size: 20,
-          color: dark ? AppColors.yellow : AppColors.navy700,
+          color: dark ? AppColors.lightBlue60 : AppColors.cuDarkBlue,
         ),
       ),
     );
@@ -444,8 +444,8 @@ class _Services extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = [
-      (Icons.contacts_rounded, 'Contacts', 'Find participants', AppColors.purple, () => push(context, const ContactsScreen())),
-      (Icons.lightbulb_rounded, 'Knowledge Hub', 'Standards & guides', AppColors.green, () => push(context, const KnowledgeHubScreen())),
+      (Icons.contacts_rounded, 'Contacts', 'Find participants', AppColors.blueDeep, () => push(context, const ContactsScreen())),
+      (Icons.lightbulb_rounded, 'Knowledge Hub', 'Standards & guides', AppColors.blue, () => push(context, const KnowledgeHubScreen())),
     ];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),

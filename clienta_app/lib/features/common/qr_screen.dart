@@ -45,7 +45,7 @@ class _Badge extends StatelessWidget {
                       const SizedBox(width: 8),
                       const Text('CLIENTA', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800, letterSpacing: 3)),
                       const Spacer(),
-                      TagChip(label: u.isEmployee ? 'PCU' : 'CLIENT', color: u.isEmployee ? AppColors.purple : AppColors.blue, solid: true),
+                      TagChip(label: u.isEmployee ? 'PCU' : 'CLIENT', color: u.isEmployee ? AppColors.blueDeep : AppColors.blue, solid: true),
                     ],
                   ),
                 ),

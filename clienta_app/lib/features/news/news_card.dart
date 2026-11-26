@@ -225,7 +225,7 @@ class ScopeLabel extends StatelessWidget {
     final global = article.scope == NewsScope.global;
     return TagChip(
       label: global ? '🌍 Global' : '${article.flag} ${article.country}',
-      color: global ? AppColors.blue : AppColors.purple,
+      color: global ? AppColors.blue : AppColors.blueDeep,
       small: small,
     );
   }

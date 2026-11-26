@@ -53,21 +53,21 @@ class _Dashboard extends StatelessWidget {
 
     final features = <(IconData, String, Color, Widget, String?)>[
       (Icons.description_rounded, 'About Event', AppColors.steel, AboutEventScreen(eventId: e.id), null),
-      (Icons.lightbulb_rounded, 'Tips', AppColors.green, TipsScreen(eventId: e.id), null),
-      (Icons.view_timeline_rounded, 'Agenda', AppColors.pink, AgendaScreen(eventId: e.id), live != null ? 'LIVE' : null),
-      (Icons.record_voice_over_rounded, 'Speakers', AppColors.orange, SpeakersScreen(eventId: e.id), null),
-      (Icons.near_me_rounded, 'Location', AppColors.indigo, LocationScreen(eventId: e.id), null),
-      (Icons.photo_library_rounded, 'Gallery', AppColors.purple, GalleryScreen(eventId: e.id), null),
-      (Icons.workspace_premium_rounded, 'Certificate', AppColors.yellow, CertificatesScreen(eventId: e.id), null),
-      (Icons.fact_check_rounded, 'Evaluations', AppColors.lime, EvaluationsScreen(eventId: e.id), null),
-      (Icons.sensors_rounded, 'Live Chat', AppColors.red, LiveChatScreen(eventId: e.id), null),
-      (Icons.event_note_rounded, 'Meetings', AppColors.blue, const MeetingsScreen(), null),
-      (Icons.groups_rounded, 'Groups', AppColors.teal, GroupsScreen(eventId: e.id), null),
-      (Icons.edit_note_rounded, 'My Notes', const Color(0xFF29B6F6), NotesScreen(eventId: e.id), null),
-      (Icons.contact_mail_rounded, 'Contact Us', AppColors.green, ContactUsScreen(eventId: e.id), null),
-      (Icons.folder_copy_rounded, 'Resources', AppColors.orange, ResourcesScreen(eventId: e.id), null),
-      (Icons.campaign_rounded, 'Notifications', AppColors.pink, EventNotificationsScreen(eventId: e.id), null),
-      (Icons.people_alt_rounded, 'Participants', AppColors.indigo, const ContactsScreen(title: 'Participants'), null),
+      (Icons.lightbulb_rounded, 'Tips', AppColors.blue, TipsScreen(eventId: e.id), null),
+      (Icons.view_timeline_rounded, 'Agenda', AppColors.blueDeep, AgendaScreen(eventId: e.id), live != null ? 'LIVE' : null),
+      (Icons.record_voice_over_rounded, 'Speakers', AppColors.darkBlue80, SpeakersScreen(eventId: e.id), null),
+      (Icons.near_me_rounded, 'Location', AppColors.blue, LocationScreen(eventId: e.id), null),
+      (Icons.photo_library_rounded, 'Gallery', AppColors.blueDeep, GalleryScreen(eventId: e.id), null),
+      (Icons.workspace_premium_rounded, 'Certificate', AppColors.darkBlue80, CertificatesScreen(eventId: e.id), null),
+      (Icons.fact_check_rounded, 'Evaluations', AppColors.steel, EvaluationsScreen(eventId: e.id), null),
+      (Icons.sensors_rounded, 'Live Chat', AppColors.blue, LiveChatScreen(eventId: e.id), null),
+      (Icons.event_note_rounded, 'Meetings', AppColors.blueDeep, const MeetingsScreen(), null),
+      (Icons.groups_rounded, 'Groups', AppColors.darkGrey, GroupsScreen(eventId: e.id), null),
+      (Icons.edit_note_rounded, 'My Notes', AppColors.blue, NotesScreen(eventId: e.id), null),
+      (Icons.contact_mail_rounded, 'Contact Us', AppColors.blueDeep, ContactUsScreen(eventId: e.id), null),
+      (Icons.folder_copy_rounded, 'Resources', AppColors.darkBlue80, ResourcesScreen(eventId: e.id), null),
+      (Icons.campaign_rounded, 'Notifications', AppColors.blue, EventNotificationsScreen(eventId: e.id), null),
+      (Icons.people_alt_rounded, 'Participants', AppColors.steel, const ContactsScreen(title: 'Participants'), null),
     ];
 
     return CustomScrollView(
@@ -121,7 +121,7 @@ class _Dashboard extends StatelessWidget {
                           runSpacing: 6,
                           children: [
                             TagChip(label: e.category, solid: true, color: categoryColor(e.category), icon: categoryIcon(e.category)),
-                            if (e.inviteOnly) const TagChip(label: 'PCU only', solid: true, color: AppColors.yellow, icon: Icons.lock_rounded),
+                            if (e.inviteOnly) const TagChip(label: 'PCU only', solid: true, color: AppColors.blueDeep, icon: Icons.lock_rounded),
                             if (e.isLive) const LiveBadge(),
                           ],
                         ),
@@ -159,18 +159,18 @@ class _Dashboard extends StatelessWidget {
                   child: Column(
                     children: [
                       InfoRow(icon: Icons.calendar_month_rounded, label: 'Date', value: fmtRange(e.start, e.end)),
-                      InfoRow(icon: Icons.schedule_rounded, label: 'Starts', value: '${fmtTime12(e.start)} · ${countdown(e.start)}', color: AppColors.orange),
+                      InfoRow(icon: Icons.schedule_rounded, label: 'Starts', value: '${fmtTime12(e.start)} · ${countdown(e.start)}', color: AppColors.blue),
                       InfoRow(
                         icon: Icons.place_rounded,
                         label: 'Venue',
                         value: '${e.venue.name}, ${e.venue.city} ${e.venue.flag}',
-                        color: AppColors.green,
+                        color: AppColors.blueDeep,
                         trailing: IconButton(
                           icon: const Icon(Icons.directions_rounded, color: AppColors.blue),
                           onPressed: () => push(context, LocationScreen(eventId: e.id)),
                         ),
                       ),
-                      InfoRow(icon: Icons.groups_rounded, label: 'Attendees', value: '${e.attendees} registered', color: AppColors.purple),
+                      InfoRow(icon: Icons.groups_rounded, label: 'Attendees', value: '${e.attendees} registered', color: AppColors.blueDeep),
                     ],
                   ),
                 ),

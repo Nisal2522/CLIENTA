@@ -32,7 +32,7 @@ class CoverArt extends StatelessWidget {
         ArtTheme.agri => const [Color(0xFF16300E), Color(0xFF4F8A1D), Color(0xFFF7D154)],
         ArtTheme.summit => const [Color(0xFF140F3A), Color(0xFF4B2FA0), Color(0xFFE5B3FF)],
         ArtTheme.ocean => const [Color(0xFF041E33), Color(0xFF0E5DBF), Color(0xFF6CD3FF)],
-        ArtTheme.news => const [Color(0xFF111827), Color(0xFF34435E), Color(0xFF29A9E1)],
+        ArtTheme.news => const [AppColors.cuDarkBlue, AppColors.darkBlue80, AppColors.cuLightBlue],
       };
 }
 
@@ -223,12 +223,12 @@ class AppAvatar extends StatelessWidget {
   final bool ring;
 
   static const _gradients = [
-    [Color(0xFF38B6EA), Color(0xFF1A6FC4)],
-    [Color(0xFF8B5CF6), Color(0xFF5B34C9)],
-    [Color(0xFF22B573), Color(0xFF13805A)],
-    [Color(0xFFFF8A3D), Color(0xFFE0531F)],
-    [Color(0xFFDB2FA0), Color(0xFF9B1E73)],
-    [Color(0xFF14B8A6), Color(0xFF0E7C70)],
+    [AppColors.lightBlue80, AppColors.cuLightBlue],
+    [AppColors.darkBlue80, AppColors.cuDarkBlue],
+    [AppColors.cuLightGrey, AppColors.cuDarkGrey],
+    [AppColors.cuLightBlue, AppColors.darkBlue80],
+    [AppColors.darkBlue60, AppColors.darkBlue80],
+    [AppColors.lightGrey80, AppColors.cuLightGrey],
   ];
 
   String get initials {

@@ -283,7 +283,7 @@ void showSessionSheet(BuildContext context, Session s) {
               Text(s.title, style: ctx.tt.headlineSmall),
               const SizedBox(height: 10),
               InfoRow(icon: Icons.schedule_rounded, label: fmtDateFull(s.start), value: '${fmtTime12(s.start)} – ${fmtTime12(s.end)}'),
-              InfoRow(icon: Icons.meeting_room_rounded, label: 'Room', value: s.room, color: AppColors.purple),
+              InfoRow(icon: Icons.meeting_room_rounded, label: 'Room', value: s.room, color: AppColors.blueDeep),
               const SizedBox(height: 8),
               Text(s.description, style: ctx.tt.bodyLarge?.copyWith(color: ctx.pal.textMuted)),
               if (speakers.isNotEmpty) ...[

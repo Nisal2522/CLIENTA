@@ -100,7 +100,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
                     index: 1,
                     child: AppCard(
                       padding: const EdgeInsets.all(14),
-                      gradient: LinearGradient(colors: [AppColors.red.withValues(alpha: 0.14), AppColors.purple.withValues(alpha: 0.08)]),
+                      gradient: LinearGradient(colors: [AppColors.blue.withValues(alpha: 0.16), AppColors.blueDeep.withValues(alpha: 0.06)]),
                       onTap: () => push(context, LiveChatScreen(eventId: live.id)),
                       child: Row(
                         children: [
@@ -194,7 +194,7 @@ class _ThreadTile extends StatelessWidget {
         child: Row(
           children: [
             if (t.isGroup)
-              const IconBadge(icon: Icons.groups_rounded, size: 54, circle: true, solid: true, color: AppColors.teal)
+              const IconBadge(icon: Icons.groups_rounded, size: 54, circle: true, solid: true, color: AppColors.darkGrey)
             else
               AppAvatar(name: t.title, url: other?.photoUrl, size: 54, online: other?.online ?? false),
             const SizedBox(width: 14),
@@ -260,7 +260,7 @@ extension on _ThreadTile {
             Row(
               children: [
                 if (t.isGroup)
-                  const IconBadge(icon: Icons.groups_rounded, size: 42, circle: true, solid: true, color: AppColors.teal)
+                  const IconBadge(icon: Icons.groups_rounded, size: 42, circle: true, solid: true, color: AppColors.darkGrey)
                 else
                   AppAvatar(name: t.title, url: other?.photoUrl, size: 42),
                 const SizedBox(width: 12),
@@ -284,7 +284,7 @@ extension on _ThreadTile {
             if (t.unread > 0)
               ListTile(
                 contentPadding: const EdgeInsets.symmetric(horizontal: 4),
-                leading: const Icon(Icons.mark_chat_read_rounded, color: AppColors.green),
+                leading: const Icon(Icons.mark_chat_read_rounded, color: AppColors.blue),
                 title: Text('Mark as read', style: ctx.tt.titleSmall),
                 onTap: () {
                   Navigator.pop(ctx);

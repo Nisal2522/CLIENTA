@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
               Positioned(
                 bottom: -140 - 30 * _glow.value,
                 right: -100,
-                child: _orb(360, AppColors.purple.withValues(alpha: 0.08)),
+                child: _orb(360, AppColors.blueDeep.withValues(alpha: 0.08)),
               ),
               Center(
                 child: Column(

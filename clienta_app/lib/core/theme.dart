@@ -1,36 +1,57 @@
 import 'package:flutter/material.dart';
 
-/// Brand colours inspired by the Control Union identity:
-/// deep navy, professional blue, steel grey and clean whites.
+/// Control Union brand colours. Use these for everything decorative
+/// (icons, tags, tiles, gradients); blue shades lead.
 class AppColors {
   AppColors._();
 
-  static const navy950 = Color(0xFF080D19);
-  static const navy900 = Color(0xFF0D1424);
-  static const navy800 = Color(0xFF131C30);
-  static const navy700 = Color(0xFF1A253D);
-  static const navy600 = Color(0xFF24324F);
+  // ── Control Union brand palette ──
+  static const cuLightBlue = Color(0xFF3EB2ED);
+  static const cuDarkBlue = Color(0xFF1B1E42);
+  static const cuLightGrey = Color(0xFF799495);
+  static const cuDarkGrey = Color(0xFF4F6566);
 
-  static const blue = Color(0xFF29A9E1);
-  static const blueDeep = Color(0xFF1A6FC4);
-  static const blueSoft = Color(0xFFD9EFFA);
-  static const steel = Color(0xFF5E7A86);
-  static const mist = Color(0xFFA9C4CC);
+  static const lightBlue20 = Color(0xFFD8F0FB);
+  static const lightBlue40 = Color(0xFFB2E0F8);
+  static const lightBlue60 = Color(0xFF8BD1F4);
+  static const lightBlue80 = Color(0xFF65C1F1);
 
+  static const lightGrey20 = Color(0xFFE4EAEA);
+  static const lightGrey40 = Color(0xFFC9D4D5);
+  static const lightGrey60 = Color(0xFFAFBFBF);
+  static const lightGrey80 = Color(0xFF94A9AA);
+
+  static const darkBlue20 = Color(0xFFD1D2D9);
+  static const darkBlue40 = Color(0xFFA4A5B3);
+  static const darkBlue60 = Color(0xFF76788E);
+  static const darkBlue80 = Color(0xFF494B68);
+
+  // ── Roles used across the app ──
+  static const blue = cuLightBlue;
+  static const blueDeep = cuDarkBlue;
+  static const blueSoft = lightBlue20;
+  static const steel = cuLightGrey;
+  static const darkGrey = cuDarkGrey;
+  static const mist = lightGrey40;
+
+  // Dark-mode surfaces, built on CU Dark Blue.
+  static const navy950 = Color(0xFF101229);
+  static const navy900 = cuDarkBlue;
+  static const navy800 = Color(0xFF23274F);
+  static const navy700 = Color(0xFF2E325E);
+  static const navy600 = darkBlue80;
+
+  // Status colours: only for meaning (success / pending / error, online, live),
+  // never for decoration.
   static const green = Color(0xFF22B573);
   static const orange = Color(0xFFFF8A3D);
   static const red = Color(0xFFEF4444);
-  static const purple = Color(0xFF8B5CF6);
-  static const pink = Color(0xFFDB2FA0);
-  static const yellow = Color(0xFFF5B400);
-  static const indigo = Color(0xFF3B48D8);
-  static const lime = Color(0xFF7CB342);
-  static const teal = Color(0xFF14B8A6);
 
+  /// CU Light Blue deepening towards CU Dark Blue.
   static const brandGradient = LinearGradient(
     begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    colors: [Color(0xFF38B6EA), blueDeep],
+    end: Alignment(4, 4),
+    colors: [cuLightBlue, cuDarkBlue],
   );
 
   static const navyGradient = LinearGradient(
@@ -74,15 +95,15 @@ class Palette {
     dark: false,
     bg: Colors.white,
     surface: Colors.white,
-    surfaceAlt: Color(0xFFF2F5F9),
-    border: Color(0xFFE6EBF1),
-    text: Color(0xFF0F1A2C),
-    textMuted: Color(0xFF5B6B7F),
-    textFaint: Color(0xFF94A3B5),
+    surfaceAlt: Color(0xFFF1F5F5),
+    border: AppColors.lightGrey20,
+    text: AppColors.cuDarkBlue,
+    textMuted: AppColors.cuDarkGrey,
+    textFaint: AppColors.lightGrey80,
     glass: Color(0xB3FFFFFF),
     glassBorder: Color(0x33FFFFFF),
-    skeleton: Color(0xFFE3E9F0),
-    shadow: Color(0x141A2B4A),
+    skeleton: AppColors.lightGrey20,
+    shadow: Color(0x141B1E42),
   );
 
   static const darkPalette = Palette(
@@ -90,13 +111,13 @@ class Palette {
     bg: AppColors.navy950,
     surface: AppColors.navy800,
     surfaceAlt: AppColors.navy700,
-    border: Color(0xFF26324A),
-    text: Color(0xFFF1F5FB),
-    textMuted: Color(0xFFA3B1C6),
-    textFaint: Color(0xFF66758C),
-    glass: Color(0x99131C30),
+    border: Color(0xFF383C6A),
+    text: Color(0xFFF4F6FA),
+    textMuted: AppColors.darkBlue40,
+    textFaint: AppColors.darkBlue60,
+    glass: Color(0x9923274F),
     glassBorder: Color(0x1FFFFFFF),
-    skeleton: Color(0xFF1C2740),
+    skeleton: Color(0xFF2A2E58),
     shadow: Color(0x66000000),
   );
 
@@ -201,7 +222,7 @@ class AppTheme {
       ),
       snackBarTheme: SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
-        backgroundColor: b == Brightness.dark ? const Color(0xFF26324A) : AppColors.navy800,
+        backgroundColor: b == Brightness.dark ? AppColors.navy700 : AppColors.cuDarkBlue,
         contentTextStyle: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),

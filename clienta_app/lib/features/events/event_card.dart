@@ -18,9 +18,9 @@ IconData categoryIcon(String c) => switch (c) {
 
 Color categoryColor(String c) => switch (c) {
       'Technology' => AppColors.blue,
-      'Sustainability' => AppColors.green,
-      'Certification' => AppColors.teal,
-      'Corporate' => AppColors.purple,
+      'Sustainability' => AppColors.darkGrey,
+      'Certification' => AppColors.blueDeep,
+      'Corporate' => AppColors.darkBlue80,
       _ => AppColors.blue,
     };
 
@@ -104,7 +104,7 @@ class EventHeroCard extends StatelessWidget {
                             runSpacing: 6,
                             children: [
                               TagChip(label: e.category, color: Colors.white, icon: categoryIcon(e.category)),
-                              if (e.inviteOnly) const TagChip(label: 'PCU only', color: AppColors.yellow, icon: Icons.lock_rounded),
+                              if (e.inviteOnly) const TagChip(label: 'PCU only', color: AppColors.blueDeep, icon: Icons.lock_rounded),
                             ],
                           ),
                         ),

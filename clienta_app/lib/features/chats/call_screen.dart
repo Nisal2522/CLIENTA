@@ -125,7 +125,7 @@ class _CallScreenState extends State<CallScreen> with SingleTickerProviderStateM
                         ],
                       ),
                       child: widget.isGroup
-                          ? const IconBadge(icon: Icons.groups_rounded, size: 130, circle: true, solid: true, color: AppColors.teal)
+                          ? const IconBadge(icon: Icons.groups_rounded, size: 130, circle: true, solid: true, color: AppColors.darkGrey)
                           : AppAvatar(name: widget.title, url: widget.photoUrl, size: 130),
                     ),
                   ),
