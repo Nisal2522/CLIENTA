@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/app_state.dart';
 import '../../core/widgets/widgets.dart';
+import '../home/home_preload.dart';
 import 'auth_scaffold.dart';
 import 'forgot_password_screen.dart';
 import 'register_screen.dart';
@@ -33,9 +34,12 @@ class _SignInScreenState extends State<SignInScreen> {
     FocusScope.of(context).unfocus();
     if (!_form.currentState!.validate()) return;
     setState(() => _loading = true);
-    await Future.delayed(const Duration(milliseconds: 1300));
-    if (!mounted) return;
     final user = AppState.demoClient()..email = _email.text.trim();
+    await Future.wait([
+      Future.delayed(const Duration(milliseconds: 1300)),
+      preloadHome(context, userPhoto: user.photoUrl),
+    ]);
+    if (!mounted) return;
     enterApp(context, user);
   }
 

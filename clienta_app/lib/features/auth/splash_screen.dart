@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/app_state.dart';
 import '../../core/widgets/widgets.dart';
+import '../home/home_preload.dart';
 import 'onboarding_screen.dart';
 import 'welcome_screen.dart';
 
@@ -19,6 +20,10 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   @override
   void initState() {
     super.initState();
+    // Start loading Home while the splash plays, so Home is ready at sign-in.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) preloadHome(context);
+    });
     Future.delayed(const Duration(milliseconds: 3000), () {
       if (!mounted) return;
       replaceAll(context, AppState.instance.onboardingSeen ? const WelcomeScreen() : const OnboardingScreen());

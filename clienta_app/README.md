@@ -28,7 +28,7 @@ The prototype never collects real credentials. Employee SSO is meant to be wired
 ## What's included
 
 - **Onboarding:** animated splash, 3-page onboarding, welcome, client registration, sign-in, forgot password, one-tap employee sign-in, terms & privacy, and a QR badge screen, and permission primers for the camera and venue map (location).
-- **Home:** greeting, region flag, theme toggle, notification badge, QR badge, global search, an animated weekly date strip with your sessions for the selected day, a popular-events carousel, recent news and CLIENTA Services.
+- **Home:** greeting, region flag, theme toggle, notification badge, QR badge, global search, an animated weekly date strip with your sessions for the selected day, a popular-events carousel, recent news and Discover (Contacts, Knowledge Hub).
 - **Event experience** (16 features per event): About (disclaimers, sponsors), Tips, Agenda (Completed / Live / Upcoming states, personal agenda), Speakers, Location (pan & zoom venue map), Gallery (grid + full-screen viewer + download), Certificates (preview + PDF download), Evaluations (survey + live polls), Live Chat, Chats & Schedule Meeting (accept / reject invites), Groups, My Notes (create / edit / swipe-delete + undo), Contact Us, Resources (preview + download), Notifications (employees can send updates) and Participants.
 - **News:** For you / Global / Country scopes, category filters, featured article, likes, full article view and related news.
 - **Chats:** 1:1 and group threads, meetings strip with status, event live chat, attachments, typing indicators and simulated replies.

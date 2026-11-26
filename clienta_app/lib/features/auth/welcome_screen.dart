@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/app_state.dart';
 import '../../core/widgets/widgets.dart';
+import '../home/home_preload.dart';
 import '../shell/main_shell.dart';
 import 'register_screen.dart';
 import 'auth_scaffold.dart';
@@ -28,9 +29,13 @@ class _EmployeeSignInButtonState extends State<EmployeeSignInButton> {
 
   Future<void> _signIn() async {
     setState(() => _loading = true);
-    await Future.delayed(const Duration(milliseconds: 1400));
+    final user = AppState.demoEmployee();
+    await Future.wait([
+      Future.delayed(const Duration(milliseconds: 1400)),
+      preloadHome(context, userPhoto: user.photoUrl),
+    ]);
     if (!mounted) return;
-    enterApp(context, AppState.demoEmployee());
+    enterApp(context, user);
   }
 
   @override

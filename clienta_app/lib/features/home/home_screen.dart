@@ -14,6 +14,7 @@ import '../services/contacts_screen.dart';
 import '../services/knowledge_hub_screen.dart';
 import '../services/support_ai_screen.dart';
 import '../shell/main_shell.dart';
+import 'home_preload.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -31,7 +32,7 @@ class HomeScreen extends StatelessWidget {
               return false;
             },
             child: AsyncView(
-              keys: const ['events', 'news', 'notifications', 'chats'],
+              keys: homeDataKeys,
               skeleton: const _HomeSkeleton(),
               builder: (context) => const _HomeContent(),
             ),
@@ -165,7 +166,7 @@ class _HomeContentState extends State<_HomeContent> {
               itemBuilder: (_, i) => FadeSlideIn(index: 5 + i, child: NewsCard(article: store.news[i])),
             ),
           ),
-          const SliverToBoxAdapter(child: SectionHeader(title: 'CLIENTA Services')),
+          const SliverToBoxAdapter(child: SectionHeader(title: 'Discover')),
           const SliverToBoxAdapter(child: _Services()),
           // Extra room so the last cards can scroll clear of the Support AI bubble.
           const SliverToBoxAdapter(child: SizedBox(height: kNavBarSpace + 64)),

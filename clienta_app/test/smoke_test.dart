@@ -1,5 +1,7 @@
 import 'package:clienta/app.dart';
 import 'package:clienta/core/app_state.dart';
+import 'package:clienta/data/store.dart';
+import 'package:clienta/features/home/home_preload.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -61,6 +63,9 @@ void main() {
       _step = 'splash';
       await settle(3600);
       await tapText('Skip');
+
+      // Home data loads during the splash, so Home opens with no skeleton.
+      expect(Store.instance.isLoaded(homeDataKeys), isTrue, reason: 'Home data should be preloaded before sign-in');
 
       // Employee sign-in → shell
       await tapText('PCU employee sign-in');

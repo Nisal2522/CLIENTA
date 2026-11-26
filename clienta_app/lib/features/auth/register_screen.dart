@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/app_state.dart';
 import '../../core/widgets/widgets.dart';
+import '../home/home_preload.dart';
 import 'auth_scaffold.dart';
 import 'terms_screen.dart';
 import 'welcome_screen.dart';
@@ -56,7 +57,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
       return;
     }
     setState(() => _loading = true);
-    await Future.delayed(const Duration(milliseconds: 1500));
+    await Future.wait([
+      Future.delayed(const Duration(milliseconds: 1500)),
+      preloadHome(context),
+    ]);
     if (mounted) setState(() => _done = true);
   }
 
